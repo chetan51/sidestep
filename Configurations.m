@@ -2,7 +2,7 @@
 //  Configurations.m
 //  Sidestep
 //
-//  Created by Chetan Surpur on 10/28/10.
+//  Created by Chetan Surpur on 11/18/10.
 //  Copyright 2010 Chetan Surpur. All rights reserved.
 //
 

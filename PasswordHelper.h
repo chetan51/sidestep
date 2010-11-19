@@ -1,7 +1,7 @@
 //
 //   PasswordHelper.h
 //
-//  Created by Ira Cooke on 27/07/2009.
+//  Created by Ira Cooke on 27/07/2009. Modified with permission by Chetan Surpur.
 //  Copyright 2009 Mudflat Software. 
 //
 
@@ -14,8 +14,5 @@
 + (BOOL) setPassword:(NSString*)newPassword forHost:(NSString*)hostname user:(NSString*) username;
 + (NSString*) passwordForHost:(NSString*)hostname user:(NSString*) username;
 + (NSArray *) promptForPassword:(NSString*)hostname user:(NSString*) username;
-
-
-
 
 @end

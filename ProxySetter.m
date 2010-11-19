@@ -2,8 +2,8 @@
 //  ProxySetter.m
 //  Sidestep
 //
-//  Created by Chetan Surpur on 11/2/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Created by Chetan Surpur on 11/18/10.
+//  Copyright 2010 Chetan Surpur. All rights reserved.
 //
 
 #import "ProxySetter.h"
