@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DDD58160DA1D0A300B32029 /* Sidestep.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* Sidestep.xib */; };
+		256AC3DA0F4B6AC300CF3369 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppController.m */; };
+		6145B218127A6AC600A5F7AF /* SSHConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B217127A6AC600A5F7AF /* SSHConnector.m */; };
+		6145B2E0127A739200A5F7AF /* AppUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B2DF127A739200A5F7AF /* AppUtilities.m */; };
+		6145B306127A746400A5F7AF /* Configurations.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B305127A746400A5F7AF /* Configurations.m */; };
+		6145B33B127A764E00A5F7AF /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordHelper.m */; };
+		6145B3FC127A7A3700A5F7AF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B3B1127A780A00A5F7AF /* Security.framework */; };
+		6145B40E127A7A6700A5F7AF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B40D127A7A6700A5F7AF /* SystemConfiguration.framework */; };
+		6145B412127A7A6F00A5F7AF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B411127A7A6F00A5F7AF /* IOKit.framework */; };
+		6145B420127A7A9C00A5F7AF /* NetworkNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */; };
+		61739FEF1294787E00BBD392 /* direct-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61739FEE1294787E00BBD392 /* direct-secure-icon.png */; };
+		61739FF512950DEF00BBD392 /* rerouted-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61739FF412950DEF00BBD392 /* rerouted-secure-icon.png */; };
+		6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6173A006129511F900BBD392 /* direct-insecure-icon.png */; };
+		61B3E46B127A7BC20011E198 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordHelper.m */; };
+		61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B3BF127A78AD00A5F7AF /* SSHAskPass.m */; };
+		61B3E4AE127A7BD00011E198 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B3B1127A780A00A5F7AF /* Security.framework */; };
+		61B3E4D0127A7D3B0011E198 /* SSHAskPass in Resources */ = {isa = PBXBuildFile; fileRef = 61B3E4B2127A7BE30011E198 /* SSHAskPass */; };
+		61B3E58F127ABBEB0011E198 /* TurnProxyOff.sh in Resources */ = {isa = PBXBuildFile; fileRef = 61B3E58C127ABBEB0011E198 /* TurnProxyOff.sh */; };
+		61B3E590127ABBEB0011E198 /* TurnProxyOn.sh in Resources */ = {isa = PBXBuildFile; fileRef = 61B3E58D127ABBEB0011E198 /* TurnProxyOn.sh */; };
+		61B3E63B127ACB420011E198 /* DefaultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B3E63A127ACB420011E198 /* DefaultsController.m */; };
+		61B3E827127BA7A50011E198 /* WatchSSHConnectionForChanges.sh in Resources */ = {isa = PBXBuildFile; fileRef = 61B3E825127BA7A50011E198 /* WatchSSHConnectionForChanges.sh */; };
+		61BA522212823CF100BD1D72 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BA522112823CF100BD1D72 /* Sparkle.framework */; };
+		61BA523112823D4300BD1D72 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61BA522112823CF100BD1D72 /* Sparkle.framework */; };
+		61FB5E5E127FC469003229D7 /* GetNetworkSecurityType.sh in Resources */ = {isa = PBXBuildFile; fileRef = 61FB5E5D127FC469003229D7 /* GetNetworkSecurityType.sh */; };
+		61FB5F5A1280E970003229D7 /* ProxySetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FB5F591280E970003229D7 /* ProxySetter.m */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		61B3E4B0127A7BE30011E198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61B3E466127A7BAC0011E198;
+			remoteInfo = SSHAskPass;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		61BA523912823D4900BD1D72 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				61BA523112823D4300BD1D72 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Sidestep.xib; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* Sidestep_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sidestep_Prefix.pch; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		6145B216127A6AC600A5F7AF /* SSHConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHConnector.h; sourceTree = "<group>"; };
+		6145B217127A6AC600A5F7AF /* SSHConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHConnector.m; sourceTree = "<group>"; };
+		6145B2DE127A739100A5F7AF /* AppUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtilities.h; sourceTree = "<group>"; };
+		6145B2DF127A739200A5F7AF /* AppUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtilities.m; sourceTree = "<group>"; };
+		6145B304127A746400A5F7AF /* Configurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configurations.h; sourceTree = "<group>"; };
+		6145B305127A746400A5F7AF /* Configurations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configurations.m; sourceTree = "<group>"; };
+		6145B338127A764E00A5F7AF /* PasswordHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordHelper.h; sourceTree = "<group>"; };
+		6145B339127A764E00A5F7AF /* PasswordHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordHelper.m; sourceTree = "<group>"; };
+		6145B3B1127A780A00A5F7AF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6145B3BF127A78AD00A5F7AF /* SSHAskPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHAskPass.m; sourceTree = "<group>"; };
+		6145B40D127A7A6700A5F7AF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6145B411127A7A6F00A5F7AF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		6145B41E127A7A9C00A5F7AF /* NetworkNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkNotifier.h; sourceTree = "<group>"; };
+		6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkNotifier.m; sourceTree = "<group>"; };
+		61739FEE1294787E00BBD392 /* direct-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-secure-icon.png"; sourceTree = "<group>"; };
+		61739FF412950DEF00BBD392 /* rerouted-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rerouted-secure-icon.png"; sourceTree = "<group>"; };
+		6173A006129511F900BBD392 /* direct-insecure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-insecure-icon.png"; sourceTree = "<group>"; };
+		61B3E4B2127A7BE30011E198 /* SSHAskPass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SSHAskPass; sourceTree = BUILT_PRODUCTS_DIR; };
+		61B3E58C127ABBEB0011E198 /* TurnProxyOff.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = TurnProxyOff.sh; path = scripts/TurnProxyOff.sh; sourceTree = SOURCE_ROOT; };
+		61B3E58D127ABBEB0011E198 /* TurnProxyOn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = TurnProxyOn.sh; path = scripts/TurnProxyOn.sh; sourceTree = SOURCE_ROOT; };
+		61B3E639127ACB420011E198 /* DefaultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultsController.h; sourceTree = "<group>"; };
+		61B3E63A127ACB420011E198 /* DefaultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultsController.m; sourceTree = "<group>"; };
+		61B3E825127BA7A50011E198 /* WatchSSHConnectionForChanges.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = WatchSSHConnectionForChanges.sh; path = scripts/WatchSSHConnectionForChanges.sh; sourceTree = SOURCE_ROOT; };
+		61BA522112823CF100BD1D72 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		61FB5E5D127FC469003229D7 /* GetNetworkSecurityType.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = GetNetworkSecurityType.sh; path = scripts/GetNetworkSecurityType.sh; sourceTree = "<group>"; };
+		61FB5F581280E970003229D7 /* ProxySetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxySetter.h; sourceTree = "<group>"; };
+		61FB5F591280E970003229D7 /* ProxySetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySetter.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Sidestep-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sidestep-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* Sidestep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sidestep.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		61B3E465127A7BAC0011E198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61B3E4AE127A7BD00011E198 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6145B3FC127A7A3700A5F7AF /* Security.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				6145B40E127A7A6700A5F7AF /* SystemConfiguration.framework in Frameworks */,
+				6145B412127A7A6F00A5F7AF /* IOKit.framework in Frameworks */,
+				61BA522212823CF100BD1D72 /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6145B41E127A7A9C00A5F7AF /* NetworkNotifier.h */,
+				6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */,
+				6145B338127A764E00A5F7AF /* PasswordHelper.h */,
+				6145B339127A764E00A5F7AF /* PasswordHelper.m */,
+				6145B304127A746400A5F7AF /* Configurations.h */,
+				6145B305127A746400A5F7AF /* Configurations.m */,
+				6145B2DE127A739100A5F7AF /* AppUtilities.h */,
+				6145B2DF127A739200A5F7AF /* AppUtilities.m */,
+				256AC3D80F4B6AC300CF3369 /* AppController.h */,
+				256AC3D90F4B6AC300CF3369 /* AppController.m */,
+				6145B216127A6AC600A5F7AF /* SSHConnector.h */,
+				6145B217127A6AC600A5F7AF /* SSHConnector.m */,
+				6145B3BF127A78AD00A5F7AF /* SSHAskPass.m */,
+				61B3E639127ACB420011E198 /* DefaultsController.h */,
+				61B3E63A127ACB420011E198 /* DefaultsController.m */,
+				61FB5F581280E970003229D7 /* ProxySetter.h */,
+				61FB5F591280E970003229D7 /* ProxySetter.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61BA522112823CF100BD1D72 /* Sparkle.framework */,
+				6145B3B1127A780A00A5F7AF /* Security.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				6145B40D127A7A6700A5F7AF /* SystemConfiguration.framework */,
+				6145B411127A7A6F00A5F7AF /* IOKit.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* Sidestep.app */,
+				61B3E4B2127A7BE30011E198 /* SSHAskPass */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Sidestep */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = Sidestep;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				256AC3F00F4B6AF500CF3369 /* Sidestep_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6173A006129511F900BBD392 /* direct-insecure-icon.png */,
+				61739FF412950DEF00BBD392 /* rerouted-secure-icon.png */,
+				61739FEE1294787E00BBD392 /* direct-secure-icon.png */,
+				61FB5E5D127FC469003229D7 /* GetNetworkSecurityType.sh */,
+				61B3E825127BA7A50011E198 /* WatchSSHConnectionForChanges.sh */,
+				61B3E58C127ABBEB0011E198 /* TurnProxyOff.sh */,
+				61B3E58D127ABBEB0011E198 /* TurnProxyOn.sh */,
+				8D1107310486CEB800E47090 /* Sidestep-Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* Sidestep.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		61B3E466127A7BAC0011E198 /* SSHAskPass */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61B3E4AF127A7BD80011E198 /* Build configuration list for PBXNativeTarget "SSHAskPass" */;
+			buildPhases = (
+				61B3E464127A7BAC0011E198 /* Sources */,
+				61B3E465127A7BAC0011E198 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SSHAskPass;
+			productName = SSHAskPass;
+			productReference = 61B3E4B2127A7BE30011E198 /* SSHAskPass */;
+			productType = "com.apple.product-type.tool";
+		};
+		8D1107260486CEB800E47090 /* Sidestep */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Sidestep" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				61BA523912823D4900BD1D72 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				61B3E4B1127A7BE30011E198 /* PBXTargetDependency */,
+			);
+			name = Sidestep;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Sidestep;
+			productReference = 8D1107320486CEB800E47090 /* Sidestep.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Sidestep" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Sidestep */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* Sidestep */,
+				61B3E466127A7BAC0011E198 /* SSHAskPass */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61B3E4D0127A7D3B0011E198 /* SSHAskPass in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* Sidestep.xib in Resources */,
+				61B3E58F127ABBEB0011E198 /* TurnProxyOff.sh in Resources */,
+				61B3E590127ABBEB0011E198 /* TurnProxyOn.sh in Resources */,
+				61B3E827127BA7A50011E198 /* WatchSSHConnectionForChanges.sh in Resources */,
+				61FB5E5E127FC469003229D7 /* GetNetworkSecurityType.sh in Resources */,
+				61739FEF1294787E00BBD392 /* direct-secure-icon.png in Resources */,
+				61739FF512950DEF00BBD392 /* rerouted-secure-icon.png in Resources */,
+				6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		61B3E464127A7BAC0011E198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61B3E46B127A7BC20011E198 /* PasswordHelper.m in Sources */,
+				61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* AppController.m in Sources */,
+				6145B218127A6AC600A5F7AF /* SSHConnector.m in Sources */,
+				6145B2E0127A739200A5F7AF /* AppUtilities.m in Sources */,
+				6145B306127A746400A5F7AF /* Configurations.m in Sources */,
+				6145B33B127A764E00A5F7AF /* PasswordHelper.m in Sources */,
+				6145B420127A7A9C00A5F7AF /* NetworkNotifier.m in Sources */,
+				61B3E63B127ACB420011E198 /* DefaultsController.m in Sources */,
+				61FB5F5A1280E970003229D7 /* ProxySetter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		61B3E4B1127A7BE30011E198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61B3E466127A7BAC0011E198 /* SSHAskPass */;
+			targetProxy = 61B3E4B0127A7BE30011E198 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* Sidestep.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = Sidestep.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		61B3E469127A7BAC0011E198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SSHAskPass;
+			};
+			name = Debug;
+		};
+		61B3E46A127A7BAC0011E198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SSHAskPass;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sidestep_Prefix.pch;
+				INFOPLIST_FILE = "Sidestep-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Sidestep;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Sidestep_Prefix.pch;
+				INFOPLIST_FILE = "Sidestep-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Sidestep;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		61B3E4AF127A7BD80011E198 /* Build configuration list for PBXNativeTarget "SSHAskPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61B3E469127A7BAC0011E198 /* Debug */,
+				61B3E46A127A7BAC0011E198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Sidestep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Sidestep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
