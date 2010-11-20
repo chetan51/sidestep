@@ -56,6 +56,11 @@
 	NSString *currentNetworkSecurityType;
 }
 
+- (void)openSSHConnectionAfterDelay :(int)delay;
+- (void)testSSHConnection;
+- (void)closeSSHConnection;
+- (void)setRunOnLogin :(BOOL)value;
+
 - (void)preferencesClicked :(id)sender;
 - (void)aboutClicked :(id)sender;
 

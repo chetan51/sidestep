@@ -19,7 +19,13 @@
 - (NSString *)getServerUsername;
 - (NSString *)getServerHostname;
 
+- (void)setRanAtleastOnce :(BOOL)value;
+- (BOOL)ranAtleastOnce;
+
+- (void)setRerouteAutomatically :(BOOL)enabled;
 - (BOOL)rerouteAutomaticallyEnabled;
+
+- (void)setRunOnLogin :(BOOL)enabled;
 - (BOOL)runOnLogin;
 
 @end

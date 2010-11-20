@@ -73,9 +73,36 @@
  *******************************************************************************
  */
 
+- (void)setRanAtleastOnce :(BOOL)value {
+
+	[defaults setBool:value forKey:@"sidestep_ranAtLeastOnce"];
+	[defaults synchronize];
+	
+}
+
+- (BOOL)ranAtleastOnce {
+
+	return [defaults boolForKey:@"sidestep_ranAtLeastOnce"];
+
+}
+
+- (void)setRerouteAutomatically :(BOOL)value {
+
+	[defaults setBool:value forKey:@"sidestep_rerouteAutomatically"];
+	[defaults synchronize];
+	
+}
+
 - (BOOL)rerouteAutomaticallyEnabled {
 
 	return [defaults boolForKey:@"sidestep_rerouteAutomatically"];
+	
+}
+
+- (void)setRunOnLogin :(BOOL)value {
+
+	[defaults setBool:value forKey:@"sidestep_runOnLogin"];
+	[defaults synchronize];
 	
 }
 

@@ -135,11 +135,22 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	[statusItem setImage:statusImageDirectSecure];
 	[statusItem setAlternateImage:statusImageDirectSecure];
 	
-	// Show welcome window
-	[welcomeWindow center];
-	[welcomeTabs selectFirstTabViewItem:self];
-	[welcomeWindow setIsVisible:TRUE];
-	[welcomeWindow makeKeyAndOrderFront:self];
+	// Set first-run default preferences
+	if (![defaultsController ranAtleastOnce]) {
+	
+		[defaultsController setRerouteAutomatically:TRUE];
+		[defaultsController setRanAtleastOnce:TRUE];
+		
+		[defaultsController setRunOnLogin:TRUE];
+		[self setRunOnLogin:TRUE];
+		
+		// Show welcome window
+		[welcomeWindow center];
+		[welcomeTabs selectFirstTabViewItem:self];
+		[welcomeWindow setIsVisible:TRUE];
+		[welcomeWindow makeKeyAndOrderFront:self];
+		
+	}
 	
 	// Update connection status
 	[connectionStatus setTitle:determiningConnectionStatusText];
@@ -264,6 +275,27 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	
 	SSHConnecting = FALSE;		
 	SSHConnected = FALSE;	
+	
+}
+
+- (void)setRunOnLogin :(BOOL)value {
+	
+	[self willChangeValueForKey:@"startAtLogin"];
+	
+	NSURL *appURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+	
+	if (value) {
+		XLog(self, @"Enabling run on login");
+		
+		[LoginItemController setStartAtLogin:appURL enabled:TRUE];		
+	}
+	else {
+		XLog(self, @"Disabling run on login");
+		
+		[LoginItemController setStartAtLogin:appURL enabled:FALSE];
+	}
+	
+	[self didChangeValueForKey:@"startAtLogin"];
 	
 }
 
@@ -722,22 +754,7 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	
 	// [defaultsController runOnLogin] will now return updated value of the run on login checkbox
 	
-	[self willChangeValueForKey:@"startAtLogin"];
-	
-	NSURL *appURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-	
-	if ([defaultsController runOnLogin]) {
-		XLog(self, @"Enabling run on login");
-		
-		[LoginItemController setStartAtLogin:appURL enabled:TRUE];		
-	}
-	else {
-		XLog(self, @"Disabling run on login");
-		
-		[LoginItemController setStartAtLogin:appURL enabled:FALSE];
-	}
-	
-	[self didChangeValueForKey:@"startAtLogin"];
+	[self setRunOnLogin:[defaultsController runOnLogin]];
 	
 }
 
