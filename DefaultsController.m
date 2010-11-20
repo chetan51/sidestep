@@ -79,14 +79,9 @@
 	
 }
 
-- (void)toggleRunOnLogin {
+- (BOOL)runOnLogin {
 	
-	NSURL *appURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-	BOOL enabled = TRUE;
-	
-	[self willChangeValueForKey:@"startAtLogin"];
-    [LoginItemController setStartAtLogin:appURL enabled:enabled];
-    [self didChangeValueForKey:@"startAtLogin"];
+	return [defaults boolForKey:@"sidestep_runOnLogin"];
 	
 }
 

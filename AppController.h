@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "SSHConnector.h"
 #import "DefaultsController.h"
+#import "LoginItemController.h"
 #import "NetworkNotifier.h"
 #import "ProxySetter.h"
 #import "AppUtilities.h"

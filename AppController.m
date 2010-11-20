@@ -720,7 +720,24 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 
 - (void)toggleRunOnLoginClicked :(id)sender {
 	
-	[defaultsController toggleRunOnLogin];
+	// [defaultsController runOnLogin] will now return updated value of the run on login checkbox
+	
+	[self willChangeValueForKey:@"startAtLogin"];
+	
+	NSURL *appURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+	
+	if ([defaultsController runOnLogin]) {
+		XLog(self, @"Enabling run on login");
+		
+		[LoginItemController setStartAtLogin:appURL enabled:TRUE];		
+	}
+	else {
+		XLog(self, @"Disabling run on login");
+		
+		[LoginItemController setStartAtLogin:appURL enabled:FALSE];
+	}
+	
+	[self didChangeValueForKey:@"startAtLogin"];
 	
 }
 
