@@ -19,7 +19,7 @@
 - (NSString *)getServerUsername;
 - (NSString *)getServerHostname;
 
-- (int)rerouteAutomaticallyEnabled;
+- (BOOL)rerouteAutomaticallyEnabled;
 - (BOOL)runOnLogin;
 
 @end

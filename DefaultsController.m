@@ -73,9 +73,9 @@
  *******************************************************************************
  */
 
-- (int)rerouteAutomaticallyEnabled {
+- (BOOL)rerouteAutomaticallyEnabled {
 
-	return [defaults integerForKey:@"sidestep_rerouteAutomatically"];
+	return [defaults boolForKey:@"sidestep_rerouteAutomatically"];
 	
 }
 
