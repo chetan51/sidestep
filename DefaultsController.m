@@ -11,6 +11,11 @@
 
 @implementation DefaultsController
 
+/*	
+ *	Class methods
+ *******************************************************************************
+ */
+
 - (id)init {
 	
 	self = [super init];
@@ -23,6 +28,18 @@
     return self;	
 	
 }
+
+- (void)dealloc {
+	
+	[defaults release];
+	[super dealloc];
+	
+}
+
+/*
+ *	Data Storage
+ *******************************************************************************
+ */
 
 - (void)saveSSHConnectionPID :(int)pid {
 	
@@ -52,7 +69,8 @@
 }
 
 /*
- * Preferences
+ *	Preferences
+ *******************************************************************************
  */
 
 - (int)rerouteAutomaticallyEnabled {
@@ -61,10 +79,14 @@
 	
 }
 
-- (void)dealloc {
+- (void)toggleRunOnLogin {
 	
-	[defaults release];
-	[super dealloc];
+	NSURL *appURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+	BOOL enabled = TRUE;
+	
+	[self willChangeValueForKey:@"startAtLogin"];
+    [LoginItemController setStartAtLogin:appURL enabled:enabled];
+    [self didChangeValueForKey:@"startAtLogin"];
 	
 }
 

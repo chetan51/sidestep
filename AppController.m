@@ -37,7 +37,7 @@ NSString *rerouteConnectionButtonTitle				= @"Reroute Traffic Through Proxy Serv
 NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection";
 
 /*	
- *	App Controller methods
+ *	Class methods
  *******************************************************************************
  */
 
@@ -720,7 +720,7 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 
 - (void)toggleRunOnLoginClicked :(id)sender {
 	
-	
+	[defaultsController toggleRunOnLogin];
 	
 }
 

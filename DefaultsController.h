@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "LoginItemController.h"
 
 
 @interface DefaultsController : NSObject {
@@ -20,5 +21,6 @@
 - (NSString *)getServerHostname;
 
 - (int)rerouteAutomaticallyEnabled;
+- (void)toggleRunOnLogin;
 
 @end

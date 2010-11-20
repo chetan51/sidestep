@@ -13,8 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="533"/>
+			<integer value="606"/>
 			<integer value="553"/>
-			<integer value="603"/>
 			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -1874,7 +1874,7 @@ eW91IGJyb3dzZSB0aGUgd2ViLg</string>
 								<object class="NSTabViewItem" id="864015414">
 									<string key="NSIdentifier">2</string>
 									<object class="NSView" key="NSView" id="537896756">
-										<reference key="NSNextResponder" ref="408419802"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2127,7 +2127,6 @@ dGggb24gdGhlIHNlcnZlci4</string>
 											</object>
 										</object>
 										<string key="NSFrameSize">{823, 598}</string>
-										<reference key="NSSuperview" ref="408419802"/>
 									</object>
 									<string key="NSLabel">Set up server</string>
 									<reference key="NSColor" ref="570087526"/>
@@ -2136,7 +2135,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 								<object class="NSTabViewItem" id="566015307">
 									<string key="NSIdentifier">Item 2</string>
 									<object class="NSView" key="NSView" id="1025126216">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="408419802"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2337,7 +2336,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 													<int key="NSCellFlags2">33554432</int>
 													<object class="NSCustomResource" key="NSContents">
 														<string key="NSClassName">NSImage</string>
-														<string key="NSResourceName">rerouted-secure-icon</string>
+														<string key="NSResourceName">rerouted-secure-icon-2</string>
 													</object>
 													<int key="NSAlign">0</int>
 													<int key="NSScale">0</int>
@@ -2355,7 +2354,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 												<object class="NSTextFieldCell" key="NSCell" id="106941425">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">272629760</int>
-													<string key="NSContents">Your unprotected connection is being securely rerouted by Sidestep.</string>
+													<string key="NSContents">Your connection is being securely rerouted by Sidestep.</string>
 													<reference key="NSSupport" ref="931654836"/>
 													<reference key="NSControlView" ref="29919619"/>
 													<reference key="NSBackgroundColor" ref="570087526"/>
@@ -2396,20 +2395,21 @@ dGggb24gdGhlIHNlcnZlci4</string>
 											</object>
 										</object>
 										<string key="NSFrameSize">{823, 598}</string>
+										<reference key="NSSuperview" ref="408419802"/>
 									</object>
 									<string key="NSLabel">And... we're done</string>
 									<reference key="NSColor" ref="570087526"/>
 									<reference key="NSTabView" ref="408419802"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="864015414"/>
+							<reference key="NSSelectedTabViewItem" ref="566015307"/>
 							<reference key="NSFont" ref="464298198"/>
 							<int key="NSTvFlags">6</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="537896756"/>
+								<reference ref="1025126216"/>
 							</object>
 						</object>
 					</object>
@@ -5857,9 +5857,9 @@ dGggb24gdGhlIHNlcnZlci4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{0, 95}, {863, 638}}</string>
+					<string>{{352, 95}, {863, 638}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{0, 95}, {863, 638}}</string>
+					<string>{{352, 95}, {863, 638}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
@@ -6900,7 +6900,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 				<string>NSSwitch</string>
 				<string>direct-insecure-icon</string>
 				<string>direct-secure-icon</string>
-				<string>rerouted-secure-icon</string>
+				<string>rerouted-secure-icon-2</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
