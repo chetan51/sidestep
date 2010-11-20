@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="599"/>
-			<integer value="29"/>
-			<integer value="533"/>
 			<integer value="553"/>
+			<integer value="701"/>
+			<integer value="533"/>
+			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1874,7 +1874,7 @@ eW91IGJyb3dzZSB0aGUgd2ViLg</string>
 								<object class="NSTabViewItem" id="864015414">
 									<string key="NSIdentifier">2</string>
 									<object class="NSView" key="NSView" id="537896756">
-										<reference key="NSNextResponder" ref="408419802"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2143,7 +2143,6 @@ dGggb24gdGhlIHNlcnZlci4</string>
 											</object>
 										</object>
 										<string key="NSFrameSize">{823, 598}</string>
-										<reference key="NSSuperview" ref="408419802"/>
 									</object>
 									<string key="NSLabel">Set up server</string>
 									<reference key="NSColor" ref="570087526"/>
@@ -2152,7 +2151,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 								<object class="NSTabViewItem" id="566015307">
 									<string key="NSIdentifier">Item 2</string>
 									<object class="NSView" key="NSView" id="1025126216">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="408419802"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2353,7 +2352,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 													<int key="NSCellFlags2">33554432</int>
 													<object class="NSCustomResource" key="NSContents">
 														<string key="NSClassName">NSImage</string>
-														<string key="NSResourceName">rerouted-secure-icon-2</string>
+														<string key="NSResourceName">rerouted-secure-icon</string>
 													</object>
 													<int key="NSAlign">0</int>
 													<int key="NSScale">0</int>
@@ -2412,20 +2411,21 @@ dGggb24gdGhlIHNlcnZlci4</string>
 											</object>
 										</object>
 										<string key="NSFrameSize">{823, 598}</string>
+										<reference key="NSSuperview" ref="408419802"/>
 									</object>
 									<string key="NSLabel">And... we're done</string>
 									<reference key="NSColor" ref="570087526"/>
 									<reference key="NSTabView" ref="408419802"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="864015414"/>
+							<reference key="NSSelectedTabViewItem" ref="566015307"/>
 							<reference key="NSFont" ref="464298198"/>
 							<int key="NSTvFlags">6</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="537896756"/>
+								<reference ref="1025126216"/>
 							</object>
 						</object>
 					</object>
@@ -6935,7 +6935,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 				<string>NSSwitch</string>
 				<string>direct-insecure-icon</string>
 				<string>direct-secure-icon</string>
-				<string>rerouted-secure-icon-2</string>
+				<string>rerouted-secure-icon</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -6944,7 +6944,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 				<string>{15, 15}</string>
 				<string>{18, 18}</string>
 				<string>{18, 18}</string>
-				<string>{128, 128}</string>
+				<string>{18, 18}</string>
 			</object>
 		</object>
 	</data>
