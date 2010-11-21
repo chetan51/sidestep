@@ -20,6 +20,7 @@
 		616141971297173A0090EE00 /* main-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 616141961297173A0090EE00 /* main-icon.icns */; };
 		616141D412971C1B0090EE00 /* LoginItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616141D312971C1B0090EE00 /* LoginItemController.m */; };
 		616141E6129722600090EE00 /* rerouted-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 616141E5129722600090EE00 /* rerouted-secure-icon.png */; };
+		616142971298A69F0090EE00 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 616142961298A69F0090EE00 /* dsa_pub.pem */; };
 		61739FEF1294787E00BBD392 /* direct-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61739FEE1294787E00BBD392 /* direct-secure-icon.png */; };
 		6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6173A006129511F900BBD392 /* direct-insecure-icon.png */; };
 		61B3E46B127A7BC20011E198 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordHelper.m */; };
@@ -91,6 +92,7 @@
 		616141D212971C1B0090EE00 /* LoginItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemController.h; sourceTree = "<group>"; };
 		616141D312971C1B0090EE00 /* LoginItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemController.m; sourceTree = "<group>"; };
 		616141E5129722600090EE00 /* rerouted-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rerouted-secure-icon.png"; sourceTree = "<group>"; };
+		616142961298A69F0090EE00 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		61739FEE1294787E00BBD392 /* direct-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-secure-icon.png"; sourceTree = "<group>"; };
 		6173A006129511F900BBD392 /* direct-insecure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-insecure-icon.png"; sourceTree = "<group>"; };
 		61B3E4B2127A7BE30011E198 /* SSHAskPass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SSHAskPass; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 				8D1107310486CEB800E47090 /* Sidestep-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* Sidestep.xib */,
+				616142961298A69F0090EE00 /* dsa_pub.pem */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */,
 				616141971297173A0090EE00 /* main-icon.icns in Resources */,
 				616141E6129722600090EE00 /* rerouted-secure-icon.png in Resources */,
+				616142971298A69F0090EE00 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
