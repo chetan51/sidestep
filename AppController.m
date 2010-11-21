@@ -453,8 +453,8 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	XLog(self, @"Resetting keychain entry");
 	
 	if ([errorCode isEqualToString:@"2"]) {
-		BOOL result = [PasswordHelper setPassword:nil forHost:[defaultsController getServerHostname] user:[defaultsController getServerUsername]];
-		XLog(self, @"Result of trying to reset keychain entry: %d", result);
+		BOOL result = [PasswordController deleteKeychainEntryForHost:[defaultsController getServerHostname] user:[defaultsController getServerUsername]];
+		XLog(self, @"Result of trying to delete keychain entry: %d", result);
 	}
 	
 	if (testingConnection) {

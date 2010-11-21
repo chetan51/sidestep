@@ -6,7 +6,7 @@
 //
 
 #include <Cocoa/Cocoa.h>
-#import "PasswordHelper.h"
+#import "PasswordController.h"
 
 /*! The ASKPASS program for ssh (and for rsync via ssh). 
  
@@ -44,18 +44,18 @@ int main() {
 	
 	if ( usernameString!=nil && hostnameString!=nil ){
 		// First try to get the password from the keychain
-		NSString *pStr = [PasswordHelper passwordForHost:hostnameString user:usernameString];
+		NSString *pStr = [PasswordController passwordForHost:hostnameString user:usernameString];
 		
 		if ( pStr == nil ){
 			// No password was found in the keychain so we should prompt the user for it.
-			NSArray *promptArray = [PasswordHelper promptForPassword:hostnameString user:usernameString];
+			NSArray *promptArray = [PasswordController promptForPassword:hostnameString user:usernameString];
 			NSInteger returnCode = [[promptArray objectAtIndex:1] intValue];
 			NSInteger saveToKeychain = [[promptArray objectAtIndex:2] intValue];
 			
 			if ( returnCode == 0 ){ // Found a valid password entry
 				if ( saveToKeychain == 1 ) {
 					// Set the new password in the keychain. 
-					[PasswordHelper setPassword:[promptArray objectAtIndex:0] forHost:hostnameString user:usernameString];
+					[PasswordController setPassword:[promptArray objectAtIndex:0] forHost:hostnameString user:usernameString];
 				}
 
 				pStr=[promptArray objectAtIndex:0];

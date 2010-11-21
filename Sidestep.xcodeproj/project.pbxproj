@@ -12,7 +12,7 @@
 		6145B218127A6AC600A5F7AF /* SSHConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B217127A6AC600A5F7AF /* SSHConnector.m */; };
 		6145B2E0127A739200A5F7AF /* AppUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B2DF127A739200A5F7AF /* AppUtilities.m */; };
 		6145B306127A746400A5F7AF /* Configurations.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B305127A746400A5F7AF /* Configurations.m */; };
-		6145B33B127A764E00A5F7AF /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordHelper.m */; };
+		6145B33B127A764E00A5F7AF /* PasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordController.m */; };
 		6145B3FC127A7A3700A5F7AF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B3B1127A780A00A5F7AF /* Security.framework */; };
 		6145B40E127A7A6700A5F7AF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B40D127A7A6700A5F7AF /* SystemConfiguration.framework */; };
 		6145B412127A7A6F00A5F7AF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B411127A7A6F00A5F7AF /* IOKit.framework */; };
@@ -25,7 +25,7 @@
 		6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6173A006129511F900BBD392 /* direct-insecure-icon.png */; };
 		61A926941299C11100B6B66B /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A926931299C11100B6B66B /* EMKeychainItem.m */; };
 		61A926951299C11100B6B66B /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A926931299C11100B6B66B /* EMKeychainItem.m */; };
-		61B3E46B127A7BC20011E198 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordHelper.m */; };
+		61B3E46B127A7BC20011E198 /* PasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordController.m */; };
 		61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B3BF127A78AD00A5F7AF /* SSHAskPass.m */; };
 		61B3E4AE127A7BD00011E198 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B3B1127A780A00A5F7AF /* Security.framework */; };
 		61B3E4D0127A7D3B0011E198 /* SSHAskPass in Resources */ = {isa = PBXBuildFile; fileRef = 61B3E4B2127A7BE30011E198 /* SSHAskPass */; };
@@ -82,8 +82,8 @@
 		6145B2DF127A739200A5F7AF /* AppUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtilities.m; sourceTree = "<group>"; };
 		6145B304127A746400A5F7AF /* Configurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configurations.h; sourceTree = "<group>"; };
 		6145B305127A746400A5F7AF /* Configurations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configurations.m; sourceTree = "<group>"; };
-		6145B338127A764E00A5F7AF /* PasswordHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordHelper.h; sourceTree = "<group>"; };
-		6145B339127A764E00A5F7AF /* PasswordHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordHelper.m; sourceTree = "<group>"; };
+		6145B338127A764E00A5F7AF /* PasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordController.h; sourceTree = "<group>"; };
+		6145B339127A764E00A5F7AF /* PasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordController.m; sourceTree = "<group>"; };
 		6145B3B1127A780A00A5F7AF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6145B3BF127A78AD00A5F7AF /* SSHAskPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHAskPass.m; sourceTree = "<group>"; };
 		6145B40D127A7A6700A5F7AF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -146,8 +146,8 @@
 				6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */,
 				61A926921299C11100B6B66B /* EMKeychainItem.h */,
 				61A926931299C11100B6B66B /* EMKeychainItem.m */,
-				6145B338127A764E00A5F7AF /* PasswordHelper.h */,
-				6145B339127A764E00A5F7AF /* PasswordHelper.m */,
+				6145B338127A764E00A5F7AF /* PasswordController.h */,
+				6145B339127A764E00A5F7AF /* PasswordController.m */,
 				6145B304127A746400A5F7AF /* Configurations.h */,
 				6145B305127A746400A5F7AF /* Configurations.m */,
 				6145B2DE127A739100A5F7AF /* AppUtilities.h */,
@@ -329,7 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61B3E46B127A7BC20011E198 /* PasswordHelper.m in Sources */,
+				61B3E46B127A7BC20011E198 /* PasswordController.m in Sources */,
 				61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */,
 				61A926951299C11100B6B66B /* EMKeychainItem.m in Sources */,
 			);
@@ -344,7 +344,7 @@
 				6145B218127A6AC600A5F7AF /* SSHConnector.m in Sources */,
 				6145B2E0127A739200A5F7AF /* AppUtilities.m in Sources */,
 				6145B306127A746400A5F7AF /* Configurations.m in Sources */,
-				6145B33B127A764E00A5F7AF /* PasswordHelper.m in Sources */,
+				6145B33B127A764E00A5F7AF /* PasswordController.m in Sources */,
 				6145B420127A7A9C00A5F7AF /* NetworkNotifier.m in Sources */,
 				61B3E63B127ACB420011E198 /* DefaultsController.m in Sources */,
 				61FB5F5A1280E970003229D7 /* ProxySetter.m in Sources */,
