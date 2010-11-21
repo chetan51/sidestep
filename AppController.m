@@ -29,7 +29,9 @@ NSString *connectionErrorServerStatusText			= @"Failed to reroute traffic - unab
 NSString *connectedServerStatusText					= @"Connected to proxy server";
 
 NSString *testingConnectionStatusText				= @"Testing connection to server...";
-NSString *authFailedTestingConnectionStatusText		= @"Failed connecting to server - authorization failed.";
+NSString *authFailedTestingConnectionStatusText		= @"Failed connecting to server - authorization failed.\n"
+													   "Please click the Test Connection button again to retry "
+													   "entering your password.";
 NSString *reachFailedTestingConnectionStatusText	= @"Failed connecting to server - unable to reach server.";
 NSString *sucessTestingConnectionStatusText			= @"Connection to server succeeded!";
 
@@ -448,6 +450,13 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	SSHConnected = FALSE;
 	SSHConnecting = FALSE;
 	
+	XLog(self, @"Resetting keychain entry");
+	
+	if ([errorCode isEqualToString:@"2"]) {
+		BOOL result = [PasswordHelper setPassword:nil forHost:[defaultsController getServerHostname] user:[defaultsController getServerUsername]];
+		XLog(self, @"Result of trying to reset keychain entry: %d", result);
+	}
+	
 	if (testingConnection) {
 		testingConnection = FALSE;
 		
@@ -456,7 +465,7 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	else {
 		[self performSelectorOnMainThread:@selector(updateUIForSSHConnectionFailedWithError:) withObject:errorCode waitUntilDone:FALSE];
 		
-		if (![errorCode isEqualToString:@"2"] && ![errorCode isEqualToString:@"5"] && retryCounter < 2) {
+		if (![errorCode isEqualToString:@"2"] && ![errorCode isEqualToString:@"5"] && retryCounter < 2) {			
 			XLog(self, @"Retrying connection attempt after delay. Retry counter: %d", retryCounter);
 			
 			[self performSelectorOnMainThread:@selector(updateUIForSSHConnectionRetrying) withObject:nil waitUntilDone:FALSE];

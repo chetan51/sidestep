@@ -12,6 +12,7 @@
 #import "LoginItemController.h"
 #import "NetworkNotifier.h"
 #import "ProxySetter.h"
+#import "PasswordHelper.h"
 #import "AppUtilities.h"
 
 @interface AppController : NSObject <NSApplicationDelegate> {

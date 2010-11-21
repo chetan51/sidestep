@@ -6,6 +6,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "EMKeychainItem.h"
 
 /*! This class consists entirely of class methods which provide a simple interface to keychain calls to set and retrieve passwords*/
 @interface PasswordHelper : NSObject {

@@ -115,30 +115,53 @@
 
 
 
-/*! Set the password into the keychain for a specific user and host. If the username/hostname combo already has an entry in the keychain then change it. If not then add a new entry */
+/*! Set the password into the keychain for a specific user and host.
+	If the username/hostname combo already has an entry in the keychain then change it.
+	If not then add a new entry.
+	If the password is nil, delete the existing entry. */
 + (BOOL) setPassword:(NSString*)newPassword forHost:(NSString*)hostname user:(NSString*) username {
 	
 	if ( hostname == nil || username == nil ){
 		return NO;
 	}
 	
-	// Look for a password in the keychain
-	SecKeychainItemRef itemRef = nil;
-	UInt32 passwordLen = 0; 
-	void *passwordData = NULL;
-	
-	OSStatus findKeychainItemStatus;
-	findKeychainItemStatus = [PasswordHelper getPasswordKeychain:&passwordData length:&passwordLen itemRef:&itemRef host:hostname user:username];
-	
-	if ( findKeychainItemStatus == noErr ){
-		// The keychain item already exists but it needs to be updated
+	if (newPassword == nil) {
+		// It needs to be deleted
+		//return [PasswordHelper deletePasswordKeychainForHost:hostname user:username];
 		
-		[PasswordHelper changePasswordKeychain:itemRef password:newPassword];
-		SecKeychainItemFreeContent(NULL,passwordData);
-		return YES;
-	} else {
-		[PasswordHelper storePasswordKeychain:newPassword host:hostname user:username];
-		return YES;
+		//Grab the keychain item.
+		EMInternetKeychainItem *keychainItem = [EMInternetKeychainItem internetKeychainItemForServer:hostname withUsername:username path:@"" port:0 protocol:kSecProtocolTypeSSH];
+	
+		if (keychainItem) {
+			[keychainItem removeFromKeychain];
+			return YES;
+		}
+		else {
+			return NO;
+		}
+	}
+	else {
+		// Look for a password in the keychain
+		SecKeychainItemRef itemRef = nil;
+		UInt32 passwordLen = 0; 
+		void *passwordData = NULL;
+		
+		OSStatus findKeychainItemStatus;
+		findKeychainItemStatus = [PasswordHelper getPasswordKeychain:&passwordData length:&passwordLen itemRef:&itemRef host:hostname user:username];
+		
+		if ( findKeychainItemStatus == noErr ){
+			// The keychain item already exists but it needs to be updated
+				
+				[PasswordHelper changePasswordKeychain:itemRef password:newPassword];
+				SecKeychainItemFreeContent(NULL,passwordData);
+			
+			return YES;
+		}
+		else {
+			// The keychain item needs to be added
+			[PasswordHelper storePasswordKeychain:newPassword host:hostname user:username];
+			return YES;
+		}
 	}
 }
 
@@ -199,7 +222,7 @@
 										   "", 
 										   0,
 										   kSecProtocolTypeSSH,
-										   kSecAuthenticationTypeDefault,
+										   0,
 										   passwordLength,
 										   passwordData,
 										   itemRef);
@@ -220,6 +243,5 @@
 	return SecKeychainItemModifyAttributesAndData(itemRef, 
 												  NULL, passwordLength, cnewpassword);
 }
-
 
 @end

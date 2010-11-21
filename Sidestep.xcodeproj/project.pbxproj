@@ -23,6 +23,8 @@
 		616142971298A69F0090EE00 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 616142961298A69F0090EE00 /* dsa_pub.pem */; };
 		61739FEF1294787E00BBD392 /* direct-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61739FEE1294787E00BBD392 /* direct-secure-icon.png */; };
 		6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6173A006129511F900BBD392 /* direct-insecure-icon.png */; };
+		61A926941299C11100B6B66B /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A926931299C11100B6B66B /* EMKeychainItem.m */; };
+		61A926951299C11100B6B66B /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A926931299C11100B6B66B /* EMKeychainItem.m */; };
 		61B3E46B127A7BC20011E198 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordHelper.m */; };
 		61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B3BF127A78AD00A5F7AF /* SSHAskPass.m */; };
 		61B3E4AE127A7BD00011E198 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B3B1127A780A00A5F7AF /* Security.framework */; };
@@ -95,6 +97,8 @@
 		616142961298A69F0090EE00 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		61739FEE1294787E00BBD392 /* direct-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-secure-icon.png"; sourceTree = "<group>"; };
 		6173A006129511F900BBD392 /* direct-insecure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-insecure-icon.png"; sourceTree = "<group>"; };
+		61A926921299C11100B6B66B /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
+		61A926931299C11100B6B66B /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		61B3E4B2127A7BE30011E198 /* SSHAskPass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SSHAskPass; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B3E58C127ABBEB0011E198 /* TurnProxyOff.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = TurnProxyOff.sh; path = scripts/TurnProxyOff.sh; sourceTree = SOURCE_ROOT; };
 		61B3E58D127ABBEB0011E198 /* TurnProxyOn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = TurnProxyOn.sh; path = scripts/TurnProxyOn.sh; sourceTree = SOURCE_ROOT; };
@@ -140,6 +144,8 @@
 				616141D212971C1B0090EE00 /* LoginItemController.h */,
 				616141D312971C1B0090EE00 /* LoginItemController.m */,
 				6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */,
+				61A926921299C11100B6B66B /* EMKeychainItem.h */,
+				61A926931299C11100B6B66B /* EMKeychainItem.m */,
 				6145B338127A764E00A5F7AF /* PasswordHelper.h */,
 				6145B339127A764E00A5F7AF /* PasswordHelper.m */,
 				6145B304127A746400A5F7AF /* Configurations.h */,
@@ -325,6 +331,7 @@
 			files = (
 				61B3E46B127A7BC20011E198 /* PasswordHelper.m in Sources */,
 				61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */,
+				61A926951299C11100B6B66B /* EMKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +349,7 @@
 				61B3E63B127ACB420011E198 /* DefaultsController.m in Sources */,
 				61FB5F5A1280E970003229D7 /* ProxySetter.m in Sources */,
 				616141D412971C1B0090EE00 /* LoginItemController.m in Sources */,
+				61A926941299C11100B6B66B /* EMKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
