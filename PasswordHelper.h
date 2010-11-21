@@ -1,5 +1,6 @@
 //
-//   PasswordHelper.h
+//  PasswordHelper.h
+//	Sidestep
 //
 //  Created by Ira Cooke on 27/07/2009. Modified with permission by Chetan Surpur.
 //  Copyright 2009 Mudflat Software. 

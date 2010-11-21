@@ -140,9 +140,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6145B41E127A7A9C00A5F7AF /* NetworkNotifier.h */,
 				616141D212971C1B0090EE00 /* LoginItemController.h */,
 				616141D312971C1B0090EE00 /* LoginItemController.m */,
+				6145B41E127A7A9C00A5F7AF /* NetworkNotifier.h */,
 				6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */,
 				61A926921299C11100B6B66B /* EMKeychainItem.h */,
 				61A926931299C11100B6B66B /* EMKeychainItem.m */,

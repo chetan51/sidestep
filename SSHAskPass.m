@@ -1,3 +1,10 @@
+//
+//  SSHAskPass.m
+//
+//  Created by Ira Cooke on 27/07/2009. Modified with permission by Chetan Surpur on 11/19/10.
+//  Copyright 2009 Mudflat Software. 
+//
+
 #include <Cocoa/Cocoa.h>
 #import "PasswordHelper.h"
 
