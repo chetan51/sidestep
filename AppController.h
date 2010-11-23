@@ -63,6 +63,8 @@
 - (void)closeSSHConnection;
 - (void)setRunOnLogin :(BOOL)value;
 
+- (void)showRestartSidestepDialog;
+
 - (void)preferencesClicked :(id)sender;
 - (void)aboutClicked :(id)sender;
 

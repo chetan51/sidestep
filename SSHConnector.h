@@ -13,7 +13,7 @@
 	
 }
 
-- (void)openSSHConnectionAndNotifyObject:(id)object
+- (BOOL)openSSHConnectionAndNotifyObject:(id)object
 					 withOpeningSelector:(SEL)openingSelector
 					 withSuccessSelector:(SEL)successSelector
 					 withFailureSelector:(SEL)failureSelector
@@ -21,7 +21,7 @@
 							withHostname:(NSString *)hostname
 					   withLocalBindPort:(NSNumber *)localPort;
 
-- (void)watchSSHConnectionAndOnOpenOrErrorNotifyObject:(id)object
+- (BOOL)watchSSHConnectionAndOnOpenOrErrorNotifyObject:(id)object
 								   withSuccessSelector:(SEL)successSelector
 								   withFailureSelector:(SEL)failureSelector
 										withConnection:(NSTask *)connection;

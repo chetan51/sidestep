@@ -30,10 +30,11 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
  *	argument: callback selector on object to be called upon failed connection
  *	argument: username for server
  *	argument: hostname for server
- *	return: void
+ *	return: true on success
+ *	return: false if task path not found
  */
 
-- (void)openSSHConnectionAndNotifyObject:(id)object
+- (BOOL)openSSHConnectionAndNotifyObject:(id)object
 					 withOpeningSelector:(SEL)openingSelector
 					 withSuccessSelector:(SEL)successSelector
 					 withFailureSelector:(SEL)failureSelector
@@ -63,6 +64,10 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 										  inDirectory:[[NSBundle mainBundle] bundlePath]];
 	
 	XLog(self, @"AskPass path: %@",askPassPath);
+	
+	if (askPassPath == nil) {
+		return FALSE;
+	}
 	
 	// Set up environment variables for the task
 	NSDictionary *currentEnvironment = [[NSProcessInfo processInfo] environment];
@@ -114,10 +119,14 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 	[object performSelector:openingSelector withObject:taskObject];
 	
 	// Watch the connection for changes - To do: this needs to happen before the task is launched
-	[self watchSSHConnectionAndOnOpenOrErrorNotifyObject:object
-									 withSuccessSelector:successSelector
-									 withFailureSelector:failureSelector
-										  withConnection:taskObject];
+	if (![self watchSSHConnectionAndOnOpenOrErrorNotifyObject:object
+										 withSuccessSelector:successSelector
+										 withFailureSelector:failureSelector
+											  withConnection:taskObject]) {
+		return FALSE;
+	}
+	
+	return TRUE;
 	
 }
 
@@ -129,10 +138,11 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
  *	argument: callback selector on object to be called upon successful connection
  *	argument: callback selector on object to be called upon failed connection
  *	argument: connection's task that is being watched
- *	return: void
+ *	return: true on success
+ *	return: false if task path not found
  */
 
-- (void)watchSSHConnectionAndOnOpenOrErrorNotifyObject:(id)object
+- (BOOL)watchSSHConnectionAndOnOpenOrErrorNotifyObject:(id)object
 								   withSuccessSelector:(SEL)successSelector
 								   withFailureSelector:(SEL)failureSelector
 										withConnection:(NSTask *)connection {
@@ -157,6 +167,10 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 	NSString *taskPath = [NSBundle pathForResource:@"WatchSSHConnectionForChanges"
 											ofType:@"sh"
 									   inDirectory:[[NSBundle mainBundle] bundlePath]];
+	
+	if (taskPath == nil) {
+		return FALSE;
+	}
 	
 	// Set task's arguments and launch path
 	[task setArguments:args];
@@ -189,6 +203,8 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 			[object performSelector:failureSelector withObject:readString];		// call the failure callback function
 		}
 	}
+	
+	return TRUE;
 	
 }
 

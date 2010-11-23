@@ -155,7 +155,13 @@ static void scCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *in
 	return self;
 }
 
-- (void)getNetworkSecurityTypeAndNotifyObject:(id)object withSelector:(SEL)selector {
+/*
+ *	Get the currently connected network's security type and notify given object / selector.
+ *
+ *	return: true on success
+ *	return: false if task path not found
+ */
+- (BOOL)getNetworkSecurityTypeAndNotifyObject:(id)object withSelector:(SEL)selector {
 	
 	XLog(self, @"Getting network security type");
 	
@@ -177,6 +183,10 @@ static void scCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *in
 	
 	XLog(self, @"Task path: %@",taskPath);
 	
+	if (taskPath == nil) {
+		return FALSE;
+	}
+	
 	// Set launch path for task
 	[task setLaunchPath:taskPath];
 	
@@ -197,6 +207,8 @@ static void scCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *in
 	[object performSelector:selector withObject:readString];
 	
 	[task release];
+	
+	return TRUE;
 	
 }
 

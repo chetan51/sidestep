@@ -16,6 +16,6 @@
 }
 
 - (void)listenForAirportConnectionAndNotifyObject:(id)object withSelector:(SEL)selector;
-- (void)getNetworkSecurityTypeAndNotifyObject:(id)object withSelector:(SEL)selector;
+- (BOOL)getNetworkSecurityTypeAndNotifyObject:(id)object withSelector:(SEL)selector;
 
 @end

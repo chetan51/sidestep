@@ -13,7 +13,7 @@
 
 }
 
-- (void)turnProxyOn:(NSNumber *)port;
-- (void)turnProxyOff;
+- (BOOL)turnProxyOn:(NSNumber *)port;
+- (BOOL)turnProxyOff;
 
 @end

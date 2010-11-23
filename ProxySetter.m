@@ -11,7 +11,14 @@
 
 @implementation ProxySetter
 
-- (void)turnProxyOn:(NSNumber *)port {
+/*
+ *	Switches system's SOCKS proxy to the SSH tunnel previously opened.
+ *	
+ *	return: true on success
+ *	return: false if task path not found
+ */
+
+- (BOOL)turnProxyOn:(NSNumber *)port {
 	
 	XLog(self, @"Turning proxy on for port: %@", port);
 	
@@ -33,6 +40,10 @@
 											ofType:@"sh"
 									   inDirectory:[[NSBundle mainBundle] bundlePath]];
 	
+	if (!taskPath) {
+		return FALSE;
+	}
+	
 	// Set task's arguments and launch path
 	[task setArguments:args];
 	[task setLaunchPath:taskPath];
@@ -40,9 +51,18 @@
 	// Launch task
 	[task launch];
 	
+	return TRUE;
+	
 }
 
-- (void)turnProxyOff {
+/*
+ *	Switches system's SOCKS proxy off.
+ *	
+ *	return: true on success
+ *	return: false if task path not found
+ */
+
+- (BOOL)turnProxyOff {
 	
 	XLog(self, @"Turning proxy off");
 	
@@ -61,11 +81,17 @@
 											ofType:@"sh"
 									   inDirectory:[[NSBundle mainBundle] bundlePath]];
 	
+	if (!taskPath) {
+		return FALSE;
+	}	
+	
 	// Set task's launch path
 	[task setLaunchPath:taskPath];
 	
 	// Launch task
 	[task launch];
+	
+	return TRUE;
 	
 }
 

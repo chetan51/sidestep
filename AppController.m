@@ -114,7 +114,10 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 												  withSelector:@selector(connectedToAirportNetwork)];
 	
 	// Check if current network type is insecure
-	[networkNotifier getNetworkSecurityTypeAndNotifyObject:self withSelector:@selector(connectedToAirportNetworkWithSecurityType:)];
+	if (![networkNotifier getNetworkSecurityTypeAndNotifyObject	:self
+													withSelector:@selector(connectedToAirportNetworkWithSecurityType:)]) {
+		[self showRestartSidestepDialog];
+	}
 	
 }
 
@@ -331,13 +334,15 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	NSString *hostname = [defaultsController getServerHostname];
 	
 	if (username && hostname) {	
-		[SSHconnector openSSHConnectionAndNotifyObject:self
-								   withOpeningSelector:@selector(SSHConnectionOpening:)
-								   withSuccessSelector:@selector(SSHConnectionOpened:)
-								   withFailureSelector:@selector(SSHConnectionFailed:)
-										  withUsername:username
-										  withHostname:hostname
-									 withLocalBindPort:[NSNumber numberWithInt:9050]];
+		if (![SSHconnector openSSHConnectionAndNotifyObject:self
+										withOpeningSelector:@selector(SSHConnectionOpening:)
+										withSuccessSelector:@selector(SSHConnectionOpened:)
+										withFailureSelector:@selector(SSHConnectionFailed:)
+											   withUsername:username
+											   withHostname:hostname
+										  withLocalBindPort:[NSNumber numberWithInt:9050]]) {
+			[self showRestartSidestepDialog];
+		}
 	}
 	else {
 		XLog(self, @"No username or hostname found");
@@ -374,7 +379,9 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-	[proxySetter turnProxyOn:port];
+	if (![proxySetter turnProxyOn:port]) {
+		[self showRestartSidestepDialog];
+	}
 	
 	[pool release];
 }
@@ -383,7 +390,9 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	[proxySetter turnProxyOff];
+	if (![proxySetter turnProxyOff]) {
+		[self showRestartSidestepDialog];
+	}
 	
 	[pool release];
 }
@@ -522,7 +531,10 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 
 - (void)connectedToAirportNetwork {
 	
-	[networkNotifier getNetworkSecurityTypeAndNotifyObject:self withSelector:@selector(connectedToAirportNetworkWithSecurityType:)];
+	if (![networkNotifier getNetworkSecurityTypeAndNotifyObject	:self
+													withSelector:@selector(connectedToAirportNetworkWithSecurityType:)]) {
+		[self showRestartSidestepDialog];
+	}
 	
 }
 
@@ -678,6 +690,24 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 		// Update testing connection status
 		[testConnectionStatusField setStringValue:reachFailedTestingConnectionStatusText];
 	}
+	
+}
+
+- (void)showRestartSidestepDialog {
+	XLog(self, @"Showing user restart Sidestep dialog");
+	
+	[NSApp activateIgnoringOtherApps:YES];	// Allows windows of this app to become front
+	
+	NSRunCriticalAlertPanel(	@"Please restart Sidestep",
+								@"It seems that you've moved Sidestep to somewhere else on your computer "
+								 "or have renamed the application.\n\n"
+								 "Please close and open Sidestep again in order to ensure smooth running.\n\n"
+								 "Until you do so, you might experience problems with Sidestep and your "
+								 "Internet connection.",
+								@"OK",
+								nil,
+								nil,
+								nil);
 	
 }
 
