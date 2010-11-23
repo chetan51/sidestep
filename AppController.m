@@ -38,6 +38,8 @@ NSString *sucessTestingConnectionStatusText			= @"Connection to server succeeded
 NSString *rerouteConnectionButtonTitle				= @"Reroute Traffic Through Proxy Server Now";
 NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection";
 
+NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#proxy-servers";
+
 /*	
  *	Class methods
  *******************************************************************************
@@ -779,7 +781,7 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 
 - (void)helpWithProxyClicked :(id)sender {
 
-	
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:helpWithProxyURL]];
 	
 }
 
