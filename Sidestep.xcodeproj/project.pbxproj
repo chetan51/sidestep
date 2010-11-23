@@ -17,7 +17,6 @@
 		6145B40E127A7A6700A5F7AF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B40D127A7A6700A5F7AF /* SystemConfiguration.framework */; };
 		6145B412127A7A6F00A5F7AF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B411127A7A6F00A5F7AF /* IOKit.framework */; };
 		6145B420127A7A9C00A5F7AF /* NetworkNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */; };
-		616141971297173A0090EE00 /* main-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 616141961297173A0090EE00 /* main-icon.icns */; };
 		616141D412971C1B0090EE00 /* LoginItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616141D312971C1B0090EE00 /* LoginItemController.m */; };
 		616141E6129722600090EE00 /* rerouted-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 616141E5129722600090EE00 /* rerouted-secure-icon.png */; };
 		616142971298A69F0090EE00 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 616142961298A69F0090EE00 /* dsa_pub.pem */; };
@@ -25,6 +24,7 @@
 		6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6173A006129511F900BBD392 /* direct-insecure-icon.png */; };
 		61A926941299C11100B6B66B /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A926931299C11100B6B66B /* EMKeychainItem.m */; };
 		61A926951299C11100B6B66B /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A926931299C11100B6B66B /* EMKeychainItem.m */; };
+		61A9285F129BB3D100B6B66B /* main-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 61A9285E129BB3D100B6B66B /* main-icon.icns */; };
 		61B3E46B127A7BC20011E198 /* PasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B339127A764E00A5F7AF /* PasswordController.m */; };
 		61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B3BF127A78AD00A5F7AF /* SSHAskPass.m */; };
 		61B3E4AE127A7BD00011E198 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145B3B1127A780A00A5F7AF /* Security.framework */; };
@@ -90,7 +90,6 @@
 		6145B411127A7A6F00A5F7AF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		6145B41E127A7A9C00A5F7AF /* NetworkNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkNotifier.h; sourceTree = "<group>"; };
 		6145B41F127A7A9C00A5F7AF /* NetworkNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkNotifier.m; sourceTree = "<group>"; };
-		616141961297173A0090EE00 /* main-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "main-icon.icns"; sourceTree = "<group>"; };
 		616141D212971C1B0090EE00 /* LoginItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemController.h; sourceTree = "<group>"; };
 		616141D312971C1B0090EE00 /* LoginItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemController.m; sourceTree = "<group>"; };
 		616141E5129722600090EE00 /* rerouted-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rerouted-secure-icon.png"; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		6173A006129511F900BBD392 /* direct-insecure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-insecure-icon.png"; sourceTree = "<group>"; };
 		61A926921299C11100B6B66B /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		61A926931299C11100B6B66B /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
+		61A9285E129BB3D100B6B66B /* main-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "main-icon.icns"; sourceTree = "<group>"; };
 		61B3E4B2127A7BE30011E198 /* SSHAskPass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SSHAskPass; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B3E58C127ABBEB0011E198 /* TurnProxyOff.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = TurnProxyOff.sh; path = scripts/TurnProxyOff.sh; sourceTree = SOURCE_ROOT; };
 		61B3E58D127ABBEB0011E198 /* TurnProxyOn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = TurnProxyOn.sh; path = scripts/TurnProxyOn.sh; sourceTree = SOURCE_ROOT; };
@@ -220,7 +220,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				616141961297173A0090EE00 /* main-icon.icns */,
+				61A9285E129BB3D100B6B66B /* main-icon.icns */,
 				616141E5129722600090EE00 /* rerouted-secure-icon.png */,
 				6173A006129511F900BBD392 /* direct-insecure-icon.png */,
 				61739FEE1294787E00BBD392 /* direct-secure-icon.png */,
@@ -316,9 +316,9 @@
 				61FB5E5E127FC469003229D7 /* GetNetworkSecurityType.sh in Resources */,
 				61739FEF1294787E00BBD392 /* direct-secure-icon.png in Resources */,
 				6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */,
-				616141971297173A0090EE00 /* main-icon.icns in Resources */,
 				616141E6129722600090EE00 /* rerouted-secure-icon.png in Resources */,
 				616142971298A69F0090EE00 /* dsa_pub.pem in Resources */,
+				61A9285F129BB3D100B6B66B /* main-icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
