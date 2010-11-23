@@ -36,5 +36,7 @@
 	<string>http://chetansurpur.com/projects/sidestep/appcast.xml</string>
 	<key>SUShowReleaseNotes</key>
 	<string>true</string>
+	<key>SUEnableAutomaticChecks</key>
+	<string>true</string>
 </dict>
 </plist>

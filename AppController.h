@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Sparkle/SUUpdater.h>
 #import "SSHConnector.h"
 #import "DefaultsController.h"
 #import "LoginItemController.h"

@@ -137,6 +137,12 @@ NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection
 	[statusItem setImage:statusImageDirectSecure];
 	[statusItem setAlternateImage:statusImageDirectSecure];
 	
+	// Check for updates if not first run and check for updates is enabled
+	if ([defaultsController ranAtleastOnce] && [[SUUpdater sharedUpdater] automaticallyChecksForUpdates]) {
+		XLog(self, @"Checking for updates");
+		[[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+	}
+	
 	// Set first-run default preferences
 	if (![defaultsController ranAtleastOnce]) {
 	
