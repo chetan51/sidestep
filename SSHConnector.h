@@ -19,6 +19,7 @@
 					 withFailureSelector:(SEL)failureSelector
 							withUsername:(NSString *)username
 							withHostname:(NSString *)hostname
+							withRemotePort:(NSString *)remoteport
 					   withLocalBindPort:(NSNumber *)localPort;
 
 - (BOOL)watchSSHConnectionAndOnOpenOrErrorNotifyObject:(id)object

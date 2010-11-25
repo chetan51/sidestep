@@ -30,6 +30,7 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
  *	argument: callback selector on object to be called upon failed connection
  *	argument: username for server
  *	argument: hostname for server
+ *	argument: remoteport for server
  *	return: true on success
  *	return: false if task path not found
  */
@@ -40,6 +41,7 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 					 withFailureSelector:(SEL)failureSelector
 							withUsername:(NSString *)username
 							withHostname:(NSString *)hostname
+							withRemotePort:(NSString *)remoteport
 					   withLocalBindPort:(NSNumber *)localPort {
 	
 	XLog(self, @"Opening SSH connection");
@@ -88,6 +90,7 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 	NSMutableArray *args = [[NSMutableArray new] autorelease];
 	[args addObject:[NSString stringWithFormat:@"%@@%@",username,hostname]];
 	[args addObject:[NSString stringWithFormat:@"-D %@", localPort]];
+	[args addObject:[NSString stringWithFormat:@"-p %@", remoteport]];
 	[args addObject:[NSString stringWithString:@"-N"]];
 	[args addObject:[NSString stringWithString:@"-v"]];
 	[args addObject:[NSString stringWithString:@"-o TCPKeepAlive=yes"]];

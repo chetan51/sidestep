@@ -68,6 +68,12 @@
 	
 }
 
+- (NSString *)getRemotePortNumber {
+	
+	return [defaults stringForKey:@"sidestep_RemotePortNumber"];
+	
+}
+
 /*
  *	Preferences
  *******************************************************************************

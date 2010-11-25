@@ -18,6 +18,7 @@
 
 - (NSString *)getServerUsername;
 - (NSString *)getServerHostname;
+- (NSString *)getRemotePortNumber;
 
 - (void)setRanAtleastOnce :(BOOL)value;
 - (BOOL)ranAtleastOnce;

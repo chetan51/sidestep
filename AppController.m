@@ -334,6 +334,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	
 	NSString *username = [defaultsController getServerUsername];
 	NSString *hostname = [defaultsController getServerHostname];
+	NSString *remoteport = [defaultsController getRemotePortNumber];
 	
 	if (username && hostname) {	
 		if (![SSHconnector openSSHConnectionAndNotifyObject:self
@@ -342,6 +343,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 										withFailureSelector:@selector(SSHConnectionFailed:)
 											   withUsername:username
 											   withHostname:hostname
+												withRemotePort:(NSString *)remoteport
 										  withLocalBindPort:[NSNumber numberWithInt:9050]]) {
 			[self showRestartSidestepDialog];
 		}
