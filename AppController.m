@@ -154,8 +154,6 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[defaultsController setRerouteAutomatically:TRUE];
 		[defaultsController setRanAtleastOnce:TRUE];
 		
-		[defaultsController setRemotePortNumber:@"22"];
-		
 		[defaultsController setRunOnLogin:TRUE];
 		[self setRunOnLogin:TRUE];
 		
@@ -166,6 +164,11 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[welcomeWindow makeKeyAndOrderFront:self];
 		
 	}
+
+    // Set default remote port number if not already set
+    if ([defaultsController getRemotePortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
+		[defaultsController setRemotePortNumber:@"22"];
+    }
 	
 	// Update connection status
 	[connectionStatus setTitle:determiningConnectionStatusText];
