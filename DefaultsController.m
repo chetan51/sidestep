@@ -68,6 +68,13 @@
 	
 }
 
+- (void)setRemotePortNumber :(NSString *)port {
+	
+	[defaults setObject:port forKey:@"sidestep_RemotePortNumber"];
+	[defaults synchronize];
+	
+}
+
 - (NSString *)getRemotePortNumber {
 	
 	return [defaults stringForKey:@"sidestep_RemotePortNumber"];

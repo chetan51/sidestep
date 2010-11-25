@@ -17,7 +17,10 @@
 - (int)getSSHConnectionPID;
 
 - (NSString *)getServerUsername;
+
 - (NSString *)getServerHostname;
+
+- (void)setRemotePortNumber :(NSString *)port;
 - (NSString *)getRemotePortNumber;
 
 - (void)setRanAtleastOnce :(BOOL)value;

@@ -154,6 +154,8 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[defaultsController setRerouteAutomatically:TRUE];
 		[defaultsController setRanAtleastOnce:TRUE];
 		
+		[defaultsController setRemotePortNumber:@"22"];
+		
 		[defaultsController setRunOnLogin:TRUE];
 		[self setRunOnLogin:TRUE];
 		
