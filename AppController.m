@@ -716,12 +716,11 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 - (void)updateUIForTestingSSHConnectionOpening {
 	XLog(self, @"Called updateUIForTestingSSHConnectionOpening");
 	
-	// Update testing connection status
-	[testConnectionStatusField setStringValue:testingConnectionStatusText];
-	
-	// Growl Notification
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
 	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
+	// Update testing connection status
+	[testConnectionStatusField setStringValue:testingConnectionStatusText];
 	[growl message:testingConnectionStatusText];
 	[pool release];
 	
@@ -730,13 +729,13 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 - (void)updateUIForTestingSSHConnectionSucceeded {
 	XLog(self, @"Called updateUIForTestingSSHConnectionSucceeded");
 	
-	// Update testing connection status
-	[testConnectionStatusField setStringValue:sucessTestingConnectionStatusText];
-	
-	// Growl Notification
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
 	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
+	// Update testing connection status
+	[testConnectionStatusField setStringValue:sucessTestingConnectionStatusText];
 	[growl message:sucessTestingConnectionStatusText];
+	
 	[pool release];
 	
 }
