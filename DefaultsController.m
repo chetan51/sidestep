@@ -81,6 +81,19 @@
 	
 }
 
+- (void)setLocalPortNumber :(NSString *)port {
+	
+	[defaults setObject:port forKey:@"sidestep_LocalPortNumber"];
+	[defaults synchronize];
+	
+}
+
+- (NSString *)getLocalPortNumber {
+	
+	return [defaults stringForKey:@"sidestep_LocalPortNumber"];
+	
+}
+
 /*
  *	Preferences
  *******************************************************************************

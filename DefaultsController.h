@@ -20,6 +20,9 @@
 
 - (NSString *)getServerHostname;
 
+- (void)setLocalPortNumber :(NSString *)port;
+- (NSString *)getLocalPortNumber;
+
 - (void)setRemotePortNumber :(NSString *)port;
 - (NSString *)getRemotePortNumber;
 

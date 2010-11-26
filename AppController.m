@@ -170,6 +170,11 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[defaultsController setRemotePortNumber:@"22"];
     }
 	
+	// Set default local port number if not already set
+    if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
+		[defaultsController setLocalPortNumber:@"9050"];
+    }
+	
 	// Update connection status
 	[connectionStatus setTitle:determiningConnectionStatusText];
 	
@@ -340,6 +345,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	NSString *username = [defaultsController getServerUsername];
 	NSString *hostname = [defaultsController getServerHostname];
 	NSString *remoteport = [defaultsController getRemotePortNumber];
+	NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
 	
 	if (username && hostname) {	
 		if (![SSHconnector openSSHConnectionAndNotifyObject:self
@@ -349,7 +355,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 											   withUsername:username
 											   withHostname:hostname
 												withRemotePort:(NSString *)remoteport
-										  withLocalBindPort:[NSNumber numberWithInt:9050]]) {
+										  withLocalBindPort:(NSNumber *)localport]) {
 			[self showRestartSidestepDialog];
 		}
 	}
