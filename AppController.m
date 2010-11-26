@@ -72,7 +72,6 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 }
 
 - (void)dealloc {
-	[GrowlMessage release];
 	[SSHconnector release];
 	[defaultsController release];
 	[networkNotifier release];
