@@ -40,6 +40,9 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		AAE84BED129F7A4D00320F49 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE84BEC129F7A4D00320F49 /* Growl.framework */; };
+		AAE84BF6129F7A8600320F49 /* GrowlMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE84BF5129F7A8600320F49 /* GrowlMessage.m */; };
+		AAE84CDB129F84DB00320F49 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AAE84BEC129F7A4D00320F49 /* Growl.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +62,26 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AAE84CDB129F84DB00320F49 /* Growl.framework in CopyFiles */,
 				61BA523112823D4300BD1D72 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAE84BF0129F7A4D00320F49 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAE84BF7129F7A8600320F49 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +133,9 @@
 		61FB5F591280E970003229D7 /* ProxySetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySetter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Sidestep-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sidestep-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Sidestep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sidestep.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAE84BEC129F7A4D00320F49 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
+		AAE84BF4129F7A8600320F49 /* GrowlMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlMessage.h; sourceTree = "<group>"; };
+		AAE84BF5129F7A8600320F49 /* GrowlMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE84BED129F7A4D00320F49 /* Growl.framework in Frameworks */,
 				6145B3FC127A7A3700A5F7AF /* Security.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				6145B40E127A7A6700A5F7AF /* SystemConfiguration.framework in Frameworks */,
@@ -161,6 +187,8 @@
 				61B3E63A127ACB420011E198 /* DefaultsController.m */,
 				61FB5F581280E970003229D7 /* ProxySetter.h */,
 				61FB5F591280E970003229D7 /* ProxySetter.m */,
+				AAE84BF4129F7A8600320F49 /* GrowlMessage.h */,
+				AAE84BF5129F7A8600320F49 /* GrowlMessage.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -173,6 +201,7 @@
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				6145B40D127A7A6700A5F7AF /* SystemConfiguration.framework */,
 				6145B411127A7A6F00A5F7AF /* IOKit.framework */,
+				AAE84BEC129F7A4D00320F49 /* Growl.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -272,6 +301,8 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				61BA523912823D4900BD1D72 /* CopyFiles */,
+				AAE84BF0129F7A4D00320F49 /* CopyFiles */,
+				AAE84BF7129F7A8600320F49 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -350,6 +381,7 @@
 				61FB5F5A1280E970003229D7 /* ProxySetter.m in Sources */,
 				616141D412971C1B0090EE00 /* LoginItemController.m in Sources */,
 				61A926941299C11100B6B66B /* EMKeychainItem.m in Sources */,
+				AAE84BF6129F7A8600320F49 /* GrowlMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

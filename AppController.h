@@ -15,8 +15,9 @@
 #import "ProxySetter.h"
 #import "PasswordController.h"
 #import "AppUtilities.h"
+#import <Growl/Growl.h>
 
-@interface AppController : NSObject <NSApplicationDelegate> {
+@interface AppController : NSObject <GrowlApplicationBridgeDelegate> { //<NSApplicationDelegate> {
     NSWindow *window;
 	
 	IBOutlet NSMenu *statusMenu;
@@ -79,5 +80,7 @@
 - (void)finishClickedInWelcome :(id)sender;
 
 - (void)toggleRunOnLoginClicked :(id)sender;
+
+- (NSDictionary *) registrationDictionaryForGrowl;
 
 @end
