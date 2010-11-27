@@ -180,7 +180,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
     }
 	
 	// Set default local port number if not already set
-    if ([defaultsController getLocalPortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
+    if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
 		[defaultsController setLocalPortNumber:@"9050"];
     }
 	
