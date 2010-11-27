@@ -159,6 +159,8 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[defaultsController setRunOnLogin:TRUE];
 		[self setRunOnLogin:TRUE];
 		
+		[defaultsController setGrowlSetting:TRUE];
+		
 		// Show welcome window
 		[welcomeWindow center];
 		[welcomeTabs selectFirstTabViewItem:self];
@@ -166,15 +168,20 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[welcomeWindow makeKeyAndOrderFront:self];
 		
 	}
-
+	
     // Set default remote port number if not already set
     if ([defaultsController getRemotePortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
 		[defaultsController setRemotePortNumber:@"22"];
     }
 	
+	// Enable Growl if preference is not found (user updated from previous version / has already completed 1st run)
+    if (![defaultsController getGrowlSetting]) {
+		[defaultsController setGrowlSetting:TRUE];
+    }
+	
 	// Set default local port number if not already set
-    if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
-		[defaultsController setLocalPortNumber:@"9050"];
+    if ([defaultsController getRemotePortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
+		[defaultsController setRemotePortNumber:@"22"];
     }
 	
 	// Update connection status
@@ -323,6 +330,20 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	[self didChangeValueForKey:@"startAtLogin"];
 	
 }
+
+/*
+- (void)setGrowlSetting :(BOOL)value {
+	if (value) {
+		XLog(self, @"Enabling Growl Notification");
+		[defaultsController setGrowlSetting:TRUE];
+		[self setGrowlSetting:TRUE];
+	}
+	else {
+		XLog(self, @"Disabling Growl Notification");
+	}
+
+}
+ */
 
 - (NSDictionary *) registrationDictionaryForGrowl {
 	NSArray *notifications;

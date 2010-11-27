@@ -10,14 +10,39 @@
 #import <Growl/Growl.h>
 
 @implementation GrowlMessage
+
+
+- (id)init {
+	
+	self = [super init];
+	
+    if (self != nil)
+    {
+		setting = [NSUserDefaults standardUserDefaults];    
+	}
+	
+    return self;	
+	
+}
+
+- (void)dealloc {
+	
+	[setting release];
+	[super dealloc];
+	
+}
+
 - (void) message: (NSString *)sendMessage {
-	[GrowlApplicationBridge notifyWithTitle: @"Sidestep"
+	
+	if([setting boolForKey:@"sidestep_GrowlSetting"] == TRUE) {
+		[GrowlApplicationBridge notifyWithTitle: @"Sidestep"
 								description: sendMessage
-						   notificationName:@"GrowlNotification"
-								   iconData: nil
-								   priority: 0
-								   isSticky: NO
-							   clickContext: nil];
+								notificationName:@"GrowlNotification"
+								iconData: nil
+								priority: 0
+								isSticky: NO
+								clickContext: nil];
+	}
 }
 
 @end

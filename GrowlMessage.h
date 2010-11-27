@@ -11,7 +11,7 @@
 
 
 @interface GrowlMessage : NSObject { 
-	
+	NSUserDefaults *setting;
 }
 
 - (void) message:(NSString *)sendMessage;

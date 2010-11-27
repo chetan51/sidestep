@@ -35,4 +35,7 @@
 - (void)setRunOnLogin :(BOOL)enabled;
 - (BOOL)runOnLogin;
 
+- (void)setGrowlSetting :(BOOL)value;
+- (BOOL)getGrowlSetting;
+
 @end

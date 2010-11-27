@@ -94,6 +94,19 @@
 	
 }
 
+- (void)setGrowlSetting :(BOOL)value {
+	
+	[defaults setBool:value forKey:@"sidestep_GrowlSetting"];
+	[defaults synchronize];
+	
+}
+
+- (BOOL)getGrowlSetting {
+	
+	return [defaults boolForKey:@"sidestep_GrowlSetting"];
+	
+}
+
 /*
  *	Preferences
  *******************************************************************************

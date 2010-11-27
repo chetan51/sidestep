@@ -81,6 +81,7 @@
 
 - (void)toggleRunOnLoginClicked :(id)sender;
 
+//- (void)setGrowlSetting :(BOOL)value;
 - (NSDictionary *) registrationDictionaryForGrowl;
 
 @end
