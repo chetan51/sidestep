@@ -20,6 +20,9 @@
 
 - (NSString *)getServerHostname;
 
+- (void)setLocalPortNumber :(NSString *)port;
+- (NSString *)getLocalPortNumber;
+
 - (void)setRemotePortNumber :(NSString *)port;
 - (NSString *)getRemotePortNumber;
 
@@ -31,5 +34,8 @@
 
 - (void)setRunOnLogin :(BOOL)enabled;
 - (BOOL)runOnLogin;
+
+- (void)setGrowlSetting :(BOOL)value;
+- (BOOL)getGrowlSetting;
 
 @end

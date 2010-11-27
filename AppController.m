@@ -7,7 +7,7 @@
 //
 
 #import "AppController.h"
-
+#import "GrowlMessage.h"
 @implementation AppController
 
 /*	
@@ -15,7 +15,7 @@
  *******************************************************************************
  */
 
-NSString *noNetworkConnectionStatusText				= @"Not connected to the Internet";
+NSString *noNetworkConnectionStatusText				= @"Not connected to the Internet via Airport";
 NSString *determiningConnectionStatusText			= @"Determining connection status...";
 NSString *connectingConnectionStatusText			= @"Connecting to proxy server...";
 NSString *retryingConnectionStatusText				= @"Retrying connection to proxy server...";
@@ -72,7 +72,6 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 }
 
 - (void)dealloc {
-	
 	[SSHconnector release];
 	[defaultsController release];
 	[networkNotifier release];
@@ -125,6 +124,9 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 
 - (void)awakeFromNib {
 	
+	// Growl
+	[GrowlApplicationBridge setGrowlDelegate:self];
+	
 	// Create status menu item
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setMenu:statusMenu];
@@ -157,6 +159,8 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[defaultsController setRunOnLogin:TRUE];
 		[self setRunOnLogin:TRUE];
 		
+		[defaultsController setGrowlSetting:TRUE];
+		
 		// Show welcome window
 		[welcomeWindow center];
 		[welcomeTabs selectFirstTabViewItem:self];
@@ -164,8 +168,18 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[welcomeWindow makeKeyAndOrderFront:self];
 		
 	}
-
+	
     // Set default remote port number if not already set
+    if ([defaultsController getRemotePortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
+		[defaultsController setRemotePortNumber:@"22"];
+    }
+	
+	// Enable Growl if preference is not found (user updated from previous version / has already completed 1st run)
+    if (![defaultsController getGrowlSetting]) {
+		[defaultsController setGrowlSetting:TRUE];
+    }
+	
+	// Set default local port number if not already set
     if ([defaultsController getRemotePortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
 		[defaultsController setRemotePortNumber:@"22"];
     }
@@ -318,6 +332,32 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 }
 
 /*
+- (void)setGrowlSetting :(BOOL)value {
+	if (value) {
+		XLog(self, @"Enabling Growl Notification");
+		[defaultsController setGrowlSetting:TRUE];
+		[self setGrowlSetting:TRUE];
+	}
+	else {
+		XLog(self, @"Disabling Growl Notification");
+	}
+
+}
+ */
+
+- (NSDictionary *) registrationDictionaryForGrowl {
+	NSArray *notifications;
+	notifications = [NSArray arrayWithObject:@"GrowlNotification"];
+	
+	NSDictionary *dict;
+	dict = [NSDictionary dictionaryWithObjectsAndKeys:
+			notifications, GROWL_NOTIFICATIONS_ALL,
+			notifications, GROWL_NOTIFICATIONS_DEFAULT, nil];
+	
+	return (dict);
+}
+
+/*
  *	Threads
  *******************************************************************************
  */
@@ -340,6 +380,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	NSString *username = [defaultsController getServerUsername];
 	NSString *hostname = [defaultsController getServerHostname];
 	NSString *remoteport = [defaultsController getRemotePortNumber];
+	NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
 	
 	if (username && hostname) {	
 		if (![SSHconnector openSSHConnectionAndNotifyObject:self
@@ -349,7 +390,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 											   withUsername:username
 											   withHostname:hostname
 												withRemotePort:(NSString *)remoteport
-										  withLocalBindPort:[NSNumber numberWithInt:9050]]) {
+										  withLocalBindPort:(NSNumber *)localport]) {
 			[self showRestartSidestepDialog];
 		}
 	}
@@ -364,7 +405,8 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 
 - (void)watchSSHConnectionForCloseThread :(NSTask *)connection {
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];  
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+	
     
     [SSHconnector watchSSHConnectionAndOnCloseNotifyObject:self
 											  withSelector:@selector(SSHConnectionClosed)
@@ -572,8 +614,12 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 - (void)updateConnectionStatusForCurrentNetwork {
 	XLog(self, @"Called updateConnectionStatusForCurrentNetwork");
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
 	if ([currentNetworkSecurityType isEqualToString:@""]) {
 		[connectionStatus setTitle:noNetworkConnectionStatusText];
+		[growl message:noNetworkConnectionStatusText];
 		
 		// Update the images in our NSStatusItem
 		[statusItem setImage:statusImageDirectSecure];
@@ -581,6 +627,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	}
 	else if ([currentNetworkSecurityType isEqualToString:@"none"]) {
 		[connectionStatus setTitle:openConnectionStatusText];
+		[growl message:openConnectionStatusText];
 		
 		// Update the images in our NSStatusItem
 		[statusItem setImage:statusImageDirectInsecure];
@@ -588,11 +635,14 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	}
 	else {
 		[connectionStatus setTitle:protectedConnectionStatusText];
+		[growl message:protectedConnectionStatusText];
 		
 		// Update the images in our NSStatusItem
 		[statusItem setImage:statusImageDirectSecure];
 		[statusItem setAlternateImage:statusImageDirectSecure];
 	}
+	
+	[pool release];
 	
 }
 														
@@ -607,22 +657,32 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 - (void)updateUIForSSHConnectionOpening {
 	XLog(self, @"Called updateUIForSSHConnectionOpening");
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
 	// Update connection status
 	[connectionStatus setTitle:connectingConnectionStatusText];
+	[growl message:connectingConnectionStatusText];
 	
 	// Disable reroute or restore button
 	[rerouteOrRestoreConnectionButton setEnabled:FALSE];
 
+	[pool release];
 }
 
 - (void)updateUIForSSHConnectionOpened {
 	XLog(self, @"Called updateUIForSSHConnectionOpened");
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
 	// Update connection status
 	[connectionStatus setTitle:proxyConnectedConnectionStatusText];
+	[growl message:proxyConnectedConnectionStatusText];
 	
 	// Update proxy server status
 	[proxyServerStatus setTitle:connectedServerStatusText];
+	// Proxy server status is updated in another growl message.  No need to add one here.
 	
 	// Set reroute or restore button title
 	[rerouteOrRestoreConnectionButton setTitle:restoreConnectionButtonTitle];
@@ -633,6 +693,8 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	// Update the images in our NSStatusItem
 	[statusItem setImage:statusImageReroutedSecure];
 	[statusItem setAlternateImage:statusImageReroutedSecure];
+	
+	[pool release];
 }
 
 - (void)updateUIForSSHConnectionFailedWithError :(NSString *)errorCode {
@@ -675,31 +737,50 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 - (void)updateUIForTestingSSHConnectionOpening {
 	XLog(self, @"Called updateUIForTestingSSHConnectionOpening");
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
 	// Update testing connection status
 	[testConnectionStatusField setStringValue:testingConnectionStatusText];
+	[growl message:testingConnectionStatusText];
+	[pool release];
 	
 }
 
 - (void)updateUIForTestingSSHConnectionSucceeded {
 	XLog(self, @"Called updateUIForTestingSSHConnectionSucceeded");
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
 	// Update testing connection status
 	[testConnectionStatusField setStringValue:sucessTestingConnectionStatusText];
+	[growl message:sucessTestingConnectionStatusText];
+	
+	[pool release];
 	
 }
 
 - (void)updateUIForTestingSSHConnectionFailedWithError :(NSString *)errorCode {
 	XLog(self, @"Called updateUIForTestingSSHConnectionFailedWithError");
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+	GrowlMessage *growl = [[GrowlMessage alloc] init];
+	
 	if ([errorCode isEqualToString:@"2"]) {
 		// Update testing connection status
 		[testConnectionStatusField setStringValue:authFailedTestingConnectionStatusText];
+		[growl message:authFailedTestingConnectionStatusText];
+		
 	}
 	else if ([errorCode isEqualToString:@"3"] || [errorCode isEqualToString:@"4"] || [errorCode isEqualToString:@"5"]) {
 		// Update testing connection status
 		[testConnectionStatusField setStringValue:reachFailedTestingConnectionStatusText];
+		[growl message:reachFailedTestingConnectionStatusText];
+		
 	}
 	
+	[pool release];
 }
 
 - (void)showRestartSidestepDialog {

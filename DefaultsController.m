@@ -81,6 +81,32 @@
 	
 }
 
+- (void)setLocalPortNumber :(NSString *)port {
+	
+	[defaults setObject:port forKey:@"sidestep_LocalPortNumber"];
+	[defaults synchronize];
+	
+}
+
+- (NSString *)getLocalPortNumber {
+	
+	return [defaults stringForKey:@"sidestep_LocalPortNumber"];
+	
+}
+
+- (void)setGrowlSetting :(BOOL)value {
+	
+	[defaults setBool:value forKey:@"sidestep_GrowlSetting"];
+	[defaults synchronize];
+	
+}
+
+- (BOOL)getGrowlSetting {
+	
+	return [defaults boolForKey:@"sidestep_GrowlSetting"];
+	
+}
+
 /*
  *	Preferences
  *******************************************************************************
