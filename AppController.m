@@ -15,13 +15,13 @@
  *******************************************************************************
  */
 
-NSString *noNetworkConnectionStatusText				= @"Not connected to the Internet via Airport";
+NSString *noNetworkConnectionStatusText				= @"No wireless connection found";
 NSString *determiningConnectionStatusText			= @"Determining connection status...";
 NSString *connectingConnectionStatusText			= @"Connecting to proxy server...";
 NSString *retryingConnectionStatusText				= @"Retrying connection to proxy server...";
 NSString *proxyConnectedConnectionStatusText		= @"Connection secured - rerouting traffic through proxy server";
 NSString *protectedConnectionStatusText				= @"Connection secured - using encrypted direct wireless connection";
-NSString *openConnectionStatusText					= @"(!) Connection insecure";
+NSString *openConnectionStatusText					= @"Unsecured network connection";
 
 NSString *notConnectedServerStatusText				= @"Not connected to proxy server";
 NSString *authorizationErrorServerStatusText		= @"Failed to reroute traffic - authorization failed";
@@ -29,7 +29,7 @@ NSString *connectionErrorServerStatusText			= @"Failed to reroute traffic - unab
 NSString *connectedServerStatusText					= @"Connected to proxy server";
 
 NSString *testingConnectionStatusText				= @"Testing connection to server...";
-NSString *authFailedTestingConnectionStatusText		= @"Failed connecting to server - authorization failed.\n"
+NSString *authFailedTestingConnectionStatusText		= @"Failed connecting to server - authorization failed.\n\n"
 													   "Please click the Test Connection button again to retry "
 													   "entering your password.";
 NSString *reachFailedTestingConnectionStatusText	= @"Failed connecting to server - unable to reach server.";
@@ -39,6 +39,13 @@ NSString *rerouteConnectionButtonTitle				= @"Reroute Traffic Through Proxy Serv
 NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection";
 
 NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#proxy-servers";
+
+/* Growl spam reduction  
+ *     Growl outputs 10 - 12 error messages simulatenously when connecting to an unsecured network.
+ *     This hack only allows the notification to occur once.  
+ */
+NSInteger GrowlSpam_ConnectionType					= 0;
+
 
 /*	
  *	Class methods
@@ -619,24 +626,31 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	
 	if ([currentNetworkSecurityType isEqualToString:@""]) {
 		[connectionStatus setTitle:noNetworkConnectionStatusText];
-		[growl message:noNetworkConnectionStatusText];
 		
+		if (GrowlSpam_ConnectionType != 1) {
+			[growl message:noNetworkConnectionStatusText];
+			GrowlSpam_ConnectionType = 1;
+		}
 		// Update the images in our NSStatusItem
 		[statusItem setImage:statusImageDirectSecure];
 		[statusItem setAlternateImage:statusImageDirectSecure];
 	}
 	else if ([currentNetworkSecurityType isEqualToString:@"none"]) {
 		[connectionStatus setTitle:openConnectionStatusText];
-		[growl message:openConnectionStatusText];
-		
+		if (GrowlSpam_ConnectionType != 2) {
+			[growl message:openConnectionStatusText];
+			GrowlSpam_ConnectionType = 2;
+		}
 		// Update the images in our NSStatusItem
 		[statusItem setImage:statusImageDirectInsecure];
 		[statusItem setAlternateImage:statusImageDirectInsecure];
 	}
 	else {
 		[connectionStatus setTitle:protectedConnectionStatusText];
-		[growl message:protectedConnectionStatusText];
-		
+		if (GrowlSpam_ConnectionType != 3) {
+			[growl message:protectedConnectionStatusText];
+			GrowlSpam_ConnectionType = 3;
+		}
 		// Update the images in our NSStatusItem
 		[statusItem setImage:statusImageDirectSecure];
 		[statusItem setAlternateImage:statusImageDirectSecure];
@@ -757,6 +771,8 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 	[testConnectionStatusField setStringValue:sucessTestingConnectionStatusText];
 	[growl message:sucessTestingConnectionStatusText];
 	
+	// Growl Spam Reduction reset.  This allows messages to appear if the user connects to a different network of the same type.
+	GrowlSpam_ConnectionType = 0;
 	[pool release];
 	
 }
@@ -779,6 +795,9 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
 		[growl message:reachFailedTestingConnectionStatusText];
 		
 	}
+	
+	// Growl Spam Reduction reset.  This allows messages to appear if the user connects to a different network of the same type.
+	GrowlSpam_ConnectionType = 0;
 	
 	[pool release];
 }
