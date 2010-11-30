@@ -63,6 +63,8 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 		networkNotifier = [[NetworkNotifier alloc] init];
 		proxySetter = [[ProxySetter alloc] init];
 		
+		growl = [[GrowlMessage alloc] init];
+		
 		initiatedDelayedConnectionAttempt = FALSE;
 		currentDelay = 0;
 		retryCounter = 0;
@@ -87,7 +89,9 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	[statusImageDirectInsecure release];
 	[statusImageDirectSecure release];
 	[statusImageReroutedSecure release];
-
+	
+	[growl release];
+	
 	[super dealloc];
 	
 }
@@ -621,9 +625,6 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 - (void)updateConnectionStatusForCurrentNetwork {
 	XLog(self, @"Called updateConnectionStatusForCurrentNetwork");
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	GrowlMessage *growl = [[GrowlMessage alloc] init];
-	
 	if ([currentNetworkSecurityType isEqualToString:@""]) {
 		[connectionStatus setTitle:noNetworkConnectionStatusText];
 		
@@ -656,8 +657,6 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 		[statusItem setAlternateImage:statusImageDirectSecure];
 	}
 	
-	[pool release];
-	
 }
 														
 - (void)updateUIForSSHConnectionRetrying {
@@ -671,9 +670,6 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 - (void)updateUIForSSHConnectionOpening {
 	XLog(self, @"Called updateUIForSSHConnectionOpening");
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
-	GrowlMessage *growl = [[GrowlMessage alloc] init];
-	
 	// Update connection status
 	[connectionStatus setTitle:connectingConnectionStatusText];
 	[growl message:connectingConnectionStatusText];
@@ -681,14 +677,10 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	// Disable reroute or restore button
 	[rerouteOrRestoreConnectionButton setEnabled:FALSE];
 
-	[pool release];
 }
 
 - (void)updateUIForSSHConnectionOpened {
 	XLog(self, @"Called updateUIForSSHConnectionOpened");
-	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
-	GrowlMessage *growl = [[GrowlMessage alloc] init];
 	
 	// Update connection status
 	[connectionStatus setTitle:proxyConnectedConnectionStatusText];
@@ -708,7 +700,6 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	[statusItem setImage:statusImageReroutedSecure];
 	[statusItem setAlternateImage:statusImageReroutedSecure];
 	
-	[pool release];
 }
 
 - (void)updateUIForSSHConnectionFailedWithError :(NSString *)errorCode {
@@ -751,21 +742,14 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 - (void)updateUIForTestingSSHConnectionOpening {
 	XLog(self, @"Called updateUIForTestingSSHConnectionOpening");
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
-	GrowlMessage *growl = [[GrowlMessage alloc] init];
-	
 	// Update testing connection status
 	[testConnectionStatusField setStringValue:testingConnectionStatusText];
 	[growl message:testingConnectionStatusText];
-	[pool release];
 	
 }
 
 - (void)updateUIForTestingSSHConnectionSucceeded {
 	XLog(self, @"Called updateUIForTestingSSHConnectionSucceeded");
-	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
-	GrowlMessage *growl = [[GrowlMessage alloc] init];
 	
 	// Update testing connection status
 	[testConnectionStatusField setStringValue:sucessTestingConnectionStatusText];
@@ -773,15 +757,11 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	
 	// Growl Spam Reduction reset.  This allows messages to appear if the user connects to a different network of the same type.
 	GrowlSpam_ConnectionType = 0;
-	[pool release];
-	
+		
 }
 
 - (void)updateUIForTestingSSHConnectionFailedWithError :(NSString *)errorCode {
 	XLog(self, @"Called updateUIForTestingSSHConnectionFailedWithError");
-	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
-	GrowlMessage *growl = [[GrowlMessage alloc] init];
 	
 	if ([errorCode isEqualToString:@"2"]) {
 		// Update testing connection status
@@ -799,7 +779,6 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	// Growl Spam Reduction reset.  This allows messages to appear if the user connects to a different network of the same type.
 	GrowlSpam_ConnectionType = 0;
 	
-	[pool release];
 }
 
 - (void)showRestartSidestepDialog {

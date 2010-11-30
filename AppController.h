@@ -15,6 +15,7 @@
 #import "ProxySetter.h"
 #import "PasswordController.h"
 #import "AppUtilities.h"
+#import "GrowlMessage.h"
 #import <Growl/Growl.h>
 
 @interface AppController : NSObject <GrowlApplicationBridgeDelegate> { //<NSApplicationDelegate> {
@@ -41,6 +42,8 @@
 	DefaultsController *defaultsController;
 	NetworkNotifier *networkNotifier;
 	ProxySetter *proxySetter;
+	
+	GrowlMessage *growl;
 	
 	Boolean initiatedDelayedConnectionAttempt;
 	int currentDelay;
