@@ -687,12 +687,12 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	[growl message:proxyConnectedConnectionStatusText];
 	
 	// Update proxy server status
-	[proxyServerStatus setTitle:connectedServerStatusText];
 	// Proxy server status is updated in another growl message.  No need to add one here.
+	[proxyServerStatus setTitle:connectedServerStatusText];
 	
 	// Set reroute or restore button title
 	[rerouteOrRestoreConnectionButton setTitle:restoreConnectionButtonTitle];
-	
+
 	// Enable reroute or restore button
 	[rerouteOrRestoreConnectionButton setEnabled:TRUE];
 	
@@ -836,6 +836,7 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	else if ([[rerouteOrRestoreConnectionButton title] isEqualToString:restoreConnectionButtonTitle]) {
 		XLog(self, @"Restore connection button clicked");
 		
+		[growl message:[rerouteOrRestoreConnectionButton title]];
 		[self closeSSHConnection];
 	}
 	
