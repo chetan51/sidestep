@@ -46,7 +46,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
  */
 NSInteger GrowlSpam_ConnectionType					= 0;
 NSInteger GrowlSpam_ConnectingToProxy				= 0;
-
+NSInteger GrowlSpam_TestConnection					= 0;
 
 /*	
  *	Class methods
@@ -629,9 +629,10 @@ NSInteger GrowlSpam_ConnectingToProxy				= 0;
 	if ([currentNetworkSecurityType isEqualToString:@""]) {
 		[connectionStatus setTitle:noNetworkConnectionStatusText];
 		
-		if (GrowlSpam_ConnectionType != 1) {
+		if (GrowlSpam_ConnectionType != 1 && GrowlSpam_TestConnection != 1) {
 			[growl message:noNetworkConnectionStatusText];
 			GrowlSpam_ConnectionType = 1;
+			GrowlSpam_TestConnection = 0;
 		}
 		// Update the images in our NSStatusItem
 		[statusItem setImage:statusImageDirectSecure];
@@ -752,6 +753,9 @@ NSInteger GrowlSpam_ConnectingToProxy				= 0;
 	// Update testing connection status
 	[testConnectionStatusField setStringValue:testingConnectionStatusText];
 	[growl message:testingConnectionStatusText];
+	
+	// Prevent wireless status from appearing after test.
+	GrowlSpam_TestConnection = 1;
 	
 }
 
