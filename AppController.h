@@ -16,7 +16,7 @@
 #import "PasswordController.h"
 #import "AppUtilities.h"
 #import "GrowlMessage.h"
-#import <Growl/Growl.h>
+//#import <Growl/Growl.h>
 
 @interface AppController : NSObject <GrowlApplicationBridgeDelegate> { //<NSApplicationDelegate> {
     NSWindow *window;
@@ -84,7 +84,6 @@
 
 - (void)toggleRunOnLoginClicked :(id)sender;
 
-//- (void)setGrowlSetting :(BOOL)value;
 - (NSDictionary *) registrationDictionaryForGrowl;
 
 @end
