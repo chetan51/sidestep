@@ -45,6 +45,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
  *     This hack only allows the notification to occur once.  
  */
 NSInteger GrowlSpam_ConnectionType					= 0;
+NSInteger GrowlSpam_ConnectingToProxy				= 0;
 
 
 /*	
@@ -672,7 +673,10 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	
 	// Update connection status
 	[connectionStatus setTitle:connectingConnectionStatusText];
-	[growl message:connectingConnectionStatusText];
+	if (GrowlSpam_ConnectingToProxy == 0) {
+		[growl message:connectingConnectionStatusText];
+		GrowlSpam_ConnectingToProxy == 1;
+	}
 	
 	// Disable reroute or restore button
 	[rerouteOrRestoreConnectionButton setEnabled:FALSE];
@@ -685,6 +689,9 @@ NSInteger GrowlSpam_ConnectionType					= 0;
 	// Update connection status
 	[connectionStatus setTitle:proxyConnectedConnectionStatusText];
 	[growl message:proxyConnectedConnectionStatusText];
+	
+	// Reset GrowlSpam variable to allow notifications now that spam should have ended
+	GrowlSpam_ConnectingToProxy == 0;
 	
 	// Update proxy server status
 	// Proxy server status is updated in another growl message.  No need to add one here.

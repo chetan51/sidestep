@@ -16,7 +16,6 @@
 #import "PasswordController.h"
 #import "AppUtilities.h"
 #import "GrowlMessage.h"
-//#import <Growl/Growl.h>
 
 @interface AppController : NSObject <GrowlApplicationBridgeDelegate> { //<NSApplicationDelegate> {
     NSWindow *window;
