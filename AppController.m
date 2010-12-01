@@ -511,10 +511,12 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	}
 	else {
 		XLog(self, @"Turning proxy on");
+		NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
+		int test = [localport intValue];
+		
 		[NSThread detachNewThreadSelector:@selector(turnProxyOnThread:)
 								 toTarget:self
-							   withObject:[NSNumber numberWithInt:9050]];
-		
+							   withObject:[NSNumber numberWithInt:test]];
 		[self performSelectorOnMainThread:@selector(updateUIForSSHConnectionOpened) withObject:nil waitUntilDone:FALSE];
 	}
 	
