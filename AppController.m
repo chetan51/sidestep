@@ -106,6 +106,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	int previousPID = [defaultsController getSSHConnectionPID];
 	
+	
 	if (previousPID != 0) {
 		XLog(self, @"Turning proxy off");
 		
@@ -299,7 +300,6 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)closeSSHConnection {
-	
 	if (SSHConnection) {
 		XLog(self, @"Turning proxy off");
 		[NSThread detachNewThreadSelector:@selector(turnProxyOffThread)
@@ -320,6 +320,11 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	SSHConnecting = FALSE;		
 	SSHConnected = FALSE;	
 	
+	/* Set process to 0.  
+	 * Otherwise, next launch of Sidestep will read this variable and think it crashed.  
+	 * Sidestep would then try to kill the PID stored the last time it ran, potentially killing an unintended process.
+	 */
+	[defaultsController saveSSHConnectionPID:0];
 }
 
 - (void)setRunOnLogin :(BOOL)value {
@@ -506,17 +511,16 @@ NSInteger GrowlSpam_TestConnection					= 0;
 							   withObject:nil];
 	
 		testingConnection = FALSE;
-		
+		 
 		[self performSelectorOnMainThread:@selector(updateUIForTestingSSHConnectionSucceeded) withObject:nil waitUntilDone:FALSE];
 	}
 	else {
 		XLog(self, @"Turning proxy on");
 		NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
-		int test = [localport intValue];
 		
 		[NSThread detachNewThreadSelector:@selector(turnProxyOnThread:)
 								 toTarget:self
-							   withObject:[NSNumber numberWithInt:test]];
+							   withObject:[NSNumber numberWithInt:[localport intValue]]];
 		[self performSelectorOnMainThread:@selector(updateUIForSSHConnectionOpened) withObject:nil waitUntilDone:FALSE];
 	}
 	
@@ -614,8 +618,13 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	if ([security isEqualToString:@"none"] && [defaultsController rerouteAutomaticallyEnabled]) {
 		[self openSSHConnectionAfterDelay:3];
 	}
-	else {		
-		[self closeSSHConnection];
+	else {
+		/* Kill process if there's one running.  
+		 * Sidestep can get 'here' when if first launches and airport is disconnected.
+		 */
+		if ([defaultsController getSSHConnectionPID] != 0) {
+			[self closeSSHConnection];
+		}
 	}
 
 }
