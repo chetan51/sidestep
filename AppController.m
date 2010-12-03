@@ -46,6 +46,7 @@ NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#
  *     Growl outputs 10 - 12 error messages simulatenously when connecting to an unsecured network.
  *     This hack only allows the notification to occur once.  
  */
+
 NSInteger GrowlSpam_ConnectionType					= 0;
 NSInteger GrowlSpam_ConnectingToProxy				= 0;
 NSInteger GrowlSpam_TestConnection					= 0;
