@@ -1,4 +1,4 @@
-#![Icon](https://github.com/usernumber9/sidestep/raw/master/media/icons/Sidestep-Main-Logo-48x48.png "Icon") Sidestep#
+#![Icon](https://github.com/chetan51/sidestep/raw/master/media/icons/Sidestep-Main-Logo-48x48.png "Icon") Sidestep#
 
 ##_Say Hello to Sidestep_##
 
@@ -19,7 +19,7 @@ How does it work?
 
 The first time you run Sidestep, you give it the details of the proxy server that you want it to use to securely reroute your Internet traffic through. And that’s it.
 
-![Welcome (main window)](https://github.com/usernumber9/sidestep/raw/master/media/screenshots/Welcome.png "Welcome")
+![Welcome (main window)](https://github.com/chetan51/sidestep/raw/master/media/screenshots/Welcome.png "Welcome")
 
 Now, every time you connect to the Internet, Sidestep checks to see if your connection is already secured by WPA wireless security - if it is, Sidestep does nothing. After all, there’s no point in rerouting your connection and using up bandwidth on your proxy server if your connection is already secure. However, if your wireless connection is open and unprotected, Sidestep connects to your proxy server using SSH and reroutes all your traffic through it. This technology is called an SSH Tunnel Proxy.
 
