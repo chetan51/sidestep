@@ -35,6 +35,8 @@ NSString *authFailedTestingConnectionStatusText		= @"Failed connecting to server
 NSString *reachFailedTestingConnectionStatusText	= @"Failed connecting to server - unable to reach server.";
 NSString *sucessTestingConnectionStatusText			= @"Connection to server succeeded!";
 
+NSString *restoredDirectConnectionStatusText		= @"Restored direct Internet connection.";
+
 NSString *rerouteConnectionButtonTitle				= @"Reroute Traffic Through Proxy Server Now";
 NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection";
 
@@ -858,7 +860,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	else if ([[rerouteOrRestoreConnectionButton title] isEqualToString:restoreConnectionButtonTitle]) {
 		XLog(self, @"Restore connection button clicked");
 		
-		[growl message:[rerouteOrRestoreConnectionButton title]];
+		[growl message:restoredDirectConnectionStatusText];
 		[self closeSSHConnection];
 	}
 	
