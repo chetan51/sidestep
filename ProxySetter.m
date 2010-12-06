@@ -7,6 +7,7 @@
 //
 
 #import "ProxySetter.h"
+#import "AppUtilities.h"
 
 
 @implementation ProxySetter

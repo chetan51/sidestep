@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AppUtilities.h"
 
 @interface ProxySetter : NSObject {
 
