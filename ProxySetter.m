@@ -102,13 +102,13 @@
 }
 
 /*
- *	Turns on the VPN connection for the service name given.
- *	
+ *	Turns on or off the VPN connection for the service name given.
+ *
  *	return: true on success
  *	return: false if task path not found
  */
 
-- (BOOL)turnVPNOn:(NSString *)serviceName {
+- (BOOL)turnVPNOnOrOff:(NSString *)serviceName withState:(BOOL)state {
 	
 	XLog(self, @"Turning VPN on with service name: %@", serviceName);
 	
@@ -123,10 +123,12 @@
 	[task setStandardError:errorPipe];
 	
 	// Set up arguments to the task
-	NSArray *args = [NSArray arrayWithObject:[NSString stringWithString:serviceName]];
+	NSArray *args = [NSArray arrayWithObjects:	[NSString stringWithString:serviceName],
+												[NSString stringWithFormat:@"%d", state],
+												nil];
 	
 	// Get the path of the task, which is included as part of the main application bundle
-	NSString *taskPath = [NSBundle pathForResource:@"TurnVPNOn"
+	NSString *taskPath = [NSBundle pathForResource:@"TurnVPNOnOrOff"
 											ofType:@"sh"
 									   inDirectory:[[NSBundle mainBundle] bundlePath]];
 	

@@ -1,18 +1,21 @@
 #!/bin/bash
 
-# TurnVPNOn.sh
+# TurnVPNOnOrOff.sh
 # Sidestep
 #
 # Created by Chetan Surpur on 10/26/10.
 # Copyright 2010 Chetan Surpur. All rights reserved.
 
-if [ ! -n "$1" ]; then
-	echo "Usage: TurnVPNOn.sh serviceName"
+if [ ! -n "$1" ] || [ ! $2 ]; then
+	echo "Usage: TurnVPNOnOrOff.sh serviceName state[0/1]"
     exit 0
 fi
 
 SERVICENAME=$1
 export SERVICENAME
+
+SERVICESTATE=$2
+export SERVICESTATE
 
 # redirect stdin
 exec <"$0" || exit
@@ -41,6 +44,7 @@ bash -c "/usr/bin/osascript"; exit
 
 -- Retrieve environment variables
 set service_name to system attribute "SERVICENAME"
+set service_state to system attribute "SERVICESTATE"
 
 -- Return values:
 --	1 - Success
@@ -61,10 +65,10 @@ tell application "System Events"
 	if kind of s is not 14 then
 		return 3
 	end if
-
-	if not connected of configuration of s as boolean then
+	
+	if not connected of configuration of s as boolean and service_state is "1" then
 		tell s to connect
-	else
+	else if service_state is "0" then
 		tell s to disconnect
 	end if
 	

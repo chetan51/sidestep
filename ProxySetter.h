@@ -16,6 +16,6 @@
 - (BOOL)turnAirportProxyOn:(NSNumber *)port;
 - (BOOL)turnAirportProxyOff;
 
-- (BOOL)turnVPNOn:(NSString *)serviceName;
+- (BOOL)turnVPNOnOrOff:(NSString *)serviceName withState:(BOOL)state;
 
 @end
