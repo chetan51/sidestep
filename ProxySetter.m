@@ -101,4 +101,65 @@
 	
 }
 
+/*
+ *	Turns on the VPN connection for the service name given.
+ *	
+ *	return: true on success
+ *	return: false if task path not found
+ */
+
+- (BOOL)turnVPNOn:(NSString *)serviceName {
+	
+	XLog(self, @"Turning VPN on with service name: %@", serviceName);
+	
+	NSTask *task = [[[NSTask alloc] init] autorelease];
+	
+	// Setup the pipes on the task
+	NSPipe *outputPipe = [NSPipe pipe];
+	NSPipe *errorPipe = [NSPipe pipe];
+	
+	[task setStandardOutput:outputPipe];
+	[task setStandardInput:[NSFileHandle fileHandleWithNullDevice]];
+	[task setStandardError:errorPipe];
+	
+	// Set up arguments to the task
+	NSArray *args = [NSArray arrayWithObject:[NSString stringWithString:serviceName]];
+	
+	// Get the path of the task, which is included as part of the main application bundle
+	NSString *taskPath = [NSBundle pathForResource:@"TurnVPNOn"
+											ofType:@"sh"
+									   inDirectory:[[NSBundle mainBundle] bundlePath]];
+	
+	if (!taskPath) {
+		return FALSE;
+	}
+	
+	// Set task's arguments and launch path
+	[task setArguments:args];
+	[task setLaunchPath:taskPath];
+	
+	// Before launching the task, get a filehandle for reading its output
+	NSFileHandle *readHandle = [[task standardOutput] fileHandleForReading];
+	
+	// Launch task
+	[task launch];
+	
+	// Read task's output data
+	NSData *readData;
+	while ((readData = [readHandle availableData]) && [readData length]) {
+		NSString *readString = [[NSString alloc] initWithData:readData encoding:NSASCIIStringEncoding];
+		
+		XLog(self, @"Turn VPN On said: %@", readString);
+		
+		//	Return values of Turn VPN On:
+		//		1 - Success
+		//		2 - No such service
+		//		3 - Service found was not of type VPN
+	}
+	
+	return TRUE;
+	
+}
+
+
 @end
