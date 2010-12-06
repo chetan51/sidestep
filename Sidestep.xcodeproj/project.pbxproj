@@ -10,6 +10,8 @@
 		1DDD58160DA1D0A300B32029 /* Sidestep.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* Sidestep.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* AppController.m */; };
 		613F9CFF12AC924D00B13A60 /* TurnVPNOnOrOff.sh in Resources */ = {isa = PBXBuildFile; fileRef = 613F9CFE12AC924D00B13A60 /* TurnVPNOnOrOff.sh */; };
+		613F9D2A12AD8D4300B13A60 /* VPNInterfacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F9D2912AD8D4300B13A60 /* VPNInterfacer.m */; };
+		613F9D2B12AD8D4300B13A60 /* VPNInterfacer.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F9D2912AD8D4300B13A60 /* VPNInterfacer.m */; };
 		6145B218127A6AC600A5F7AF /* SSHConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B217127A6AC600A5F7AF /* SSHConnector.m */; };
 		6145B2E0127A739200A5F7AF /* AppUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B2DF127A739200A5F7AF /* AppUtilities.m */; };
 		6145B306127A746400A5F7AF /* Configurations.m in Sources */ = {isa = PBXBuildFile; fileRef = 6145B305127A746400A5F7AF /* Configurations.m */; };
@@ -100,6 +102,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		613F9CFE12AC924D00B13A60 /* TurnVPNOnOrOff.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = TurnVPNOnOrOff.sh; path = scripts/TurnVPNOnOrOff.sh; sourceTree = "<group>"; };
+		613F9D2812AD8D4300B13A60 /* VPNInterfacer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPNInterfacer.h; sourceTree = "<group>"; };
+		613F9D2912AD8D4300B13A60 /* VPNInterfacer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPNInterfacer.m; sourceTree = "<group>"; };
 		6145B216127A6AC600A5F7AF /* SSHConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHConnector.h; sourceTree = "<group>"; };
 		6145B217127A6AC600A5F7AF /* SSHConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHConnector.m; sourceTree = "<group>"; };
 		6145B2DE127A739100A5F7AF /* AppUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtilities.h; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 				61FB5F591280E970003229D7 /* ProxySetter.m */,
 				AAE84BF4129F7A8600320F49 /* GrowlMessage.h */,
 				AAE84BF5129F7A8600320F49 /* GrowlMessage.m */,
+				613F9D2812AD8D4300B13A60 /* VPNInterfacer.h */,
+				613F9D2912AD8D4300B13A60 /* VPNInterfacer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 				61B3E46B127A7BC20011E198 /* PasswordController.m in Sources */,
 				61B3E46C127A7BC20011E198 /* SSHAskPass.m in Sources */,
 				61A926951299C11100B6B66B /* EMKeychainItem.m in Sources */,
+				613F9D2B12AD8D4300B13A60 /* VPNInterfacer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +399,7 @@
 				616141D412971C1B0090EE00 /* LoginItemController.m in Sources */,
 				61A926941299C11100B6B66B /* EMKeychainItem.m in Sources */,
 				AAE84BF6129F7A8600320F49 /* GrowlMessage.m in Sources */,
+				613F9D2A12AD8D4300B13A60 /* VPNInterfacer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

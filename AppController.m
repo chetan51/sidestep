@@ -66,6 +66,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		defaultsController = [[DefaultsController alloc] init];
 		networkNotifier = [[NetworkNotifier alloc] init];
 		proxySetter = [[ProxySetter alloc] init];
+		vpnInterfacer = [[VPNInterfacer alloc] init];
 		
 		growl = [[GrowlMessage alloc] init];
 		
@@ -89,6 +90,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[defaultsController release];
 	[networkNotifier release];
 	[proxySetter release];
+	[vpnInterfacer release];
 	
 	[statusImageDirectInsecure release];
 	[statusImageDirectSecure release];

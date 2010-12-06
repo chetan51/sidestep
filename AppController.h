@@ -13,6 +13,7 @@
 #import "LoginItemController.h"
 #import "NetworkNotifier.h"
 #import "ProxySetter.h"
+#import "VPNInterfacer.h"
 #import "PasswordController.h"
 #import "AppUtilities.h"
 #import "GrowlMessage.h"
@@ -41,6 +42,7 @@
 	DefaultsController *defaultsController;
 	NetworkNotifier *networkNotifier;
 	ProxySetter *proxySetter;
+	VPNInterfacer *vpnInterfacer;
 	
 	GrowlMessage *growl;
 	
