@@ -12,6 +12,7 @@
 	
 }
 
+- (NSArray *)getListOfVPNServices;
 - (BOOL)turnVPNOnOrOff:(NSString *)serviceName withState:(BOOL)state;
 
 @end

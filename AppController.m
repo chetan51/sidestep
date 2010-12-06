@@ -840,9 +840,18 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForVPNServiceList {
+	
 	XLog(self, @"Updating UI for VPN Service List");
 	
+	NSArray *services = [vpnInterfacer getListOfVPNServices];
+	XLog(self, @"Service list found: %@", services);
 	
+	if (services == nil) {
+		[self showRestartSidestepDialog];
+	}
+	else {
+		
+	}
 	
 }
 

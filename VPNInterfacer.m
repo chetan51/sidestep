@@ -13,6 +13,73 @@
 @implementation VPNInterfacer
 
 /*
+ *	Gets a list of VPN services that have been configured in System Preferences > Network.
+ *
+ *	return: (NSArray *)services on success
+ *	return: nil if task path not found
+ */
+
+- (NSArray *)getListOfVPNServices {
+
+	XLog(self, @"Getting list of VPN services");
+	
+	NSTask *task = [[[NSTask alloc] init] autorelease];
+	
+	// Setup the pipes on the task
+	NSPipe *outputPipe = [NSPipe pipe];
+	NSPipe *errorPipe = [NSPipe pipe];
+	
+	[task setStandardOutput:outputPipe];
+	[task setStandardInput:[NSFileHandle fileHandleWithNullDevice]];
+	[task setStandardError:errorPipe];
+	
+	// Get the path of the task, which is included as part of the main application bundle
+	NSString *taskPath = [NSBundle pathForResource:@"GetListOfVPNServices"
+											ofType:@"sh"
+									   inDirectory:[[NSBundle mainBundle] bundlePath]];
+	
+	if (!taskPath) {
+		return nil;
+	}
+	
+	// Set task's launch path
+	[task setLaunchPath:taskPath];
+	
+	// Before launching the task, get a filehandle for reading its output
+	NSFileHandle *readHandle = [[task standardOutput] fileHandleForReading];
+	
+	// Launch task
+	[task launch];
+	
+	// Read task's output data
+	NSData *readData;
+	while ((readData = [readHandle availableData]) && [readData length]) {
+		NSString *readString = [[NSString alloc] initWithData:readData encoding:NSASCIIStringEncoding];
+		
+		XLog(self, @"Get list of VPN services said: %@", readString);
+		
+		//	Return values of Get List Of VPN Services:
+		//		Comma-seperated list of service names
+		
+		NSString *csvList = [readString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+		XLog(self, @"Comma-separated list of VPN services: %@", csvList);
+		
+		if ([csvList isEqualToString:@""]) {
+			XLog(self, @"No services found.");
+			return [NSArray arrayWithObjects:nil];
+		}
+		else {
+			return [csvList componentsSeparatedByString:@", "];
+		}
+	}
+	
+	// If we get this far, that means the task didn't output anything for some reason.
+	// Return empty array.
+	return [NSArray arrayWithObjects:nil];
+	
+}
+
+/*
  *	Turns on or off the VPN connection for the service name given.
  *
  *	return: true on success
