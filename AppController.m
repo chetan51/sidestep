@@ -638,6 +638,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
  */
 
 - (void)updateConnectionStatusForCurrentNetwork {
+	
 	XLog(self, @"Called updateConnectionStatusForCurrentNetwork");
 	
 	if ([currentNetworkSecurityType isEqualToString:@""]) {
@@ -676,6 +677,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 														
 - (void)updateUIForSSHConnectionRetrying {
+	
 	XLog(self, @"Called updateUIForSSHConnectionRetrying");
 	
 	// Update connection status
@@ -684,6 +686,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForSSHConnectionOpening {
+	
 	XLog(self, @"Called updateUIForSSHConnectionOpening");
 	
 	// Update connection status
@@ -699,6 +702,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForSSHConnectionOpened {
+	
 	XLog(self, @"Called updateUIForSSHConnectionOpened");
 	
 	// Update connection status
@@ -725,6 +729,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForSSHConnectionFailedWithError :(NSString *)errorCode {
+	
 	XLog(self, @"Called updateUIForSSHConnectionFailedWithError");
 	
 	if ([errorCode isEqualToString:@"2"]) {
@@ -748,6 +753,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForSSHConnectionClosed {
+	
 	XLog(self, @"Called updateUIForSSHConnectionClosed");
 
 	// Update connection status
@@ -774,6 +780,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForTestingSSHConnectionSucceeded {
+	
 	XLog(self, @"Called updateUIForTestingSSHConnectionSucceeded");
 	
 	// Update testing connection status
@@ -786,6 +793,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForTestingSSHConnectionFailedWithError :(NSString *)errorCode {
+	
 	XLog(self, @"Called updateUIForTestingSSHConnectionFailedWithError");
 	
 	if ([errorCode isEqualToString:@"2"]) {
@@ -807,6 +815,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)showRestartSidestepDialog {
+	
 	XLog(self, @"Showing user restart Sidestep dialog");
 	
 	[NSApp activateIgnoringOtherApps:YES];	// Allows windows of this app to become front
