@@ -7,6 +7,7 @@
 //
 
 #import "VPNInterfacer.h"
+#import "AppUtilities.h"
 
 
 @implementation VPNInterfacer
