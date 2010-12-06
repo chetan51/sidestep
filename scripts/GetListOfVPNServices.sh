@@ -36,8 +36,8 @@ set vpn_services to {}
 tell application "System Events"
 	tell current location of network preferences
 		repeat with s in services
-			-- if kind of service = 14 then vpn
-			if kind of s is 14 then
+			-- if kind of service = 14, 11 or 10 then vpn
+			if kind of s is 14 or kind of s is 11 or kind of s is 10 then
 				copy name of s to end of my vpn_services
 			end if
 		end repeat

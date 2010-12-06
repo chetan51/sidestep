@@ -61,8 +61,8 @@ tell application "System Events"
 	
 	set s to service service_name of network preferences
 	
-	-- if kind of service = 14 then vpn
-	if kind of s is not 14 then
+	-- if kind of service = 14, 11 or 10 then vpn
+	if kind of s is not 14 and kind of s is not 11 and kind of s is not 10 then
 		return 3
 	end if
 	
