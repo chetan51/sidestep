@@ -113,7 +113,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	if (previousPID != 0) {
 		XLog(self, @"Turning proxy off");
 		
-		[NSThread detachNewThreadSelector:@selector(turnProxyOffThread)
+		[NSThread detachNewThreadSelector:@selector(turnAirportProxyOffThread)
 								 toTarget:self
 							   withObject:nil];
 		
@@ -232,7 +232,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		// Operate based on user's decision
 		if (decision == NSAlertDefaultReturn) {	// Answer was "Yes"
 			XLog(self, @"Turning proxy off");
-			[NSThread detachNewThreadSelector:@selector(turnProxyOffThread)
+			[NSThread detachNewThreadSelector:@selector(turnAirportProxyOffThread)
 									 toTarget:self
 								   withObject:nil];
 			
@@ -305,7 +305,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 - (void)closeSSHConnection {
 	if (SSHConnection) {
 		XLog(self, @"Turning proxy off");
-		[NSThread detachNewThreadSelector:@selector(turnProxyOffThread)
+		[NSThread detachNewThreadSelector:@selector(turnAirportProxyOffThread)
 								 toTarget:self
 							   withObject:nil];
 		
@@ -446,22 +446,22 @@ NSInteger GrowlSpam_TestConnection					= 0;
 
 }
 
-- (void)turnProxyOnThread :(NSNumber *)port {
+- (void)turnAirportProxyOnThread :(NSNumber *)port {
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-	if (![proxySetter turnProxyOn:port]) {
+	if (![proxySetter turnAirportProxyOn:port]) {
 		[self showRestartSidestepDialog];
 	}
 	
 	[pool release];
 }
 
-- (void)turnProxyOffThread {
+- (void)turnAirportProxyOffThread {
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	if (![proxySetter turnProxyOff]) {
+	if (![proxySetter turnAirportProxyOff]) {
 		[self showRestartSidestepDialog];
 	}
 	
@@ -521,7 +521,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		XLog(self, @"Turning proxy on");
 		NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
 		
-		[NSThread detachNewThreadSelector:@selector(turnProxyOnThread:)
+		[NSThread detachNewThreadSelector:@selector(turnAirportProxyOnThread:)
 								 toTarget:self
 							   withObject:[NSNumber numberWithInt:[localport intValue]]];
 		[self performSelectorOnMainThread:@selector(updateUIForSSHConnectionOpened) withObject:nil waitUntilDone:FALSE];
@@ -586,7 +586,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	if (SSHConnected) {
 		XLog(self, @"Turning proxy off");
-		[NSThread detachNewThreadSelector:@selector(turnProxyOffThread)
+		[NSThread detachNewThreadSelector:@selector(turnAirportProxyOffThread)
 								 toTarget:self
 							   withObject:nil];
 	}

@@ -13,7 +13,7 @@
 
 }
 
-- (BOOL)turnProxyOn:(NSNumber *)port;
-- (BOOL)turnProxyOff;
+- (BOOL)turnAirportProxyOn:(NSNumber *)port;
+- (BOOL)turnAirportProxyOff;
 
 @end
