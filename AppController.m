@@ -86,6 +86,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)dealloc {
+	
 	[SSHconnector release];
 	[defaultsController release];
 	[networkNotifier release];
