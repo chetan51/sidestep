@@ -212,6 +212,9 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	// Set reroute or restore button title
 	[rerouteOrRestoreConnectionButton setTitle:rerouteConnectionButtonTitle];
 	
+	// Update VPN service lists
+	[self updateUIForVPNServiceList];
+	
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -824,6 +827,13 @@ NSInteger GrowlSpam_TestConnection					= 0;
 								nil,
 								nil,
 								nil);
+	
+}
+
+- (void)updateUIForVPNServiceList {
+	XLog(self, @"Updating UI for VPN Service List");
+	
+	
 	
 }
 

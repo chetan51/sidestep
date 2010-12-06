@@ -70,19 +70,16 @@
 
 - (void)showRestartSidestepDialog;
 
+- (void)updateUIForVPNServiceList;
+
 - (void)preferencesClicked :(id)sender;
 - (void)aboutClicked :(id)sender;
-
 - (void)rerouteOrRestoreConnectionClicked :(id)sender;
-
 - (void)testSSHConnectionClickedFromPreferences :(id)sender;
 - (void)testSSHConnectionClickedFromWelcome :(id)sender;
-
 - (void)helpWithProxyClicked :(id)sender;
-
 - (void)nextClickedInWelcome :(id)sender;
 - (void)finishClickedInWelcome :(id)sender;
-
 - (void)toggleRunOnLoginClicked :(id)sender;
 
 - (NSDictionary *) registrationDictionaryForGrowl;
