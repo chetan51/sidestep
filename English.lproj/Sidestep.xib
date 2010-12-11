@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="855"/>
-			<integer value="606"/>
 			<integer value="29"/>
 			<integer value="533"/>
+			<integer value="548"/>
+			<integer value="606"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2241,13 +2241,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<object class="NSTextField" id="393512819">
 																	<reference key="NSNextResponder" ref="1004320873"/>
 																	<int key="NSvFlags">268</int>
-																	<string key="NSFrame">{{30, 147}, {406, 34}}</string>
+																	<string key="NSFrame">{{30, 130}, {406, 51}}</string>
 																	<reference key="NSSuperview" ref="1004320873"/>
 																	<bool key="NSEnabled">YES</bool>
 																	<object class="NSTextFieldCell" key="NSCell" id="130333233">
 																		<int key="NSCellFlags">67239424</int>
 																		<int key="NSCellFlags2">272629760</int>
-																		<string key="NSContents">Add more services or configure existing services by opening System Preferences and going to the Network pane.</string>
+																		<string key="NSContents">Add more services or configure existing services by opening System Preferences and going to the Network pane. After you're done making changes, restart Sidestep.</string>
 																		<reference key="NSSupport" ref="931654836"/>
 																		<reference key="NSControlView" ref="393512819"/>
 																		<reference key="NSBackgroundColor" ref="570087526"/>
@@ -7294,7 +7294,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">905</int>
+			<int key="maxID">907</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
