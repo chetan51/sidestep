@@ -38,6 +38,7 @@
 	IBOutlet NSMenuItem *connectionStatus;
 	
 	IBOutlet NSMenuItem *rerouteOrRestoreConnectionButton;
+	IBOutlet NSMenuItem *statusMenuFirstSeparator;
 	IBOutlet NSMenuItem *connectVPNServiceButton;
 	IBOutlet NSMenuItem *disconnectVPNServiceButton;
 	

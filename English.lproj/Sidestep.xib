@@ -13,9 +13,9 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="855"/>
+			<integer value="606"/>
 			<integer value="29"/>
 			<integer value="533"/>
-			<integer value="606"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4250,6 +4250,14 @@ dGggb24gdGhlIHNlcnZlci4</string>
 					</object>
 					<int key="connectionID">904</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">statusMenuFirstSeparator</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="726902998"/>
+					</object>
+					<int key="connectionID">905</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -7286,7 +7294,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">904</int>
+			<int key="maxID">905</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -7409,6 +7417,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 							<string>proxyTabs</string>
 							<string>rerouteOrRestoreConnectionButton</string>
 							<string>statusMenu</string>
+							<string>statusMenuFirstSeparator</string>
 							<string>testConnectionStatusField</string>
 							<string>testConnectionStatusFieldInPreferences</string>
 							<string>testConnectionStatusFieldInWelcome</string>
@@ -7426,6 +7435,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 							<string>NSTabView</string>
 							<string>NSMenuItem</string>
 							<string>NSMenu</string>
+							<string>NSMenuItem</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
@@ -7446,6 +7456,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 							<string>proxyTabs</string>
 							<string>rerouteOrRestoreConnectionButton</string>
 							<string>statusMenu</string>
+							<string>statusMenuFirstSeparator</string>
 							<string>testConnectionStatusField</string>
 							<string>testConnectionStatusFieldInPreferences</string>
 							<string>testConnectionStatusFieldInWelcome</string>
@@ -7489,6 +7500,10 @@ dGggb24gdGhlIHNlcnZlci4</string>
 							<object class="IBToOneOutletInfo">
 								<string key="name">statusMenu</string>
 								<string key="candidateClassName">NSMenu</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">statusMenuFirstSeparator</string>
+								<string key="candidateClassName">NSMenuItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">testConnectionStatusField</string>

@@ -901,11 +901,19 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		[rerouteOrRestoreConnectionButton setHidden:FALSE];
 		[connectVPNServiceButton setHidden:TRUE];
 		[disconnectVPNServiceButton setHidden:TRUE];
+		
+		[statusMenuFirstSeparator setHidden:FALSE];
+		[connectionStatus setHidden:FALSE];
+		[proxyServerStatus setHidden:FALSE];
 	}
-	else {												// VPN selected
+	else {															// VPN selected
 		[rerouteOrRestoreConnectionButton setHidden:TRUE];
 		[connectVPNServiceButton setHidden:FALSE];
 		[disconnectVPNServiceButton setHidden:FALSE];
+		
+		[statusMenuFirstSeparator setHidden:TRUE];
+		[connectionStatus setHidden:TRUE];
+		[proxyServerStatus setHidden:TRUE];
 	}
 	
 }
