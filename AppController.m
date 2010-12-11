@@ -479,6 +479,30 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[pool release];
 }
 
+- (void)openVPNConnectionThread {
+
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	if (![vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:TRUE]) {
+		[self showRestartSidestepDialog];
+	}
+	
+	[pool release];
+	
+}
+
+- (void)closeVPNConnectionThread {
+	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	if (![vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:FALSE]) {
+		[self showRestartSidestepDialog];
+	}
+	
+	[pool release];
+	
+}
+
 /*
  *	Event handlers
  *******************************************************************************
