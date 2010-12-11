@@ -38,6 +38,8 @@
 	IBOutlet NSMenuItem *connectionStatus;
 	
 	IBOutlet NSMenuItem *rerouteOrRestoreConnectionButton;
+	IBOutlet NSMenuItem *connectVPNServiceButton;
+	IBOutlet NSMenuItem *disconnectVPNServiceButton;
 	
 	SSHConnector *SSHconnector;
 	DefaultsController *defaultsController;
@@ -74,7 +76,7 @@
 - (void)showRestartSidestepDialog;
 
 - (void)updateUIForVPNServiceList;
-- (void)updateUIForProxyTabView;
+- (void)updateUIForSelectedProxy;
 
 - (void)preferencesClicked :(id)sender;
 - (void)aboutClicked :(id)sender;
@@ -86,6 +88,8 @@
 - (void)finishClickedInWelcome :(id)sender;
 - (void)toggleRunOnLoginClicked :(id)sender;
 - (void)selectProxyClicked :(id)sender;
+- (void)connectProxyClicked :(id)sender;
+- (void)disconnectProxyClicked :(id)sender;
 
 - (NSDictionary *) registrationDictionaryForGrowl;
 

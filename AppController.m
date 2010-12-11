@@ -146,8 +146,8 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	// Update VPN service lists
 	[self updateUIForVPNServiceList];
 	
-	// Update proxy tab view in preferences
-	[self updateUIForProxyTabView];
+	// Update UI for the selected proxy
+	[self updateUIForSelectedProxy];
 	
 	// Growl
 	[GrowlApplicationBridge setGrowlDelegate:self];
@@ -869,9 +869,20 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 }
 
-- (void)updateUIForProxyTabView {
+- (void)updateUIForSelectedProxy {
 		
 	[proxyTabs selectTabViewItemWithIdentifier:[defaultsController selectedProxy]];
+	
+	if([[defaultsController selectedProxy] isEqualToString:@"1"]) {	// SSH selected
+		[rerouteOrRestoreConnectionButton setHidden:FALSE];
+		[connectVPNServiceButton setHidden:TRUE];
+		[disconnectVPNServiceButton setHidden:TRUE];
+	}
+	else {												// VPN selected
+		[rerouteOrRestoreConnectionButton setHidden:TRUE];
+		[connectVPNServiceButton setHidden:FALSE];
+		[disconnectVPNServiceButton setHidden:FALSE];
+	}
 	
 }
 
@@ -972,7 +983,19 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	XLog(self, @"Selected proxy: %@", [defaultsController selectedProxy]);
 	
-	[self updateUIForProxyTabView];
+	[self updateUIForSelectedProxy];
+	
+}
+
+- (void)connectProxyClicked :(id)sender {
+	
+	XLog(self, @"Selected VPN service: %@", [defaultsController selectedVPNService]);
+	
+}
+
+- (void)disconnectProxyClicked :(id)sender {
+	
+	XLog(self, @"Selected VPN service: %@", [defaultsController selectedVPNService]);
 	
 }
 

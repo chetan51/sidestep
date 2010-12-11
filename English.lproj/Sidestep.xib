@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="606"/>
 			<integer value="855"/>
 			<integer value="29"/>
 			<integer value="533"/>
+			<integer value="606"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1352,6 +1352,22 @@
 					<object class="NSMenuItem" id="649368100">
 						<reference key="NSMenu" ref="255065605"/>
 						<string key="NSTitle">Reroute or Restore Connection</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+					<object class="NSMenuItem" id="843140736">
+						<reference key="NSMenu" ref="255065605"/>
+						<string key="NSTitle">Connect VPN Service</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+					<object class="NSMenuItem" id="366373459">
+						<reference key="NSMenu" ref="255065605"/>
+						<string key="NSTitle">Disconnect VPN Service</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="35465992"/>
@@ -4202,6 +4218,38 @@ dGggb24gdGhlIHNlcnZlci4</string>
 					</object>
 					<int key="connectionID">898</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">connectVPNServiceButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="843140736"/>
+					</object>
+					<int key="connectionID">901</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">disconnectVPNServiceButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="366373459"/>
+					</object>
+					<int key="connectionID">902</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">connectProxyClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="843140736"/>
+					</object>
+					<int key="connectionID">903</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">disconnectProxyClicked:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="366373459"/>
+					</object>
+					<int key="connectionID">904</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -5245,6 +5293,8 @@ dGggb24gdGhlIHNlcnZlci4</string>
 							<reference ref="726902998"/>
 							<reference ref="199480922"/>
 							<reference ref="168797647"/>
+							<reference ref="843140736"/>
+							<reference ref="366373459"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Status Menu</string>
@@ -6362,6 +6412,16 @@ dGggb24gdGhlIHNlcnZlci4</string>
 						<reference key="object" ref="685361018"/>
 						<reference key="parent" ref="1042368463"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">899</int>
+						<reference key="object" ref="843140736"/>
+						<reference key="parent" ref="255065605"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">900</int>
+						<reference key="object" ref="366373459"/>
+						<reference key="parent" ref="255065605"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -6776,6 +6836,8 @@ dGggb24gdGhlIHNlcnZlci4</string>
 					<string>886.IBPluginDependency</string>
 					<string>888.IBPluginDependency</string>
 					<string>889.IBPluginDependency</string>
+					<string>899.IBPluginDependency</string>
+					<string>900.IBPluginDependency</string>
 					<string>92.IBPluginDependency</string>
 					<string>92.ImportedFromIB2</string>
 				</object>
@@ -6990,7 +7052,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{258, 287}, {439, 193}}</string>
+					<string>{{190, 36}, {439, 233}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -7203,6 +7265,8 @@ dGggb24gdGhlIHNlcnZlci4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 				</object>
 			</object>
@@ -7222,7 +7286,7 @@ dGggb24gdGhlIHNlcnZlci4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">898</int>
+			<int key="maxID">904</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -7235,6 +7299,8 @@ dGggb24gdGhlIHNlcnZlci4</string>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>aboutClicked:</string>
+							<string>connectProxyClicked:</string>
+							<string>disconnectProxyClicked:</string>
 							<string>finishClickedInWelcome:</string>
 							<string>helpWithProxyClicked:</string>
 							<string>nextClickedInWelcome:</string>
@@ -7247,6 +7313,8 @@ dGggb24gdGhlIHNlcnZlci4</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -7264,6 +7332,8 @@ dGggb24gdGhlIHNlcnZlci4</string>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>aboutClicked:</string>
+							<string>connectProxyClicked:</string>
+							<string>disconnectProxyClicked:</string>
 							<string>finishClickedInWelcome:</string>
 							<string>helpWithProxyClicked:</string>
 							<string>nextClickedInWelcome:</string>
@@ -7278,6 +7348,14 @@ dGggb24gdGhlIHNlcnZlci4</string>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">aboutClicked:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">connectProxyClicked:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">disconnectProxyClicked:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -7323,7 +7401,9 @@ dGggb24gdGhlIHNlcnZlci4</string>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>availableVPNServices</string>
+							<string>connectVPNServiceButton</string>
 							<string>connectionStatus</string>
+							<string>disconnectVPNServiceButton</string>
 							<string>preferencesWindow</string>
 							<string>proxyServerStatus</string>
 							<string>proxyTabs</string>
@@ -7338,6 +7418,8 @@ dGggb24gdGhlIHNlcnZlci4</string>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSPopUpButton</string>
+							<string>NSMenuItem</string>
+							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSWindow</string>
 							<string>NSMenuItem</string>
@@ -7356,7 +7438,9 @@ dGggb24gdGhlIHNlcnZlci4</string>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>availableVPNServices</string>
+							<string>connectVPNServiceButton</string>
 							<string>connectionStatus</string>
+							<string>disconnectVPNServiceButton</string>
 							<string>preferencesWindow</string>
 							<string>proxyServerStatus</string>
 							<string>proxyTabs</string>
@@ -7375,7 +7459,15 @@ dGggb24gdGhlIHNlcnZlci4</string>
 								<string key="candidateClassName">NSPopUpButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">connectVPNServiceButton</string>
+								<string key="candidateClassName">NSMenuItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">connectionStatus</string>
+								<string key="candidateClassName">NSMenuItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">disconnectVPNServiceButton</string>
 								<string key="candidateClassName">NSMenuItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">
