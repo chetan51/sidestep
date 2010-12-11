@@ -72,6 +72,8 @@
 - (void)openSSHConnectionAfterDelay :(int)delay;
 - (void)testSSHConnection;
 - (void)closeSSHConnection;
+- (void)openVPNConnectionAfterDelay :(int)delay;
+- (void)closeVPNConnection;
 - (void)setRunOnLogin :(BOOL)value;
 
 - (void)showRestartSidestepDialog;

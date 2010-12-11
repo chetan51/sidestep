@@ -341,6 +341,34 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[defaultsController saveSSHConnectionPID:0];
 }
 
+- (void)openVPNConnectionAfterDelay :(int)delay {
+		
+	// Reset current delay
+	currentDelay = delay;
+	
+	// Initiate connection attempt after delay if not already initiated
+	if (!initiatedDelayedConnectionAttempt) {			
+		XLog(self, @"Opening VPN connection after delay");
+		
+		initiatedDelayedConnectionAttempt = TRUE;
+		
+		[NSThread detachNewThreadSelector:@selector(openVPNConnectionAfterDelayThread)
+								 toTarget:self
+							   withObject:nil];
+	}
+	
+}
+
+- (void)closeVPNConnection {
+	
+	XLog(self, @"Closing VPN connection");
+	
+	[NSThread detachNewThreadSelector:@selector(closeVPNConnectionThread)
+							 toTarget:self
+						   withObject:nil];
+	
+}
+
 - (void)setRunOnLogin :(BOOL)value {
 	
 	[self willChangeValueForKey:@"startAtLogin"];
@@ -479,13 +507,26 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[pool release];
 }
 
-- (void)openVPNConnectionThread {
+- (void)openVPNConnectionAfterDelayThread {
 
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	while (currentDelay > 0) {
+		XLog(self, @"Opening VPN connection in %d seconds", currentDelay);
+		
+		// Sleep for one second
+		NSDate *future = [NSDate dateWithTimeIntervalSinceNow:1];
+		[NSThread sleepUntilDate:future];
+		
+		// Decrement current delay
+		currentDelay--;
+	}
 	
 	if (![vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:TRUE]) {
 		[self showRestartSidestepDialog];
 	}
+	
+	initiatedDelayedConnectionAttempt = FALSE;
 	
 	[pool release];
 	
@@ -494,7 +535,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 - (void)closeVPNConnectionThread {
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
+
 	if (![vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:FALSE]) {
 		[self showRestartSidestepDialog];
 	}
@@ -654,7 +695,12 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[self performSelectorOnMainThread:@selector(updateConnectionStatusForCurrentNetwork) withObject:nil waitUntilDone:FALSE];
 	
 	if ([security isEqualToString:@"none"] && [defaultsController rerouteAutomaticallyEnabled]) {
-		[self openSSHConnectionAfterDelay:3];
+		if ([[defaultsController selectedProxy] isEqualToString:@"1"]) {
+			[self openSSHConnectionAfterDelay:3];
+		}
+		else {
+			[self openVPNConnectionAfterDelay:3];
+		}
 	}
 	else {
 		/* Kill process if there's one running.  
@@ -662,6 +708,10 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		 */
 		if ([defaultsController getSSHConnectionPID] != 0) {
 			[self closeSSHConnection];
+		}
+		
+		if ([[defaultsController selectedProxy] isEqualToString:@"0"]) {
+			[self closeVPNConnection];
 		}
 	}
 
@@ -1023,11 +1073,15 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	XLog(self, @"Selected VPN service: %@", [defaultsController selectedVPNService]);
 	
+	[self openVPNConnectionAfterDelay:0];
+	
 }
 
 - (void)disconnectProxyClicked :(id)sender {
 	
 	XLog(self, @"Selected VPN service: %@", [defaultsController selectedVPNService]);
+	
+	[self closeVPNConnection];
 	
 }
 
