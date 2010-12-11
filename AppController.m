@@ -191,8 +191,6 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		
 		[defaultsController setGrowlSetting:TRUE];
 		
-		[defaultsController setSelectedProxy:@"1"];
-		
 		// Show welcome window
 		[welcomeWindow center];
 		[welcomeTabs selectFirstTabViewItem:self];
@@ -215,6 +213,11 @@ NSInteger GrowlSpam_TestConnection					= 0;
     if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
 		[defaultsController setLocalPortNumber:@"9050"];
     }
+	
+	// Set selected proxy if not already set
+	if ([defaultsController selectedProxy] == nil || [defaultsController selectedProxy] == @"") {	
+		[defaultsController setSelectedProxy:@"1"];
+	}
 	
 	// Update connection status
 	[connectionStatus setTitle:determiningConnectionStatusText];
