@@ -28,6 +28,11 @@ NSString *authorizationErrorServerStatusText		= @"Failed to reroute traffic - au
 NSString *connectionErrorServerStatusText			= @"Failed to reroute traffic - unable to reach server";
 NSString *connectedServerStatusText					= @"Connected to proxy server";
 
+NSString *connectedVPNText							= @"Connected to VPN service";
+NSString *disconnectedVPNText						= @"Disconnected from VPN service";
+NSString *unknownVPNText							= @"VPN service not found";
+NSString *noVPNText									= @"No VPN service selected";
+
 NSString *testingConnectionStatusText				= @"Testing connection to server...";
 NSString *authFailedTestingConnectionStatusText		= @"Failed connecting to server - authorization failed.\n\n"
 													   "Please click the Test Connection button again to retry "
@@ -352,9 +357,14 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		
 		initiatedDelayedConnectionAttempt = TRUE;
 		
-		[NSThread detachNewThreadSelector:@selector(openVPNConnectionAfterDelayThread)
-								 toTarget:self
-							   withObject:nil];
+		if (![[defaultsController selectedVPNService] isEqualToString:@"None"]) {
+			[NSThread detachNewThreadSelector:@selector(openVPNConnectionAfterDelayThread)
+									 toTarget:self
+								   withObject:nil];
+		}
+		else {
+			[growl message:noVPNText];
+		}
 	}
 	
 }
@@ -363,9 +373,14 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	XLog(self, @"Closing VPN connection");
 	
-	[NSThread detachNewThreadSelector:@selector(closeVPNConnectionThread)
-							 toTarget:self
-						   withObject:nil];
+	if (![[defaultsController selectedVPNService] isEqualToString:@"None"]) {
+		[NSThread detachNewThreadSelector:@selector(closeVPNConnectionThread)
+								 toTarget:self
+							   withObject:nil];
+	}
+	else {
+		[growl message:noVPNText];
+	}
 	
 }
 
@@ -522,8 +537,17 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		currentDelay--;
 	}
 	
-	if (![vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:TRUE]) {
+	int result = [vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:TRUE];
+	if (!result) {
 		[self showRestartSidestepDialog];
+	}
+	else {
+		if (result == 1) {
+			[growl message:connectedVPNText];
+		}
+		else {
+			[growl message:unknownVPNText];
+		}
 	}
 	
 	initiatedDelayedConnectionAttempt = FALSE;
@@ -536,8 +560,17 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-	if (![vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:FALSE]) {
+	int result = [vpnInterfacer turnVPNOnOrOff:[defaultsController selectedVPNService] withState:FALSE];
+	if (!result) {
 		[self showRestartSidestepDialog];
+	}
+	else {
+		if (result == 1) {
+			[growl message:disconnectedVPNText];
+		}
+		else {
+			[growl message:unknownVPNText];
+		}
 	}
 	
 	[pool release];

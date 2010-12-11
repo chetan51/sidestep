@@ -82,8 +82,8 @@
 /*
  *	Turns on or off the VPN connection for the service name given.
  *
- *	return: true on success
- *	return: false if task path not found
+ *	return: result code on success
+ *	return: 0 task path not found
  */
 
 - (BOOL)turnVPNOnOrOff:(NSString *)serviceName withState:(BOOL)state {
@@ -111,7 +111,7 @@
 									   inDirectory:[[NSBundle mainBundle] bundlePath]];
 	
 	if (!taskPath) {
-		return FALSE;
+		return 0;
 	}
 	
 	// Set task's arguments and launch path
@@ -126,6 +126,7 @@
 	
 	// Read task's output data
 	NSData *readData;
+	int result = 0;
 	while ((readData = [readHandle availableData]) && [readData length]) {
 		NSString *readString = [[NSString alloc] initWithData:readData encoding:NSASCIIStringEncoding];
 		
@@ -135,9 +136,13 @@
 		//		1 - Success
 		//		2 - No such service
 		//		3 - Service found was not of type VPN
+		
+		if (![readString isEqualToString:@"\n"]) {
+			result = [readString intValue];
+		}
 	}
 	
-	return TRUE;
+	return result;
 	
 }
 
