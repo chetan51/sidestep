@@ -143,6 +143,12 @@ NSInteger GrowlSpam_TestConnection					= 0;
 
 - (void)awakeFromNib {
 	
+	// Update VPN service lists
+	[self updateUIForVPNServiceList];
+	
+	// Update proxy tab view in preferences
+	[self updateUIForProxyTabView];
+	
 	// Growl
 	[GrowlApplicationBridge setGrowlDelegate:self];
 	
@@ -180,6 +186,8 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		
 		[defaultsController setGrowlSetting:TRUE];
 		
+		[defaultsController setSelectedProxy:@"1"];
+		
 		// Show welcome window
 		[welcomeWindow center];
 		[welcomeTabs selectFirstTabViewItem:self];
@@ -211,9 +219,6 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	// Set reroute or restore button title
 	[rerouteOrRestoreConnectionButton setTitle:rerouteConnectionButtonTitle];
-	
-	// Update VPN service lists
-	[self updateUIForVPNServiceList];
 	
 }
 
@@ -841,6 +846,8 @@ NSInteger GrowlSpam_TestConnection					= 0;
 
 - (void)updateUIForVPNServiceList {
 	
+	XLog(self, @"Currently selected VPN service: %@", [defaultsController selectedVPNService]);
+	
 	XLog(self, @"Updating UI for VPN Service List");
 	
 	NSArray *services = [vpnInterfacer getListOfVPNServices];
@@ -850,8 +857,21 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		[self showRestartSidestepDialog];
 	}
 	else {
-		
+		[availableVPNServices addItemsWithTitles:services];
 	}
+	
+	if ([services containsObject:[defaultsController selectedVPNService]]) {
+		[availableVPNServices selectItemWithTitle:[defaultsController selectedVPNService]];
+	}
+	else {
+		[defaultsController setSelectedVPNService:@"None"];
+	}
+	
+}
+
+- (void)updateUIForProxyTabView {
+		
+	[proxyTabs selectTabViewItemWithIdentifier:[defaultsController selectedProxy]];
 	
 }
 
@@ -945,6 +965,14 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	// [defaultsController runOnLogin] will now return updated value of the run on login checkbox
 	
 	[self setRunOnLogin:[defaultsController runOnLogin]];
+	
+}
+
+- (void)selectProxyClicked :(id)sender {
+	
+	XLog(self, @"Selected proxy: %@", [defaultsController selectedProxy]);
+	
+	[self updateUIForProxyTabView];
 	
 }
 

@@ -151,4 +151,30 @@
 	
 }
 
+- (void)setSelectedProxy:(NSString *)selection {
+	
+	[defaults setObject:selection forKey:@"sidestep_selectedProxy"];
+	[defaults synchronize];
+	
+}
+
+- (NSString *)selectedProxy {
+	
+	return [defaults stringForKey:@"sidestep_selectedProxy"];
+	
+}
+
+- (void)setSelectedVPNService:(NSString *)selection {
+	
+	[defaults setObject:selection forKey:@"sidestep_selectedVPNService"];
+	[defaults synchronize];
+	
+}
+
+- (NSString *)selectedVPNService {
+	
+	return [defaults stringForKey:@"sidestep_selectedVPNService"];
+	
+}
+
 @end

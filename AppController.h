@@ -29,8 +29,9 @@
 	NSImage *statusImageReroutedSecure;
 	
 	IBOutlet NSWindow *preferencesWindow;
-	IBOutlet NSWindow *welcomeWindow;
+	IBOutlet NSTabView *proxyTabs;
 	
+	IBOutlet NSWindow *welcomeWindow;
 	IBOutlet NSTabView *welcomeTabs;
 	
 	IBOutlet NSMenuItem *proxyServerStatus;
@@ -56,6 +57,8 @@
 	IBOutlet NSTextField *testConnectionStatusFieldInPreferences;
 	IBOutlet NSTextField *testConnectionStatusFieldInWelcome;
 	
+	IBOutlet NSPopUpButton *availableVPNServices;
+	
 	NSTask *SSHConnection;
 	Boolean SSHConnecting;
 	Boolean SSHConnected;
@@ -71,6 +74,7 @@
 - (void)showRestartSidestepDialog;
 
 - (void)updateUIForVPNServiceList;
+- (void)updateUIForProxyTabView;
 
 - (void)preferencesClicked :(id)sender;
 - (void)aboutClicked :(id)sender;
@@ -81,6 +85,7 @@
 - (void)nextClickedInWelcome :(id)sender;
 - (void)finishClickedInWelcome :(id)sender;
 - (void)toggleRunOnLoginClicked :(id)sender;
+- (void)selectProxyClicked :(id)sender;
 
 - (NSDictionary *) registrationDictionaryForGrowl;
 

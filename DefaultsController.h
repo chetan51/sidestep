@@ -38,4 +38,10 @@
 - (void)setGrowlSetting :(BOOL)value;
 - (BOOL)getGrowlSetting;
 
+- (void)setSelectedProxy:(NSString *)selection;
+- (NSString *)selectedProxy;
+
+- (void)setSelectedVPNService:(NSString *)selection;
+- (NSString *)selectedVPNService;
+
 @end
