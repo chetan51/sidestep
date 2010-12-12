@@ -980,7 +980,11 @@ NSInteger GrowlSpam_TestConnection					= 0;
 }
 
 - (void)updateUIForSelectedProxy {
-		
+	
+	XLog(self, @"Updating UI for selected proxy");
+	
+	XLog(self, @"Selected proxy: @%", [defaultsController selectedProxy]);
+	
 	[proxyTabs selectTabViewItemWithIdentifier:[defaultsController selectedProxy]];
 	
 	if([[defaultsController selectedProxy] isEqualToString:@"1"]) {	// SSH selected
