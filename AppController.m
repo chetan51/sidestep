@@ -148,6 +148,11 @@ NSInteger GrowlSpam_TestConnection					= 0;
 
 - (void)awakeFromNib {
 	
+	// Set selected proxy if not already set
+	if ([defaultsController selectedProxy] == nil || [defaultsController selectedProxy] == @"") {	
+		[defaultsController setSelectedProxy:@"1"];
+	}
+	
 	// Update VPN service lists
 	[self updateUIForVPNServiceList];
 	
@@ -213,11 +218,6 @@ NSInteger GrowlSpam_TestConnection					= 0;
     if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
 		[defaultsController setLocalPortNumber:@"9050"];
     }
-	
-	// Set selected proxy if not already set
-	if ([defaultsController selectedProxy] == nil || [defaultsController selectedProxy] == @"") {	
-		[defaultsController setSelectedProxy:@"1"];
-	}
 	
 	// Update connection status
 	[connectionStatus setTitle:determiningConnectionStatusText];
@@ -983,7 +983,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	XLog(self, @"Updating UI for selected proxy");
 	
-	XLog(self, @"Selected proxy: @%", [defaultsController selectedProxy]);
+	XLog(self, @"Selected proxy: %@", [defaultsController selectedProxy]);
 	
 	[proxyTabs selectTabViewItemWithIdentifier:[defaultsController selectedProxy]];
 	
