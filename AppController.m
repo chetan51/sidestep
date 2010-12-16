@@ -707,6 +707,8 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		[self performSelectorOnMainThread:@selector(updateUIForSSHConnectionClosed) withObject:nil waitUntilDone:FALSE];
 	}
 	
+	[growl message:restoredDirectConnectionStatusText];
+	
 	SSHConnection = nil;
 	SSHConnected = FALSE;
 	SSHConnecting = FALSE;
@@ -1045,7 +1047,6 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	else if ([[rerouteOrRestoreConnectionButton title] isEqualToString:restoreConnectionButtonTitle]) {
 		XLog(self, @"Restore connection button clicked");
 		
-		[growl message:restoredDirectConnectionStatusText];
 		[self closeSSHConnection];
 	}
 	
