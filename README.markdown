@@ -8,7 +8,7 @@ When you connect to the Internet through an unprotected wireless network, such a
 
 Attackers connected to the same network can easily intercept your unencrypted traffic and log in as you to services such as Facebook, Amazon, and LinkedIn.
 
-Try this simple Firefox add-on to see for yourself how serious the problem is and how easy it is for your privacy and security to be compromised.
+Try [Firesheep](http://codebutler.com/firesheep), a simple Firefox add-on, to see for yourself how serious the problem is and how easy it is for your privacy and security to be compromised.
 
 ***The solution***
 
