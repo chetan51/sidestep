@@ -13,6 +13,11 @@
 }
 
 - (BOOL)turnAirportProxyOn:(NSNumber *)port;
+- (BOOL)turnWiFiProxyOn:(NSNumber *)port;
+- (BOOL)turnProxyOn:(NSNumber *)port interface:(NSString *)interface;
+
 - (BOOL)turnAirportProxyOff;
+- (BOOL)turnWiFiProxyOff;
+- (BOOL)turnProxyOff:(NSString *)interface;
 
 @end

@@ -20,6 +20,32 @@
  */
 
 - (BOOL)turnAirportProxyOn:(NSNumber *)port {
+    
+    return [self turnProxyOn:port interface:@"Airport"];
+
+}
+
+/*
+ *	Switches WiFi's SOCKS proxy to the SSH tunnel previously opened.
+ *	
+ *	return: true on success
+ *	return: false if task path not found
+ */
+
+- (BOOL)turnWiFiProxyOn:(NSNumber *)port {
+    
+    return [self turnProxyOn:port interface:@"Wi-Fi"];
+    
+}
+
+/*
+ *	Switches given interface's SOCKS proxy to the SSH tunnel previously opened.
+ *	
+ *	return: true on success
+ *	return: false if task path not found
+ */
+
+- (BOOL)turnProxyOn:(NSNumber *)port interface:(NSString *)interface {
 	
 	XLog(self, @"Turning proxy on for port: %@", port);
 	
@@ -34,7 +60,7 @@
 	[task setStandardError:errorPipe];
 	
 	// Set up arguments to the task
-	NSArray *args = [NSArray arrayWithObjects:	[NSString stringWithString:@"Airport"],
+	NSArray *args = [NSArray arrayWithObjects:	[NSString stringWithString:interface],
 												[NSString stringWithFormat:@"%d", [port intValue]],
 												nil];
 	
@@ -67,6 +93,32 @@
 
 - (BOOL)turnAirportProxyOff {
 	
+    return [self turnProxyOff:@"Airport"];
+    
+}
+
+/*
+ *	Switches WiFi's SOCKS proxy off.
+ *	
+ *	return: true on success
+ *	return: false if task path not found
+ */
+
+- (BOOL)turnWiFiProxyOff {
+	
+    return [self turnProxyOff:@"Wi-Fi"];
+    
+}
+
+/*
+ *	Switches given interface's SOCKS proxy off.
+ *	
+ *	return: true on success
+ *	return: false if task path not found
+ */
+
+- (BOOL)turnProxyOff:(NSString *)interface {
+
 	XLog(self, @"Turning proxy off");
 	
 	NSTask *task = [[[NSTask alloc] init] autorelease];
@@ -80,7 +132,7 @@
 	[task setStandardError:errorPipe];
 	
 	// Set up arguments to the task
-	NSArray *args = [NSArray arrayWithObject:[NSString stringWithString:@"Airport"]];	
+	NSArray *args = [NSArray arrayWithObject:[NSString stringWithString:interface]];	
 	
 	// Get the path of the task, which is included as part of the main application bundle
 	NSString *taskPath = [NSBundle pathForResource:@"TurnProxyOff"
