@@ -744,6 +744,17 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	
 	[self performSelectorOnMainThread:@selector(updateConnectionStatusForCurrentNetwork) withObject:nil waitUntilDone:FALSE];
 	
+    /* Kill process if there's one running
+     */
+    if ([defaultsController getSSHConnectionPID] != 0) {
+        [self closeSSHConnection];
+    }
+    if ([[defaultsController selectedProxy] isEqualToString:@"0"]) {
+        [self closeVPNConnection];
+    }
+    
+    /* Launch new process if needed
+     */
 	if ([security isEqualToString:@"none"] && [defaultsController rerouteAutomaticallyEnabled]) {
 		if ([[defaultsController selectedProxy] isEqualToString:@"1"]) {
 			[self openSSHConnectionAfterDelay:3];
@@ -752,19 +763,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 			[self openVPNConnectionAfterDelay:3];
 		}
 	}
-	else {
-		/* Kill process if there's one running.  
-		 * Sidestep can get 'here' when if first launches and airport is disconnected.
-		 */
-		if ([defaultsController getSSHConnectionPID] != 0) {
-			[self closeSSHConnection];
-		}
-		
-		if ([[defaultsController selectedProxy] isEqualToString:@"0"]) {
-			[self closeVPNConnection];
-		}
-	}
-
+    
 }
 
 /*

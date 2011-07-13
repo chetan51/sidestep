@@ -20,8 +20,6 @@
 /* @"Link Status" == 1 seems to mean disconnected */
 #define AIRPORT_DISCONNECTED 1
 
-static CFDictionaryRef airportStatus;
-
 /** A reference to the SystemConfiguration dynamic store. */
 static SCDynamicStoreRef dynStore;
 
@@ -31,54 +29,11 @@ static CFRunLoopSourceRef rlSrc;
 @implementation NetworkNotifier
 
 - (void)airportStatusChange:(NSDictionary *)newValue {
-//	NSLog(CFSTR("AirPort event"));
+//	NSLog(@"AirPort event");
 	
-	CFDataRef newBSSID = NULL;
-	if (newValue)
-		newBSSID = (CFDataRef)[newValue objectForKey:@"BSSID"];
-
-	CFDataRef oldBSSID = NULL;
-	if (airportStatus)
-		oldBSSID = CFDictionaryGetValue(airportStatus, CFSTR("BSSID"));
-
-	if (newValue && oldBSSID != newBSSID && !(newBSSID && oldBSSID && CFEqual(oldBSSID, newBSSID))) {
-		NSNumber *linkStatus = [newValue objectForKey:@"Link Status"];
-		NSNumber *powerStatus = [newValue objectForKey:@"Power Status"];
-		if (linkStatus || powerStatus) {
-			int status = 0;
-			if (linkStatus) {
-				status = [linkStatus intValue];
-			} else if (powerStatus) {
-				status = [powerStatus intValue];
-				status = !status;
-			}
-			if (status == AIRPORT_DISCONNECTED) {
-				CFStringRef networkName = CFDictionaryGetValue(airportStatus, CFSTR("SSID_STR"));
-				if (!networkName)
-					networkName = CFDictionaryGetValue(airportStatus, CFSTR("SSID"));
-				//AppController_airportDisconnect(networkName);
-			} else {
-				NSString *networkName = [newValue objectForKey:@"SSID_STR"];
-				if (!networkName)
-					networkName = [newValue objectForKey:@"SSID"];
-				//AppController_airportConnect((CFStringRef)networkName, CFDataGetBytePtr(newBSSID));
-				
-				XLog(self, @"Connected to network");
-				
-				if (airportConnectionNotifyObject && airportConnectionNotifySelector) {					// If callback object and selector are defined,
-					[airportConnectionNotifyObject performSelector:airportConnectionNotifySelector];		// call the callback selector
-				}
-			}
-		}
-	}
-
-	if (airportStatus)
-		CFRelease(airportStatus);
-
-	if (newValue)
-		airportStatus = CFRetain(newValue);
-	else
-		airportStatus = NULL;
+    if (airportConnectionNotifyObject && airportConnectionNotifySelector) {					// If callback object and selector are defined,
+        [airportConnectionNotifyObject performSelector:airportConnectionNotifySelector];		// call the callback selector
+    }
 }
 
 - (void)listenForAirportConnectionAndNotifyObject:(id)object withSelector:(SEL)selector {
@@ -94,9 +49,12 @@ static void scCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *in
 	CFIndex count = CFArrayGetCount(changedKeys);
 	for (CFIndex i=0; i<count; ++i) {
 		CFStringRef key = CFArrayGetValueAtIndex(changedKeys, i);
-		
+        
 		if (CFStringCompare(key,
-							CFSTR("State:/Network/Interface/en1/AirPort"),
+							CFSTR("State:/Network/Interface/en1/AirPort"),  // For Snow Leopard
+							0) == kCFCompareEqualTo ||
+            CFStringCompare(key,
+							CFSTR("State:/Network/Interface/en0/Link"),     // For Lion
 							0) == kCFCompareEqualTo) {
 			CFDictionaryRef newValue = SCDynamicStoreCopyValue(store, key);
 			[self airportStatusChange:(NSDictionary *)newValue];
@@ -149,9 +107,7 @@ static void scCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *in
 	rlSrc = SCDynamicStoreCreateRunLoopSource(kCFAllocatorDefault, dynStore, 0);
 	CFRunLoopAddSource(CFRunLoopGetCurrent(), rlSrc, kCFRunLoopDefaultMode);
 	CFRelease(rlSrc);
-	
-	airportStatus = SCDynamicStoreCopyValue(dynStore, CFSTR("State:/Network/Interface/en1/AirPort"));
-	
+    
 	return self;
 }
 
@@ -217,8 +173,6 @@ static void scCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *in
 		CFRunLoopRemoveSource(CFRunLoopGetCurrent(), rlSrc, kCFRunLoopDefaultMode);
 	if (dynStore)
 		CFRelease(dynStore);
-	if (airportStatus)
-		CFRelease(airportStatus);
 	
 	[super dealloc];
 }
