@@ -42,7 +42,8 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 							withUsername:(NSString *)username
 							withHostname:(NSString *)hostname
 							withRemotePort:(NSString *)remoteport
-					   withLocalBindPort:(NSNumber *)localPort {
+					   withLocalBindPort:(NSNumber *)localPort
+                      withSSHCompression:(BOOL)sshCompression {
 	
 	XLog(self, @"Opening SSH connection");
 	XLog(self, @"User: %@",username);
@@ -91,6 +92,9 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 	[args addObject:[NSString stringWithFormat:@"%@@%@",username,hostname]];
 	[args addObject:[NSString stringWithFormat:@"-D %@", localPort]];
 	[args addObject:[NSString stringWithFormat:@"-p %@", remoteport]];
+    if (sshCompression) {
+        [args addObject:[NSString stringWithString:@"-C"]];
+    }
 	[args addObject:[NSString stringWithString:@"-N"]];
 	[args addObject:[NSString stringWithString:@"-v"]];
 	[args addObject:[NSString stringWithString:@"-o TCPKeepAlive=yes"]];

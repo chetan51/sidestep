@@ -195,6 +195,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		[self setRunOnLogin:TRUE];
 		
 		[defaultsController setGrowlSetting:TRUE];
+		[defaultsController setCompressSSHConnection:FALSE];
 		
 		// Show welcome window
 		[welcomeWindow center];
@@ -218,7 +219,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
     if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
 		[defaultsController setLocalPortNumber:@"9050"];
     }
-	
+        
 	// Update connection status
 	[connectionStatus setTitle:determiningConnectionStatusText];
 	
@@ -458,6 +459,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	NSString *hostname = [defaultsController getServerHostname];
 	NSString *remoteport = [defaultsController getRemotePortNumber];
 	NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
+    BOOL sshCompression = [defaultsController getCompressSSHConnection];
 	
 	if (username && hostname) {	
 		if (![SSHconnector openSSHConnectionAndNotifyObject:self
@@ -467,7 +469,8 @@ NSInteger GrowlSpam_TestConnection					= 0;
 											   withUsername:username
 											   withHostname:hostname
 												withRemotePort:(NSString *)remoteport
-										  withLocalBindPort:(NSNumber *)localport]) {
+										  withLocalBindPort:(NSNumber *)localport
+                                         withSSHCompression:sshCompression]) {
 			[self showRestartSidestepDialog];
 		}
 	}
