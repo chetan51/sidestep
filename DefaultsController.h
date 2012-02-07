@@ -26,6 +26,9 @@
 - (void)setRemotePortNumber :(NSString *)port;
 - (NSString *)getRemotePortNumber;
 
+- (void)setCompressSSHConnection :(BOOL)value;
+- (BOOL)getCompressSSHConnection;
+
 - (void)setRanAtleastOnce :(BOOL)value;
 - (BOOL)ranAtleastOnce;
 

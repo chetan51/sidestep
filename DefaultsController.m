@@ -94,6 +94,20 @@
 	
 }
 
+- (void)setCompressSSHConnection:(BOOL)value {
+	
+	[defaults setBool:value forKey:@"sidestep_CompressSSHConnection"];
+	[defaults synchronize];
+	
+}
+
+- (BOOL)getCompressSSHConnection {
+	
+	return [defaults boolForKey:@"sidestep_CompressSSHConnection"];
+	
+}
+
+
 - (void)setGrowlSetting :(BOOL)value {
 	
 	[defaults setBool:value forKey:@"sidestep_GrowlSetting"];

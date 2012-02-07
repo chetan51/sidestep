@@ -20,7 +20,8 @@
 							withUsername:(NSString *)username
 							withHostname:(NSString *)hostname
 							withRemotePort:(NSString *)remoteport
-					   withLocalBindPort:(NSNumber *)localPort;
+					   withLocalBindPort:(NSNumber *)localPort
+                      withSSHCompression:(BOOL)sshCompression;
 
 - (BOOL)watchSSHConnectionAndOnOpenOrErrorNotifyObject:(id)object
 								   withSuccessSelector:(SEL)successSelector
