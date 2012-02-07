@@ -827,7 +827,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[connectionStatus setTitle:connectingConnectionStatusText];
 	if (GrowlSpam_ConnectingToProxy == 0) {
 		[growl message:connectingConnectionStatusText];
-		GrowlSpam_ConnectingToProxy == 1;
+		GrowlSpam_ConnectingToProxy = 1;
 	}
 	
 	// Disable reroute or restore button
@@ -844,7 +844,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[growl message:proxyConnectedConnectionStatusText];
 	
 	// Reset GrowlSpam variable to allow notifications now that spam should have ended
-	GrowlSpam_ConnectingToProxy == 0;
+	GrowlSpam_ConnectingToProxy = 0;
 	
 	// Update proxy server status
 	// Proxy server status is updated in another growl message.  No need to add one here.
