@@ -14,6 +14,16 @@ fi
 DEVICENAME=$1
 LOCALPORT=$2
 
-networksetup -setsocksfirewallproxy $DEVICENAME 127.0.0.1 $LOCALPORT
-networksetup -setproxybypassdomains $DEVICENAME *.local localhost 127.0.0.1 169.254/16 192.168/16 172.16.0.0/12 10.0.0.0/8
+SOCKSHOST=`networksetup -getsocksfirewallproxy $DEVICENAME | grep Server | cut -b 9-`
+SOCKSPORT=`networksetup -getsocksfirewallproxy $DEVICENAME | grep Port | cut -b 7-`
+if [ "$SOCKSHOST" != "127.0.0.1" ] || [ "$SOCKSPORT" != "$LOCALPORT" ]; then
+	networksetup -setsocksfirewallproxy $DEVICENAME 127.0.0.1 $LOCALPORT
+fi
+
+NETWORKS="*.local localhost 127.0.0.1 169.254/16 192.168/16 172.16.0.0/12 10.0.0.0/8"
+CONFNETWORKS=`networksetup -getproxybypassdomains $DEVICENAME | xargs`
+if [ "$CONFNETWORKS" != "$NETWORKS" ]; then
+	networksetup -setproxybypassdomains $DEVICENAME $NETWORKS
+fi
+
 networksetup -setsocksfirewallproxystate $DEVICENAME on
