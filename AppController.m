@@ -84,6 +84,10 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		SSHConnected = FALSE;
 		
 		currentNetworkSecurityType = nil;
+        
+        SInt32 version = 0;
+        Gestalt( gestaltSystemVersion, &version );
+        lion = ( version >= 0x1070 );
     }
 	
     return self;	
@@ -508,36 +512,36 @@ NSInteger GrowlSpam_TestConnection					= 0;
 
 - (void)turnWirelessProxyOnThread :(NSNumber *)port {
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
     
-    // Snow Leopard
-	if (![proxySetter turnAirportProxyOn:port]) {
-		[self showRestartSidestepDialog];
-	}
-    
-    // Lion
-    if (![proxySetter turnWiFiProxyOn:port]) {
-		[self showRestartSidestepDialog];
-	}
+        if(lion) {
+            if (![proxySetter toggleProxy:TRUE interface:@"Wi-Fi" port:port]) {
+                [self showAuthorizationErrorSidestepDialog];
+            }
+        } else {
+            if (![proxySetter toggleProxy:TRUE interface:@"Airport" port:port]) {
+                [self showAuthorizationErrorSidestepDialog];
+            }
+        }
 	
-	[pool release];
+    }
 }
 
 - (void)turnWirelessProxyOffThread {
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-    // Snow Leopard
-    if (![proxySetter turnAirportProxyOff]) {
-		[self showRestartSidestepDialog];
+	@autoreleasepool {
+
+        if(lion) {
+            if (![proxySetter toggleProxy:FALSE interface:@"Wi-Fi" port:0]) {
+                [self showAuthorizationErrorSidestepDialog];
+            }
+        } else {
+            if (![proxySetter toggleProxy:FALSE interface:@"Airport" port:0]) {
+                [self showAuthorizationErrorSidestepDialog];
+            }
+        }
+        
 	}
-    
-    // Lion
-    if (![proxySetter turnWiFiProxyOff]) {
-		[self showRestartSidestepDialog];
-	}
-    
-	[pool release];
 }
 
 - (void)openVPNConnectionAfterDelayThread {
@@ -949,6 +953,23 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	// Growl Spam Reduction reset.  This allows messages to appear if the user connects to a different network of the same type.
 	GrowlSpam_ConnectionType = 0;
 	
+}
+
+- (void)showAuthorizationErrorSidestepDialog {
+    
+    XLog(self, @"Showing user Authorization Error Sidestep dialog");
+	
+	[NSApp activateIgnoringOtherApps:YES];	// Allows windows of this app to become front
+	
+	NSRunCriticalAlertPanel(	@"Error accessing your System Preferences",
+                            @"It seems that you didn't allow Sidestep to modify your System Preferences.\n\n"
+                            "Please close and open Sidestep again in order to ensure smooth running,"
+                            "by authorizing Sidestep to modify your System.\n\n"
+                            "Until you do so, you will not benefit from Sidestep functionalities.",
+                            @"OK",
+                            nil,
+                            nil,
+                            nil);
 }
 
 - (void)showRestartSidestepDialog {

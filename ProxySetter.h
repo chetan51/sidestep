@@ -9,15 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ProxySetter : NSObject {
-
+    AuthorizationRef       auth;
+    AuthorizationFlags rootFlags;
 }
+- (BOOL)toggleProxy:(BOOL)on interface:(NSString *)interface port:(NSNumber *)port;
 
-- (BOOL)turnAirportProxyOn:(NSNumber *)port;
-- (BOOL)turnWiFiProxyOn:(NSNumber *)port;
-- (BOOL)turnProxyOn:(NSNumber *)port interface:(NSString *)interface;
-
-- (BOOL)turnAirportProxyOff;
-- (BOOL)turnWiFiProxyOff;
-- (BOOL)turnProxyOff:(NSString *)interface;
+- (void)dealloc;
 
 @end
