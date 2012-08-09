@@ -15,35 +15,33 @@
  *******************************************************************************
  */
 
-NSString *noNetworkConnectionStatusText				= @"No wireless connection found";
+NSString *noNetworkConnectionStatusText				= @"No wireless connection";
 NSString *determiningConnectionStatusText			= @"Determining connection status...";
-NSString *connectingConnectionStatusText			= @"Connecting to proxy server...";
-NSString *retryingConnectionStatusText				= @"Retrying connection to proxy server...";
-NSString *proxyConnectedConnectionStatusText		= @"Connection secured - rerouting traffic through proxy server";
-NSString *protectedConnectionStatusText				= @"Connection secured - using encrypted direct wireless connection";
-NSString *openConnectionStatusText					= @"Unsecured network connection";
+NSString *connectingConnectionStatusText			= @"Connecting...";
+NSString *retryingConnectionStatusText				= @"Reconnecting...";
+NSString *proxyConnectedConnectionStatusText		= @"Connected";
+NSString *protectedConnectionStatusText				= @"Secure network";
+NSString *openConnectionStatusText					= @"Unsecure network";
 
-NSString *notConnectedServerStatusText				= @"Not connected to proxy server";
-NSString *authorizationErrorServerStatusText		= @"Failed to reroute traffic - authorization failed";
-NSString *connectionErrorServerStatusText			= @"Failed to reroute traffic - unable to reach server";
-NSString *connectedServerStatusText					= @"Connected to proxy server";
+NSString *notConnectedServerStatusText				= @"Not connected";
+NSString *authorizationErrorServerStatusText		= @"Failed connecting - authorization failure";
+NSString *connectionErrorServerStatusText			= @"Failed connecting - network failure";
+NSString *connectedServerStatusText					= @"Connected to SSH";
 
-NSString *connectedVPNText							= @"Connected to VPN service";
-NSString *disconnectedVPNText						= @"Disconnected from VPN service";
+NSString *connectedVPNText							= @"Connected to VPN";
+NSString *disconnectedVPNText						= @"Disconnected from VPN";
 NSString *unknownVPNText							= @"VPN service not found";
 NSString *noVPNText									= @"No VPN service selected";
 
-NSString *testingConnectionStatusText				= @"Testing connection to server...";
-NSString *authFailedTestingConnectionStatusText		= @"Failed connecting to server - authorization failed.\n\n"
-													   "Please click the Test Connection button again to retry "
-													   "entering your password.";
-NSString *reachFailedTestingConnectionStatusText	= @"Failed connecting to server - unable to reach server.";
-NSString *sucessTestingConnectionStatusText			= @"Connection to server succeeded!";
+NSString *testingConnectionStatusText				= @"Testing connection...";
+NSString *authFailedTestingConnectionStatusText		= authFailedTestingConnectionStatusText;
+NSString *reachFailedTestingConnectionStatusText	= connectionErrorServerStatusText;
+NSString *sucessTestingConnectionStatusText			= @"Connection succeeded!";
 
-NSString *restoredDirectConnectionStatusText		= @"Restored direct Internet connection.";
+NSString *restoredDirectConnectionStatusText		= @"Disconnected";
 
-NSString *rerouteConnectionButtonTitle				= @"Reroute Traffic Through Proxy Server Now";
-NSString *restoreConnectionButtonTitle				= @"Restore Direct Internet Connection";
+NSString *rerouteConnectionButtonTitle				= @"Connect";
+NSString *restoreConnectionButtonTitle				= @"Disconnect";
 
 NSString *helpWithProxyURL							= @"http://chetansurpur.com/projects/sidestep/#proxy-servers";
 
@@ -240,10 +238,9 @@ NSInteger GrowlSpam_TestConnection					= 0;
 		[NSApp activateIgnoringOtherApps:YES];	// Allows windows of this app to become front
 		
 		// Ask if user really wants to quit
-		int decision = NSRunCriticalAlertPanel (@"Do you want to restore a direct Internet connection before you quit?",
-												@"If you quit without restoring a direct Internet connection, your connection "
-												"will continue to be routed through the secure connection to your proxy server. "
-												"To manage the connection again, just restart Sidestep.",
+        int decision = NSRunCriticalAlertPanel (@"Do you want to disconnect before you quit?",
+												@"If you quit without disconnecting, your internet "
+												"will continue to be routed through the proxy.",
 												@"Yes",
 												@"No",
 												nil,
