@@ -34,8 +34,8 @@ NSString *unknownVPNText							= @"VPN service not found";
 NSString *noVPNText									= @"No VPN service selected";
 
 NSString *testingConnectionStatusText				= @"Testing connection...";
-NSString *authFailedTestingConnectionStatusText		= authFailedTestingConnectionStatusText;
-NSString *reachFailedTestingConnectionStatusText	= connectionErrorServerStatusText;
+NSString *authFailedTestingConnectionStatusText		= @"Failed connecting - authorization failure";
+NSString *reachFailedTestingConnectionStatusText	= @"Failed connecting - network failure";
 NSString *sucessTestingConnectionStatusText			= @"Connection succeeded!";
 
 NSString *restoredDirectConnectionStatusText		= @"Disconnected";
