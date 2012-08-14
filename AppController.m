@@ -19,7 +19,7 @@ NSString *noNetworkConnectionStatusText				= @"No wireless connection";
 NSString *determiningConnectionStatusText			= @"Determining connection status...";
 NSString *connectingConnectionStatusText			= @"Connecting...";
 NSString *retryingConnectionStatusText				= @"Reconnecting...";
-NSString *proxyConnectedConnectionStatusText		= @"Connected";
+NSString *proxyConnectedConnectionStatusText		= @"Secure connection";
 NSString *protectedConnectionStatusText				= @"Secure network";
 NSString *openConnectionStatusText					= @"Unsecure network";
 
