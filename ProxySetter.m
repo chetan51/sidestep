@@ -43,6 +43,7 @@
 
 - (BOOL)toggleProxy:(BOOL)on interface:(NSString *)interface port:(NSNumber *)port {
 
+    XLog(self, [NSString stringWithFormat:@"toggleProxy %d on interface %@ using port %@", on, interface, port]);
     BOOL success = FALSE;
 	
     
@@ -61,8 +62,10 @@
     
     // Get available network services
     SCNetworkSetRef networkSetRef = SCNetworkSetCopyCurrent(prefsRef);
-    if(networkSetRef == NULL)
+    if(networkSetRef == NULL) {
+        XLog(self, @"Fail to get available network services");
         goto freeNetworkSetRef;
+    }
     
     //Look up interface entry
     CFArrayRef networkServicesArrayRef = SCNetworkSetCopyServices(networkSetRef);
