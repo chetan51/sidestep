@@ -93,12 +93,12 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 	[args addObject:[NSString stringWithFormat:@"-D %@", localPort]];
 	[args addObject:[NSString stringWithFormat:@"-p %@", remoteport]];
     if (sshCompression) {
-        [args addObject:[NSString stringWithString:@"-C"]];
+        [args addObject:@"-C"];
     }
-	[args addObject:[NSString stringWithString:@"-N"]];
-	[args addObject:[NSString stringWithString:@"-v"]];
-	[args addObject:[NSString stringWithString:@"-o TCPKeepAlive=yes"]];
-	[args addObject:[NSString stringWithString:@"-o ServerAliveInterval=30"]];
+	[args addObject:@"-N"];
+	[args addObject:@"-v"];
+	[args addObject:@"-o TCPKeepAlive=yes"];
+	[args addObject:@"-o ServerAliveInterval=30"];
 	
 	// Delete previous connection's log file
 	[[NSFileManager defaultManager]

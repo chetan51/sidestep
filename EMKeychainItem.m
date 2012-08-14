@@ -117,7 +117,7 @@ static BOOL _logsErrors;
 
 #pragma mark General Properties
 
-@synthesize password = mPassword;
+@dynamic password;
 - (void)setPassword:(NSString *)newPassword
 {
 	@synchronized (self)
@@ -133,7 +133,7 @@ static BOOL _logsErrors;
 	}
 }
 
-@synthesize username = mUsername;
+@dynamic username;
 - (void)setUsername:(NSString *)newUsername
 {
 	@synchronized (self)
@@ -149,7 +149,7 @@ static BOOL _logsErrors;
 	}
 }
 
-@synthesize label = mLabel;
+@dynamic label;
 - (void)setLabel:(NSString *)newLabel
 {
 	@synchronized (self)
@@ -270,7 +270,7 @@ static BOOL _logsErrors;
 
 #pragma mark Generic Properties
 
-@synthesize serviceName = mServiceName;
+@dynamic serviceName;
 - (void)setServiceName:(NSString *)newServiceName
 {
 	@synchronized (self)
@@ -412,7 +412,7 @@ static BOOL _logsErrors;
 
 #pragma mark Internet Properties
 
-@synthesize server = mServer;
+@dynamic server;
 - (void)setServer:(NSString *)newServer
 {
 	@synchronized (self)
@@ -428,7 +428,7 @@ static BOOL _logsErrors;
 	}
 }
 
-@synthesize path = mPath;
+@dynamic path;
 - (void)setPath:(NSString *)newPath
 {
 	if (mPath == newPath)
@@ -441,7 +441,7 @@ static BOOL _logsErrors;
 	[self _modifyAttributeWithTag:kSecPathItemAttr toBeValue:(void *)newPathCString ofLength:strlen(newPathCString)];
 }
 
-@synthesize port = mPort;
+@dynamic port;
 - (void)setPort:(NSInteger)newPort
 {
 	@synchronized (self)
@@ -456,7 +456,7 @@ static BOOL _logsErrors;
 	}
 }
 
-@synthesize protocol = mProtocol;
+@dynamic protocol;
 - (void)setProtocol:(SecProtocolType)newProtocol
 {
 	@synchronized (self)
