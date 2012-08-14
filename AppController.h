@@ -67,6 +67,8 @@
 	Boolean SSHConnected;
 	
 	NSString *currentNetworkSecurityType;
+    
+    BOOL lion; //OSX version (important to choose "Airport" vs "Wi-Fi")
 }
 
 - (void)openSSHConnectionAfterDelay :(int)delay;
@@ -76,6 +78,7 @@
 - (void)closeVPNConnection;
 - (void)setRunOnLogin :(BOOL)value;
 
+- (void)showAuthorizationErrorSidestepDialog;
 - (void)showRestartSidestepDialog;
 
 - (void)updateUIForVPNServiceList;
