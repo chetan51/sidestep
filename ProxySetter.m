@@ -136,6 +136,20 @@ freePrefsRef:
     return success;
 }
 
+- (BOOL) isProxyEnabled
+{
+	NSDictionary *proxies = (NSDictionary *)SCDynamicStoreCopyProxies(NULL);
+    if(!proxies) return NO;
+	
+    BOOL enabled = [[proxies objectForKey:(NSString *)kSCPropNetProxiesSOCKSEnable] boolValue];
+
+	if (proxies != NULL)
+        CFRelease(proxies);
+	
+    XLog(self, enabled ? @"Proxy is Enabled" : @"Proxy is Disabled");
+    
+    return enabled;
+}
 
 -(void)dealloc {
     XLog(self, @"dealloc ProxySetter");

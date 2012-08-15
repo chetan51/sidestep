@@ -13,7 +13,7 @@
     AuthorizationFlags rootFlags;
 }
 - (BOOL)toggleProxy:(BOOL)on interface:(NSString *)interface port:(NSNumber *)port;
-
+- (BOOL)isProxyEnabled;
 - (void)dealloc;
 
 @end
