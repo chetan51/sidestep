@@ -167,13 +167,10 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[statusItem setMenu:statusMenu];
 	[statusItem setHighlightMode:YES];
 	
-	// Used to detect where our files are
-	NSBundle *bundle = [NSBundle mainBundle];
-	
 	// Allocates and loads the images into the application which will be used for our NSStatusItem
-	statusImageDirectInsecure = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"direct-insecure-icon" ofType:@"png"]];
-	statusImageDirectSecure = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"direct-secure-icon" ofType:@"png"]];
-	statusImageReroutedSecure = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"rerouted-secure-icon" ofType:@"png"]];
+	statusImageDirectInsecure = [NSImage imageNamed:@"direct-insecure-icon"];
+	statusImageDirectSecure = [NSImage imageNamed:@"direct-secure-icon"];
+	statusImageReroutedSecure = [NSImage imageNamed:@"rerouted-secure-icon"];
 	
 	// Sets the default images in our NSStatusItem
 	[statusItem setImage:statusImageDirectSecure];
