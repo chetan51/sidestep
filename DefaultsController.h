@@ -23,6 +23,9 @@
 - (void)setLocalPortNumber :(NSString *)port;
 - (NSString *)getLocalPortNumber;
 
+- (void)setAdditionalArguments :(NSString *)args;
+- (NSString *)getAdditionalArguments;
+
 - (void)setRemotePortNumber :(NSString *)port;
 - (NSString *)getRemotePortNumber;
 
