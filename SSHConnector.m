@@ -20,6 +20,56 @@
 NSString *SSHLogPath = @"/tmp/sidestepssh.log";
 NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n";
 
+/*
+ *	Creates a NSTask object for the SSH connection
+ *
+ *	argument: username for server
+ *	argument: hostname for server
+ *	argument: remoteport for server
+ *	argument: localbindport for socks proxy
+ *	argument: additional arguments for ssh task
+ *	argument: compression argument for ssh task
+ *	return: NSTask object for ssh command on success
+ *	return: nil on error
+ */
+
+- (NSTask *)sshTaskWithUsername:(NSString *)username
+				   withHostname:(NSString *)hostname
+				 withRemotePort:(NSString *)remoteport
+			  withLocalBindPort:(NSNumber *)localPort
+		withAdditionalArguments:(NSString *)additionalArgs
+			 withSSHCompression:(BOOL)sshCompression {
+
+	NSTask *taskObject = [[[NSTask alloc] init] autorelease];
+	
+	// Set up arguments for the ssh command
+	NSMutableArray *args = [[NSMutableArray new] autorelease];
+	[args addObject:[NSString stringWithFormat:@"%@@%@",username,hostname]];
+	[args addObject:[NSString stringWithFormat:@"-D %@", localPort]];
+	[args addObject:[NSString stringWithFormat:@"-p %@", remoteport]];
+    if (sshCompression) {
+        [args addObject:@"-C"];
+    }
+	[args addObject:@"-N"];
+	[args addObject:@"-v"];
+	[args addObject:@"-o TCPKeepAlive=yes"];
+	[args addObject:@"-o ServerAliveInterval=30"];
+	
+	if ([additionalArgs length]) {
+		NSArray *separatedArgs = [additionalArgs componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		if ([separatedArgs count]) {
+			[args addObjectsFromArray:separatedArgs];
+		}
+	}
+	
+	// Set up task arguments and launch path
+	[taskObject setArguments:args];
+	[taskObject setLaunchPath:@"/usr/bin/ssh"];
+	
+	return taskObject;
+}
+
+
 /*	
  *	Opens SSH connection, asking the user for password and storing it in the keychain upon request.
  *	Calls a given callback function on each notable event.
@@ -31,6 +81,9 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
  *	argument: username for server
  *	argument: hostname for server
  *	argument: remoteport for server
+ *	argument: localbindport for socks proxy
+ *	argument: additional arguments for ssh task
+ *	argument: compression argument for ssh task
  *	return: true on success
  *	return: false if task path not found
  */
@@ -41,15 +94,21 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 					 withFailureSelector:(SEL)failureSelector
 							withUsername:(NSString *)username
 							withHostname:(NSString *)hostname
-							withRemotePort:(NSString *)remoteport
+						  withRemotePort:(NSString *)remoteport
 					   withLocalBindPort:(NSNumber *)localPort
+				 withAdditionalArguments:(NSString *)additionalArgs
                       withSSHCompression:(BOOL)sshCompression {
 	
 	XLog(self, @"Opening SSH connection");
 	XLog(self, @"User: %@",username);
 	XLog(self, @"Host: %@",hostname);
 	
-	NSTask *taskObject = [[[NSTask alloc] init] autorelease];
+	NSTask *taskObject = [self sshTaskWithUsername:username
+									  withHostname:hostname
+									withRemotePort:remoteport
+								 withLocalBindPort:localPort
+						   withAdditionalArguments:additionalArgs
+								withSSHCompression:sshCompression];
 	
 	// Setup the pipes on the task
 	NSPipe *outputPipe = [NSPipe pipe];
@@ -87,19 +146,6 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 	// Set the task's environment
 	[taskObject setEnvironment:newEnvironment];
 	
-	// Set up arguments for the ssh command
-	NSMutableArray *args = [[NSMutableArray new] autorelease];
-	[args addObject:[NSString stringWithFormat:@"%@@%@",username,hostname]];
-	[args addObject:[NSString stringWithFormat:@"-D %@", localPort]];
-	[args addObject:[NSString stringWithFormat:@"-p %@", remoteport]];
-    if (sshCompression) {
-        [args addObject:@"-C"];
-    }
-	[args addObject:@"-N"];
-	[args addObject:@"-v"];
-	[args addObject:@"-o TCPKeepAlive=yes"];
-	[args addObject:@"-o ServerAliveInterval=30"];
-	
 	// Delete previous connection's log file
 	[[NSFileManager defaultManager]
 	 removeItemAtPath:SSHLogPath
@@ -115,9 +161,8 @@ NSString *terminateCommand = @"Sidestep: Terminate connection attempt manually\n
 	NSFileHandle *logHandle = [NSFileHandle fileHandleForWritingAtPath:SSHLogPath];
 	[taskObject setStandardError:logHandle];
 	
-	// Set up task arguments and launch path
-	[taskObject setArguments:args];
-	[taskObject setLaunchPath:@"/usr/bin/ssh"];
+	NSString *command = [NSString stringWithFormat:@"%@ %@", [taskObject launchPath], [[taskObject arguments] componentsJoinedByString:@" "]];
+	XLog(self, @"Command: %@", command);
 	
 	// Launch task
 	[taskObject launch];

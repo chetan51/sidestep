@@ -13,14 +13,22 @@
 	
 }
 
+- (NSTask *)sshTaskWithUsername:(NSString *)username
+				   withHostname:(NSString *)hostname
+				 withRemotePort:(NSString *)remoteport
+			  withLocalBindPort:(NSNumber *)localPort
+		withAdditionalArguments:(NSString *)additionalArgs
+			 withSSHCompression:(BOOL)sshCompression;
+
 - (BOOL)openSSHConnectionAndNotifyObject:(id)object
 					 withOpeningSelector:(SEL)openingSelector
 					 withSuccessSelector:(SEL)successSelector
 					 withFailureSelector:(SEL)failureSelector
 							withUsername:(NSString *)username
 							withHostname:(NSString *)hostname
-							withRemotePort:(NSString *)remoteport
+						  withRemotePort:(NSString *)remoteport
 					   withLocalBindPort:(NSNumber *)localPort
+				 withAdditionalArguments:(NSString *)additionalArgs
                       withSSHCompression:(BOOL)sshCompression;
 
 - (BOOL)watchSSHConnectionAndOnOpenOrErrorNotifyObject:(id)object
