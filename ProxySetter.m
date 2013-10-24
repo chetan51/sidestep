@@ -21,14 +21,16 @@
     OSStatus               authErr = noErr;
     
     // Get Authorization
-    rootFlags = kAuthorizationFlagDefaults
+    self->rootFlags = kAuthorizationFlagDefaults
     |  kAuthorizationFlagExtendRights
     |  kAuthorizationFlagInteractionAllowed
     |  kAuthorizationFlagPreAuthorize;
-    authErr = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, rootFlags, &auth);
+    authErr = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, rootFlags, &self->auth);
     if (authErr != noErr) {
-        auth = NULL;
+        XLog(self, @"No Authorization!!!!!");
+        self->auth = NULL;
     }
+    XLog(self,[NSString stringWithFormat:@"Get Auth = %d", authErr]);
     return self;
 }
 
@@ -53,8 +55,14 @@
     }
     
     // Get System Preferences Lock
-    SCPreferencesRef prefsRef = SCPreferencesCreateWithAuthorization(NULL, CFSTR("sidestep"), NULL, auth);
-    success = SCPreferencesLock(prefsRef, NO);
+    SCPreferencesRef prefsRef = SCPreferencesCreateWithAuthorization(NULL, CFSTR("com.chetansurpur.Sitestep"), NULL, self->auth);
+    
+    if(prefsRef==NULL) {
+        XLog(self, @"Fail to obtain Preferences Ref!!");
+        goto freePrefsRef;
+    }
+    
+    success = SCPreferencesLock(prefsRef, TRUE);
     if (!success) {
         XLog(self, @"Fail to obtain PreferencesLock");
         goto freePrefsRef;
@@ -91,18 +99,22 @@
         goto freeResources;
     }
     
-    NSDictionary *oldPreferences = (NSDictionary*)SCNetworkProtocolGetConfiguration(proxyProtocolRef);
+    NSDictionary *oldPreferences = (__bridge NSDictionary*)SCNetworkProtocolGetConfiguration(proxyProtocolRef);
+    NSMutableDictionary *newPreferences;
+    newPreferences = [NSMutableDictionary dictionaryWithDictionary: oldPreferences];
     NSString *wantedHost = @"localhost";
     
     if(on) {//Turn proxy configuration ON
-        [oldPreferences setValue: wantedHost forKey:(NSString*)kSCPropNetProxiesSOCKSProxy];
-        [oldPreferences setValue:[NSNumber numberWithInt:1] forKey:(NSString*)kSCPropNetProxiesSOCKSEnable];
-        [oldPreferences setValue:[NSNumber numberWithInteger:[port integerValue]] forKey:(NSString*)kSCPropNetProxiesSOCKSPort];
+        [newPreferences setValue: wantedHost forKey:(NSString*)kSCPropNetProxiesSOCKSProxy];
+        [newPreferences setValue:[NSNumber numberWithInt:1] forKey:(NSString*)kSCPropNetProxiesSOCKSEnable];
+        [newPreferences setValue:[NSNumber numberWithInteger:[port integerValue]] forKey:(NSString*)kSCPropNetProxiesSOCKSPort];
+        XLog(self, [NSString stringWithFormat:@"Setting Proxy ON with: %@", newPreferences]);
     } else {//Turn proxy configuration OFF
-        [oldPreferences setValue:[NSNumber numberWithInt:0] forKey:(NSString*)kSCPropNetProxiesSOCKSEnable];
+        [newPreferences setValue:[NSNumber numberWithInt:0] forKey:(NSString*)kSCPropNetProxiesSOCKSEnable];
+        XLog(self, @"Setting Proxy OFF");
     }
         
-    success = SCNetworkProtocolSetConfiguration(proxyProtocolRef, (CFDictionaryRef)oldPreferences);
+    success = SCNetworkProtocolSetConfiguration(proxyProtocolRef, (__bridge CFDictionaryRef)newPreferences);
     if(!success) {
         XLog(self, @"Failed to set Protocol Configuration");
         goto freeResources;
@@ -136,6 +148,20 @@ freePrefsRef:
     return success;
 }
 
+- (BOOL) isProxyEnabled
+{
+	NSDictionary *proxies = (NSDictionary *)SCDynamicStoreCopyProxies(NULL);
+    if(!proxies) return NO;
+	
+    BOOL enabled = [[proxies objectForKey:(NSString *)kSCPropNetProxiesSOCKSEnable] boolValue];
+
+	if (proxies != NULL)
+        CFRelease(proxies);
+	
+    XLog(self, enabled ? @"Proxy is Enabled" : @"Proxy is Disabled");
+    
+    return enabled;
+}
 
 -(void)dealloc {
     XLog(self, @"dealloc ProxySetter");

@@ -143,13 +143,26 @@ NSInteger GrowlSpam_TestConnection					= 0;
 													withSelector:@selector(connectedToAirportNetworkWithSecurityType:)]) {
 		[self showRestartSidestepDialog];
 	}
+    
+    
+    //These notifications are filed on NSWorkspace's notification center, not the default
+    // notification center. You will not receive sleep/wake notifications if you file
+    //with the default notification center.
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(receiveSleepNote:)
+                                                               name: NSWorkspaceWillSleepNotification object: NULL];
+        
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(receiveWakeNote:)
+                                                               name: NSWorkspaceDidWakeNotification object: NULL];
+
 	
 }
 
 - (void)awakeFromNib {
 	
 	// Set selected proxy if not already set
-	if ([defaultsController selectedProxy] == nil || [defaultsController selectedProxy] == @"") {	
+	if ([defaultsController selectedProxy] == nil || [[defaultsController selectedProxy] isEqualToString:@""]) {
 		[defaultsController setSelectedProxy:@"1"];
 	}
 	
@@ -203,7 +216,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	}
 	
     // Set default remote port number if not already set
-    if ([defaultsController getRemotePortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
+    if ([defaultsController getRemotePortNumber] == nil || [[defaultsController getRemotePortNumber] isEqualToString:@""]) {
 		[defaultsController setRemotePortNumber:@"22"];
     }
 	
@@ -213,7 +226,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
     }
 	
 	// Set default local port number if not already set
-    if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
+    if ([defaultsController getLocalPortNumber] == nil || [[defaultsController getLocalPortNumber] isEqualToString:@""]) {
 		[defaultsController setLocalPortNumber:@"9050"];
     }
         
@@ -759,6 +772,18 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	}
     
 }
+
+- (void) receiveSleepNote: (NSNotification*) note
+{
+    NSLog(@"receiveSleepNote: %@", [note name]);
+}
+
+- (void) receiveWakeNote: (NSNotification*) note
+{
+    NSLog(@"receiveSleepNote: %@", [note name]);
+}
+
+
 
 /*
  *	UI Functions
