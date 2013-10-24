@@ -23,6 +23,9 @@
 		616141D412971C1B0090EE00 /* LoginItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616141D312971C1B0090EE00 /* LoginItemController.m */; };
 		616141E6129722600090EE00 /* rerouted-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 616141E5129722600090EE00 /* rerouted-secure-icon.png */; };
 		616142971298A69F0090EE00 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 616142961298A69F0090EE00 /* dsa_pub.pem */; };
+		6172BFC5162BA394002FD797 /* direct-insecure-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6172BFC2162BA394002FD797 /* direct-insecure-icon@2x.png */; };
+		6172BFC6162BA394002FD797 /* direct-secure-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6172BFC3162BA394002FD797 /* direct-secure-icon@2x.png */; };
+		6172BFC7162BA394002FD797 /* rerouted-secure-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6172BFC4162BA394002FD797 /* rerouted-secure-icon@2x.png */; };
 		61739FEF1294787E00BBD392 /* direct-secure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61739FEE1294787E00BBD392 /* direct-secure-icon.png */; };
 		6173A007129511F900BBD392 /* direct-insecure-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6173A006129511F900BBD392 /* direct-insecure-icon.png */; };
 		61A926941299C11100B6B66B /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A926931299C11100B6B66B /* EMKeychainItem.m */; };
@@ -123,6 +126,9 @@
 		616141D312971C1B0090EE00 /* LoginItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemController.m; sourceTree = "<group>"; };
 		616141E5129722600090EE00 /* rerouted-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rerouted-secure-icon.png"; sourceTree = "<group>"; };
 		616142961298A69F0090EE00 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		6172BFC2162BA394002FD797 /* direct-insecure-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-insecure-icon@2x.png"; sourceTree = "<group>"; };
+		6172BFC3162BA394002FD797 /* direct-secure-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-secure-icon@2x.png"; sourceTree = "<group>"; };
+		6172BFC4162BA394002FD797 /* rerouted-secure-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rerouted-secure-icon@2x.png"; sourceTree = "<group>"; };
 		61739FEE1294787E00BBD392 /* direct-secure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-secure-icon.png"; sourceTree = "<group>"; };
 		6173A006129511F900BBD392 /* direct-insecure-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direct-insecure-icon.png"; sourceTree = "<group>"; };
 		61A926921299C11100B6B66B /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
@@ -260,8 +266,11 @@
 			children = (
 				61A9285E129BB3D100B6B66B /* main-icon.icns */,
 				616141E5129722600090EE00 /* rerouted-secure-icon.png */,
+				6172BFC4162BA394002FD797 /* rerouted-secure-icon@2x.png */,
 				6173A006129511F900BBD392 /* direct-insecure-icon.png */,
+				6172BFC2162BA394002FD797 /* direct-insecure-icon@2x.png */,
 				61739FEE1294787E00BBD392 /* direct-secure-icon.png */,
+				6172BFC3162BA394002FD797 /* direct-secure-icon@2x.png */,
 				61FB5E5D127FC469003229D7 /* GetNetworkSecurityType.sh */,
 				61B3E825127BA7A50011E198 /* WatchSSHConnectionForChanges.sh */,
 				61B3E58C127ABBEB0011E198 /* TurnProxyOff.sh */,
@@ -370,6 +379,9 @@
 				61A9285F129BB3D100B6B66B /* main-icon.icns in Resources */,
 				613F9CFF12AC924D00B13A60 /* TurnVPNOnOrOff.sh in Resources */,
 				613F9D9812AD915A00B13A60 /* GetListOfVPNServices.sh in Resources */,
+				6172BFC5162BA394002FD797 /* direct-insecure-icon@2x.png in Resources */,
+				6172BFC6162BA394002FD797 /* direct-secure-icon@2x.png in Resources */,
+				6172BFC7162BA394002FD797 /* rerouted-secure-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

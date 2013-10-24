@@ -180,13 +180,10 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	[statusItem setMenu:statusMenu];
 	[statusItem setHighlightMode:YES];
 	
-	// Used to detect where our files are
-	NSBundle *bundle = [NSBundle mainBundle];
-	
 	// Allocates and loads the images into the application which will be used for our NSStatusItem
-	statusImageDirectInsecure = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"direct-insecure-icon" ofType:@"png"]];
-	statusImageDirectSecure = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"direct-secure-icon" ofType:@"png"]];
-	statusImageReroutedSecure = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"rerouted-secure-icon" ofType:@"png"]];
+	statusImageDirectInsecure = [NSImage imageNamed:@"direct-insecure-icon"];
+	statusImageDirectSecure = [NSImage imageNamed:@"direct-secure-icon"];
+	statusImageReroutedSecure = [NSImage imageNamed:@"rerouted-secure-icon"];
 	
 	// Sets the default images in our NSStatusItem
 	[statusItem setImage:statusImageDirectSecure];
@@ -467,6 +464,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	NSString *hostname = [defaultsController getServerHostname];
 	NSString *remoteport = [defaultsController getRemotePortNumber];
 	NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
+	NSString *additionalargs = [defaultsController getAdditionalArguments];
     BOOL sshCompression = [defaultsController getCompressSSHConnection];
 	
 	if (username && hostname) {	
@@ -476,8 +474,9 @@ NSInteger GrowlSpam_TestConnection					= 0;
 										withFailureSelector:@selector(SSHConnectionFailed:)
 											   withUsername:username
 											   withHostname:hostname
-												withRemotePort:(NSString *)remoteport
+											 withRemotePort:(NSString *)remoteport
 										  withLocalBindPort:(NSNumber *)localport
+									withAdditionalArguments:additionalargs
                                          withSSHCompression:sshCompression]) {
 			[self showRestartSidestepDialog];
 		}
@@ -1171,6 +1170,62 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	XLog(self, @"Selected VPN service: %@", [defaultsController selectedVPNService]);
 	
 	[self closeVPNConnection];
+	
+}
+
+- (NSString *)sshCommand {
+	
+	NSString *username = [defaultsController getServerUsername];
+	NSString *hostname = [defaultsController getServerHostname];
+	NSString *remoteport = [defaultsController getRemotePortNumber];
+	NSNumber *localport = (NSNumber *)[defaultsController getLocalPortNumber];
+	NSString *additionalargs = [defaultsController getAdditionalArguments];
+    BOOL sshCompression = [defaultsController getCompressSSHConnection];
+	
+	NSTask *task = [SSHconnector sshTaskWithUsername:username
+										withHostname:hostname
+									  withRemotePort:remoteport
+								   withLocalBindPort:localport
+							 withAdditionalArguments:additionalargs
+								  withSSHCompression:sshCompression];
+	
+	NSString *command = [NSString stringWithFormat:@"%@ %@", [task launchPath], [[task arguments] componentsJoinedByString:@" "]];
+
+	return command;
+}
+
+- (void)updateSSHCommand {
+	
+	[sshCommandDisplayField setStringValue:[self sshCommand]];
+	
+}
+
+- (IBAction)compressionToggled:(id)sender {
+	
+	[self updateSSHCommand];
+
+}
+#pragma mark - NSTextFieldDelegate
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+	
+	[self updateSSHCommand];
+	
+}
+
+- (void)controlTextDidChange:(NSNotification *)aNotification {
+	
+	NSControl *control = [aNotification object];
+	NSString *identifier = [control identifier];
+	
+	// If the text field being updated is on the advanced tab, show the update in real-time
+	if ([@"AdditionalSSHArguments" isEqualToString:identifier]) {
+	
+		// save it, then update the command field
+		[defaultsController setAdditionalArguments:[control stringValue]];
+		[self updateSSHCommand];
+		
+	}
 	
 }
 

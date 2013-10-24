@@ -18,7 +18,7 @@
 #import "AppUtilities.h"
 #import "GrowlMessage.h"
 
-@interface AppController : NSObject <GrowlApplicationBridgeDelegate> { //<NSApplicationDelegate> {
+@interface AppController : NSObject <GrowlApplicationBridgeDelegate, NSTextFieldDelegate> { //<NSApplicationDelegate> {
     NSWindow *window;
 	
 	IBOutlet NSMenu *statusMenu;
@@ -62,6 +62,8 @@
 	
 	IBOutlet NSPopUpButton *availableVPNServices;
 	
+	IBOutlet NSTextField *sshCommandDisplayField;
+	
 	NSTask *SSHConnection;
 	Boolean SSHConnecting;
 	Boolean SSHConnected;
@@ -96,6 +98,9 @@
 - (void)selectProxyClicked :(id)sender;
 - (void)connectProxyClicked :(id)sender;
 - (void)disconnectProxyClicked :(id)sender;
+
+- (IBAction)compressionToggled:(id)sender;
+- (NSString *)sshCommand;
 
 - (NSDictionary *) registrationDictionaryForGrowl;
 

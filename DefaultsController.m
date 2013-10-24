@@ -94,6 +94,19 @@
 	
 }
 
+- (void)setAdditionalArguments :(NSString *)args {
+	
+	[defaults setObject:args forKey:@"sidestep_AdditionalSSHArguments"];
+	[defaults synchronize];
+	
+}
+
+- (NSString *)getAdditionalArguments {
+	
+	return [defaults stringForKey:@"sidestep_AdditionalSSHArguments"];
+	
+}
+
 - (void)setCompressSSHConnection:(BOOL)value {
 	
 	[defaults setBool:value forKey:@"sidestep_CompressSSHConnection"];
