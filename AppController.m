@@ -162,7 +162,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 - (void)awakeFromNib {
 	
 	// Set selected proxy if not already set
-	if ([defaultsController selectedProxy] == nil || [defaultsController selectedProxy] == @"") {	
+	if ([defaultsController selectedProxy] == nil || [[defaultsController selectedProxy] isEqualToString:@""]) {
 		[defaultsController setSelectedProxy:@"1"];
 	}
 	
@@ -216,7 +216,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	}
 	
     // Set default remote port number if not already set
-    if ([defaultsController getRemotePortNumber] == nil || [defaultsController getRemotePortNumber] == @"") {
+    if ([defaultsController getRemotePortNumber] == nil || [[defaultsController getRemotePortNumber] isEqualToString:@""]) {
 		[defaultsController setRemotePortNumber:@"22"];
     }
 	
@@ -226,7 +226,7 @@ NSInteger GrowlSpam_TestConnection					= 0;
     }
 	
 	// Set default local port number if not already set
-    if ([defaultsController getLocalPortNumber] == nil || [defaultsController getLocalPortNumber] == @"") {
+    if ([defaultsController getLocalPortNumber] == nil || [[defaultsController getLocalPortNumber] isEqualToString:@""]) {
 		[defaultsController setLocalPortNumber:@"9050"];
     }
         
