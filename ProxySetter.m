@@ -54,7 +54,7 @@
     
     // Get System Preferences Lock
     SCPreferencesRef prefsRef = SCPreferencesCreateWithAuthorization(NULL, CFSTR("sidestep"), NULL, auth);
-    success = SCPreferencesLock(prefsRef, NO);
+    success = SCPreferencesLock(prefsRef, TRUE);
     if (!success) {
         XLog(self, @"Fail to obtain PreferencesLock");
         goto freePrefsRef;

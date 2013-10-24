@@ -143,6 +143,19 @@ NSInteger GrowlSpam_TestConnection					= 0;
 													withSelector:@selector(connectedToAirportNetworkWithSecurityType:)]) {
 		[self showRestartSidestepDialog];
 	}
+    
+    
+    //These notifications are filed on NSWorkspace's notification center, not the default
+    // notification center. You will not receive sleep/wake notifications if you file
+    //with the default notification center.
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(receiveSleepNote:)
+                                                               name: NSWorkspaceWillSleepNotification object: NULL];
+        
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(receiveWakeNote:)
+                                                               name: NSWorkspaceDidWakeNotification object: NULL];
+
 	
 }
 
@@ -760,6 +773,18 @@ NSInteger GrowlSpam_TestConnection					= 0;
 	}
     
 }
+
+- (void) receiveSleepNote: (NSNotification*) note
+{
+    NSLog(@"receiveSleepNote: %@", [note name]);
+}
+
+- (void) receiveWakeNote: (NSNotification*) note
+{
+    NSLog(@"receiveSleepNote: %@", [note name]);
+}
+
+
 
 /*
  *	UI Functions
